@@ -17,8 +17,9 @@ To build and preview static version of the storybook, run:
 
     yarn build
 
-Finally, to deploy it:
+To deploy storybook:
 
+    bundle install
     yarn deploy
 
 ### **Resources**
@@ -26,4 +27,5 @@ Finally, to deploy it:
 - [Intro to Storybook](https://www.learnstorybook.com/intro-to-storybook)
 - [Design System for Developers](https://www.learnstorybook.com/design-systems-for-developers)
 - [Component Story Format](https://medium.com/storybookjs/component-story-format-66f4c32366df)
+- [Storybook Docs](https://storybook.js.org/docs)
 - [Original Storybook Design System](https://github.com/storybookjs/design-system)

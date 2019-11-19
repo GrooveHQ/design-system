@@ -15,6 +15,7 @@
   "scripts": {
     "build": "build-storybook",
     "build-docs": "build-storybook --docs",
+    "deploy": "bundle exec s3_website push",
     "lint": "eslint .",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "lint:package": "sort-package-json",
