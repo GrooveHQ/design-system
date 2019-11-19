@@ -1,11 +1,13 @@
 {
-  "name": "storybook",
+  "name": "groove-storybook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "styled-jsx": "^3.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
