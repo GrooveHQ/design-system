@@ -1,22 +1,43 @@
 {
-  "name": "groove-storybook",
+  "name": "@groove/design-system",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
-    "styled-jsx": "^3.2.4"
+  "description": "Groove Storybook Design System",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groovehq/design-system.git"
   },
+  "author": {
+    "name": "Tair Assimov",
+    "email": "tair@groovehq.com"
+  },
+  "main": "dist/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "build-storybook",
+    "build-docs": "build-storybook --docs",
+    "lint": "eslint .",
+    "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
+    "lint:package": "sort-package-json",
+    "start": "start-storybook -p 9009"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.html": [
+      "yarn lint:js --fix",
+      "git add"
+    ],
+    "*.js": [
+      "yarn lint:js --fix",
+      "git add"
+    ],
+    "package.json": [
+      "yarn lint:package",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -30,7 +51,51 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "polished": "^3.4.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0",
+    "styled-components": "^4.4.1",
+    "styled-jsx": "^3.2.4"
+  },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-docs": "^5.2.6",
+    "@storybook/addon-knobs": "^5.2.6",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addon-storysource": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.2.6",
+    "@storybook/source-loader": "^5.2.6",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-json": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "sort-package-json": "^1.23.1"
   }
 }
