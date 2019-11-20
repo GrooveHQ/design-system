@@ -32,6 +32,6 @@ export default create({
   // inputBorderRadius: 4,
 
   brandTitle: 'Groove Storybook Design System',
-  brandUrl: 'https://http://groove-sds.s3-website-us-east-1.amazonaws.com',
+  brandUrl: 'http://groove-sds.s3-website-us-east-1.amazonaws.com',
   brandImage: 'https://www.groovehq.com/images/navbarLogo.svg',
 })

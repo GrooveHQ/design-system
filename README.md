@@ -1,6 +1,6 @@
 # Groove Storybook Design System
 
-[Groove Storybook Design System (SDS)](https://http://groove-sds.s3-website-us-east-1.amazonaws.com) is a reusable component library that helps developers build Groove branded, consistent UIs faster. It's an SSOT (single source of truth) for all UI components used across various Groove applications.
+[Groove Storybook Design System (SDS)](http://groove-sds.s3-website-us-east-1.amazonaws.com) is a reusable component library that helps developers build Groove branded, consistent UIs faster. It's an SSOT (single source of truth) for all UI components used across various Groove applications.
 
 ## Running and developing SDS locally
 
@@ -26,12 +26,12 @@ To deploy storybook:
 
 Every time you want to release a new version of Groove SDS, run:
 
+    yarn login
     yarn release
 
-*Notes:*
+**Note:**
 
-- Requires authentication with [`npm login`](https://docs.npmjs.com/cli/adduser.html)
-- [`auto`](https://github.com/intuit/auto) is used to generate a changelog and push it to GitHub. In order for this to work correctly, **an environment variable called `GH_TOKEN` is needed** that references a [GitHub personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) with the appropriate permissions to update the repo.
+We use [`auto`](https://github.com/intuit/auto) to generate a changelog and push it to GitHub. In order for this to work correctly, **an environment variable called `GH_TOKEN` is needed** that references a [GitHub personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) with the appropriate permissions to update the repo.
 
 ### **Resources**
 
