@@ -1,10 +1,10 @@
 import { createGlobalStyle, css } from 'styled-components'
-import { color, typography } from './styles'
+import { color, backgroundColor, borderColor, typography } from './styles'
 
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
-  font-size: ${typography.size.s3}px;
-  color: ${color.darkest};
+  font-size: ${typography.sizes.p1.size}px;
+  color: ${color.jetBlack};
 
   margin: 0;
   overflow-y: auto;
@@ -59,7 +59,7 @@ export const bodyStyles = css`
 
   hr {
     border: none;
-    border-top: 1px solid ${color.border};
+    border-top: 1px solid ${borderColor.default};
     clear: both;
     margin-bottom: 1.25rem;
   }
@@ -67,7 +67,7 @@ export const bodyStyles = css`
   code,
   pre {
     font-family: ${typography.type.code};
-    font-size: ${typography.size.s2 - 1}px;
+    font-size: ${typography.sizes.p1.size - 1}px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -78,7 +78,7 @@ export const bodyStyles = css`
     padding-right: 2px;
     vertical-align: baseline;
 
-    color: ${color.secondary};
+    color: ${color.gunGrey};
   }
 
   pre {
@@ -86,8 +86,8 @@ export const bodyStyles = css`
     padding: 11px 1rem;
     white-space: pre-wrap;
 
-    background: rgba(0, 0, 0, 0.05);
-    color: ${color.darkest};
+    background: ${backgroundColor.medium};
+    color: ${color.jetBlack};
     border-radius: 3px;
     margin: 1rem 0;
   }
@@ -118,7 +118,7 @@ export const bodyStyles = css`
 // Allow design system consumers to access font settings but control how and
 // where they load the font.
 export const fontUrl =
-  'https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,800,900&display=swap'
+  'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=cyrillic,greek,vietnamese'
 
 export const GlobalStyle = createGlobalStyle`
   body {

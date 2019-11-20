@@ -1,0 +1,48 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+import { color, infoColor, backgroundColor, borderColor } from './shared/styles';
+
+<Meta title="Design System|Colors" />
+
+# Colors
+
+<ColorPalette>
+  <ColorItem title="color.primary" subtitle="Primary" colors={[color.primary]} />
+  <ColorItem title="color.mintGreen" subtitle="Mint Green" colors={[color.mintGreen]} />
+  <ColorItem title="color.sunYellow" subtitle="Sun Yellow" colors={[color.sunYellow]} />
+  <ColorItem title="color.lightYellow" subtitle="Light Yellow" colors={[color.lightYellow]} />
+  <ColorItem title="color.candyRed" subtitle="Candy Red" colors={[color.candyRed]} />
+
+  <ColorItem title="color.jetBlack" subtitle="Jet Black" colors={[color.jetBlack]} />
+  <ColorItem title="color.gunGrey" subtitle="Gun Grey" colors={[color.gunGrey]} />
+  <ColorItem title="color.stoneGrey" subtitle="Stone Grey" colors={[color.stoneGrey]} />
+  <ColorItem title="color.metalGrey" subtitle="Metal Grey" colors={[color.metalGrey]} />
+  <ColorItem title="color.ashGrey" subtitle="Ash Grey" colors={[color.ashGrey]} />
+  <ColorItem title="color.moonGrey" subtitle="Moon Grey" colors={[color.moonGrey]} />
+
+  <ColorItem title="color.paperWhite" subtitle="Paper White" colors={[color.paperWhite]} />
+</ColorPalette>
+
+## Info Colors
+
+<ColorPalette>
+  <ColorItem title="infoColor.success" subtitle="Success" colors={[infoColor.success]} />
+  <ColorItem title="infoColor.warning" subtitle="Warning" colors={[infoColor.warning]} />
+  <ColorItem title="infoColor.error" subtitle="Error" colors={[infoColor.error]} />
+  <ColorItem title="infoColor.info" subtitle="Info" colors={[infoColor.info]} />
+</ColorPalette>
+
+## Background Colors
+
+<ColorPalette>
+  <ColorItem title="backgroundColor.info" subtitle="Info" colors={[backgroundColor.info]} />
+  <ColorItem title="backgroundColor.medium" subtitle="Medium" colors={[backgroundColor.medium]} />
+  <ColorItem title="backgroundColor.light" subtitle="Light" colors={[backgroundColor.light]} />
+  <ColorItem title="backgroundColor.white" subtitle="White" colors={[backgroundColor.white]} />
+</ColorPalette>
+
+## Border Colors
+
+<ColorPalette>
+  <ColorItem title="backgroundColor.default" subtitle="Default" colors={[borderColor.default]} />
+</ColorPalette>

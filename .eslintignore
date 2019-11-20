@@ -1,2 +1,2 @@
-dist/**/*.js
-storybook-static/**/*.js
+dist/
+storybook-static/

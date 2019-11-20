@@ -1,0 +1,33 @@
+import { Meta, Typeset } from '@storybook/addon-docs/blocks';
+
+import { typography } from './shared/styles';
+
+<Meta title="Design System|Typography" />
+
+# Typography
+
+**Font:** IBM Plex Sans
+
+**Weights:** 400 (regular), 700 (bold)
+
+## Headings
+
+<Typeset
+  fontSizes={[
+    Number(typography.sizes.h1.size),
+    Number(typography.sizes.h2.size),
+  ]}
+  fontWeight={typography.sizes.h1.weight}
+/>
+
+## Paragraphs
+
+<Typeset
+  fontSizes={[
+    Number(typography.sizes.p1.size),
+    Number(typography.sizes.p2.size),
+    Number(typography.sizes.p3.size),
+    Number(typography.sizes.p4.size),
+  ]}
+  fontWeight={typography.sizes.p1.weight}
+/>
