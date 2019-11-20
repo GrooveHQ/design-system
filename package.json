@@ -1,24 +1,28 @@
 {
   "name": "@groove/design-system",
   "version": "0.1.0",
-  "private": true,
   "description": "Groove Storybook Design System",
   "repository": {
     "type": "git",
     "url": "https://github.com/groovehq/design-system.git"
   },
+  "license": "UNLICENSED",
   "author": {
     "name": "Tair Assimov",
     "email": "tair@groovehq.com"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "build-storybook",
-    "build-docs": "build-storybook --docs",
-    "deploy": "bundle exec s3_website push",
+    "build-pkg": "babel src -d dist",
+    "deploy": "yarn run build && bundle exec s3_website push",
     "lint": "eslint .",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "lint:package": "sort-package-json",
+    "release": "yarn run build-pkg && ./scripts/release.sh",
     "start": "start-storybook -p 9009"
   },
   "husky": {
@@ -77,6 +81,7 @@
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
     "@storybook/source-loader": "^5.2.6",
+    "auto": "^7.16.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-require-context-hook": "^1.0.0",
@@ -98,5 +103,16 @@
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "sort-package-json": "^1.23.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
   }
 }
