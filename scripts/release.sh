@@ -1,4 +1,12 @@
 #!/bin/sh
+LOCAL_HASH=`git rev-parse HEAD`
+REMOTE_HASH=`git rev-parse origin/master`
+
+if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+  echo "Did you forget to push to origin/master?"
+  exit 1
+fi
+
 export PATH=$(npm bin):$PATH
 
 VERSION=`auto version`
