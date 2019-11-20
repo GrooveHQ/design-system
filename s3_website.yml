@@ -46,7 +46,7 @@ s3_reduced_redundancy: true
 #   aliases:
 #     quantity: 1
 #     items:
-#       - sds.groovehq.com
+#       - http://groove-sds.s3-website-us-east-1.amazonaws.com
 
 # cloudfront_invalidate_root: true
 
