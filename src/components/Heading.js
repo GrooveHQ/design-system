@@ -39,6 +39,6 @@ Heading.propTypes = {
 }
 
 Heading.defaultProps = {
-  size: SIZES.medium,
+  size: 'medium',
   align: ALIGNMENT.left,
 }

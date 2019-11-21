@@ -45,7 +45,7 @@ Paragraph.propTypes = {
 }
 
 Paragraph.defaultProps = {
-  size: SIZES.medium,
+  size: 'medium',
   align: ALIGNMENT.left,
   isInline: false,
 }
