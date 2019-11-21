@@ -1,3 +1,21 @@
+# v0.1.4 (Thu Nov 21 2019)
+
+#### ⚠️  Pushed to master
+
+- Icon component and stories  (tair@groovehq.com)
+- Fix typography sizes  (tair@groovehq.com)
+- Link Groove Storybook and add badge  (tair@groovehq.com)
+- Add code typeface  (tair@groovehq.com)
+- Set defaults for Heading/Paragraph size prop  (tair@groovehq.com)
+- Document global styles & font loading  (tair@groovehq.com)
+- Fix Changelog and readme  (tair@groovehq.com)
+
+#### Authors: 1
+
+- Tair Assimov (tair@groovehq.com)
+
+---
+
 # v0.1.3 (Wed Nov 20 2019)
 
 #### ⚠️  Pushed to master
