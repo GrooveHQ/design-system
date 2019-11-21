@@ -67,6 +67,7 @@ export const spacing = {
 export const typography = {
   type: {
     primary: '"IBM Plex Sans", sans-serif',
+    code: '"IBM Plex Mono", monospace',
   },
   weight: {
     regular: '400',
