@@ -33,7 +33,7 @@ Paragraph.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(SIZES)).isRequired,
+  size: PropTypes.oneOf(Object.keys(SIZES)),
   /**
    * Specify alignmnet
    */
@@ -45,6 +45,7 @@ Paragraph.propTypes = {
 }
 
 Paragraph.defaultProps = {
+  size: SIZES.medium,
   align: ALIGNMENT.left,
   isInline: false,
 }

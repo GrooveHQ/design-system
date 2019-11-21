@@ -31,7 +31,7 @@ Heading.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(SIZES)).isRequired,
+  size: PropTypes.oneOf(Object.keys(SIZES)),
   /**
    * Specify alignmnet
    */
@@ -39,5 +39,6 @@ Heading.propTypes = {
 }
 
 Heading.defaultProps = {
+  size: SIZES.medium,
   align: ALIGNMENT.left,
 }
