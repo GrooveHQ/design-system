@@ -33,7 +33,11 @@ Every time you want to release a new version of Groove SDS, run:
 
 We use [`auto`](https://github.com/intuit/auto) to generate a changelog and push it to GitHub. In order for this to work correctly, **an environment variable called `GH_TOKEN` is needed** that references a [GitHub personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) with the appropriate permissions to update the repo.
 
-### **Resources**
+## Using in your application
+
+To use Groove Storybook Design System (SDS) in your React applications, follow the storybook **Design System > Getting Started Guide**.
+
+## **Resources**
 
 - [Intro to Storybook](https://www.learnstorybook.com/intro-to-storybook)
 - [Design System for Developers](https://www.learnstorybook.com/design-systems-for-developers)
