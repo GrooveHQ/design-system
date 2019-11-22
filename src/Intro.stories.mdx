@@ -34,25 +34,11 @@ const example = () => (
 
 ## Global styles
 
-Components within the design system assume that a set of global styles have been configured. Depending upon the needs of the application, this can be done several ways:
+Components within the design system assume that a set of global styles have been configured. Here is how you can use [Emotion Globals](https://emotion.sh/docs/globals) to inject our global styles into your app:
 
-#### Option 1: Render the `GlobalStyle` component
-
-Useful when you don't need any custom `body` styling in the application, typically this would be placed in a layout component that wraps all pages, or a top-level `App` component.
-
-```javascript
-import { global } from '@groovehq/design-system'
-const { GlobalStyle } = global
 ```
-
-```javascript
-/* Render the global styles once per page */
-<GlobalStyle />
+yarn add @emotion/core
 ```
-
-#### Option 2: Use the `bodyStyles` to apply styling
-
-Useful when you want build upon the shared global styling.
 
 ```javascript
 import { Global, css } from '@emotion/core'

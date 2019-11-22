@@ -1,5 +1,4 @@
-import React from 'react'
-import { Global, css } from '@emotion/core'
+import { css } from '@emotion/core'
 import { color, backgroundColor, borderColor, typography } from './styles'
 
 export const bodyStyles = css`
@@ -92,33 +91,9 @@ export const bodyStyles = css`
     border-radius: 3px;
     margin: 1rem 0;
   }
-
-  &.ReactModal__Body--open {
-    overflow: hidden;
-    &.hide-intercom #intercom-container {
-      display: none;
-    }
-  }
-
-  .ReactModalPortal > div {
-    opacity: 0;
-  }
-
-  .ReactModalPortal .ReactModal__Overlay {
-    transition: all 200ms ease-in;
-
-    &--after-open {
-      opacity: 1;
-    }
-    &--before-close {
-      opacity: 0;
-    }
-  }
 `
 
 // Allow design system consumers to access font settings but control how and
 // where they load the font.
 export const fontUrl =
   'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=cyrillic,greek,vietnamese'
-
-export const GlobalStyle = <Global styles={bodyStyles} />

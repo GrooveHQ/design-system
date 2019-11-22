@@ -9,7 +9,7 @@
 Clone the [Groove SDS project](https://github.com/groovehq/design-system), then start storybook to preview available components and develop locally:
 
     yarn
-    yarn run start
+    yarn start
 
 The storybook will be running at: http://localhost:9009
 

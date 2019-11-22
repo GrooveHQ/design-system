@@ -3,8 +3,15 @@ import React from 'react'
 import { configure, addDecorator, addParameters } from '@storybook/react'
 import grooveTheme from './grooveTheme'
 import { loadFontsForStorybook } from '../src/utils/index'
+import { Global, css } from '@emotion/core'
 
-import { GlobalStyle } from '../src/components/shared/global'
+import { bodyStyles } from '../src/components/shared/global'
+
+const customGlobalStyle = css`
+  body {
+    ${bodyStyles}
+  }
+`
 
 addParameters({
   options: {
@@ -14,7 +21,7 @@ addParameters({
 
 addDecorator(story => (
   <>
-    <GlobalStyle />
+    <Global styles={customGlobalStyle} />
     {story()}
   </>
 ));
