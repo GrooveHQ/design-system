@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { Global, css } from '@emotion/core'
 import { color, backgroundColor, borderColor, typography } from './styles'
 
 export const bodyStyles = css`
@@ -120,8 +120,5 @@ export const bodyStyles = css`
 export const fontUrl =
   'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=cyrillic,greek,vietnamese'
 
-export const GlobalStyle = createGlobalStyle`
-  body {
-    ${bodyStyles}
-  }
-`
+// eslint-disable-next-line react/react-in-jsx-scope
+export const GlobalStyle = <Global styles={bodyStyles} />
