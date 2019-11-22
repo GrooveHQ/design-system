@@ -1,3 +1,19 @@
+# v0.2.0 (Fri Nov 22 2019)
+
+#### 🚀  Enhancement
+
+- Use emotion instead of styled-components [#2](https://github.com/GrooveHQ/design-system/pull/2) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Fix react scope  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.1.5 (Fri Nov 22 2019)
 
 
