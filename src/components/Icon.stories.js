@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 import { color, borderColor, spacing } from './shared/styles'
 import { Icon } from './Icon'

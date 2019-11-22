@@ -55,11 +55,11 @@ const { GlobalStyle } = global
 Useful when you want build upon the shared global styling.
 
 ```javascript
-import { createGlobalStyle } from 'styled-components'
+import { Global, css } from '@emotion/core'
 import { global } from '@groovehq/design-system'
 const { bodyStyles } = global
 
-const CustomGlobalStyle = createGlobalStyle`
+const customGlobalStyle = css`
   body {
     ${bodyStyles}
     // Custom body styling for the app
@@ -69,7 +69,7 @@ const CustomGlobalStyle = createGlobalStyle`
 
 ```javascript
 /* Render the global styles once per page */
-<CustomGlobalStyle />
+<Global styles={customGlobalStyle} />
 ```
 
 ## Font loading
