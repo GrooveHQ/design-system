@@ -1,3 +1,4 @@
+import React from 'react'
 import { Global, css } from '@emotion/core'
 import { color, backgroundColor, borderColor, typography } from './styles'
 
@@ -120,5 +121,4 @@ export const bodyStyles = css`
 export const fontUrl =
   'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=cyrillic,greek,vietnamese'
 
-// eslint-disable-next-line react/react-in-jsx-scope
 export const GlobalStyle = <Global styles={bodyStyles} />
