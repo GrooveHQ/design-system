@@ -4,7 +4,7 @@ import { Header } from './Header'
 import { Heading } from './Heading'
 
 export default {
-  title: 'Design System|Top Header',
+  title: 'Design System|Header',
   parameters: {
     component: Header,
   },
