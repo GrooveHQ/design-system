@@ -16,26 +16,34 @@ const StyleContainer = styled.div`
 `
 
 const StyledContent = styled.div`
-  justify-content: normal;
+  flex: 1 1 auto;
   padding: ${spacing.padding.small}px ${spacing.padding.small}px 0
     ${spacing.padding.small}px;
+  overflow-y: auto;
 `
 
 const StyledParagraph = styled(Paragraph)`
   line-height: 0;
   margin-bottom: ${spacing.padding.small}px;
   display: block;
-  color: ${color.stoneGrey};
+  flex: 0 0 auto;
+`
+
+const StyledHeader = styled.div`
+  flex: 0 0 auto;
 `
 
 export const Container = props => {
-  const { branded, appName, children } = props
+  const { branded, appName, children, header } = props
+
   return (
     <StyleContainer {...props}>
+      {header && <StyledHeader>{header}</StyledHeader>}
+
       <StyledContent>{children}</StyledContent>
 
       {branded && (
-        <StyledParagraph size="small" align="center">
+        <StyledParagraph size="small" align="center" color="stoneGrey">
           {appName ? `${appName} ` : ''} ⚡️by Groove
         </StyledParagraph>
       )}
