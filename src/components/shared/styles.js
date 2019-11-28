@@ -43,6 +43,11 @@ export const borderColor = {
   default: color.ashGrey,
 }
 
+// Shadows
+export const shadows = {
+  default: '0 4px 16px 0 rgba(0, 0, 0, 0.1)',
+}
+
 // Spacing
 export const spacing = {
   padding: {
