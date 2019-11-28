@@ -13,6 +13,13 @@ Clone the [Groove SDS project](https://github.com/groovehq/design-system), then 
 
 The storybook will be running at: http://localhost:9009
 
+To avoid NPM package release process and test things locally in your application:
+
+    yarn build-pkg
+
+    # In your app:
+    yarn add ../design-system
+
 ## Building and deploying
 
 To build and preview static version of the storybook, run:
