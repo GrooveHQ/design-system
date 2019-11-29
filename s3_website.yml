@@ -38,15 +38,15 @@ s3_endpoint: us-east-1
 
 s3_reduced_redundancy: true
 
-# cloudfront_distribution_id: E1PR223YRMU2LT
+cloudfront_distribution_id: E18IOGBTUG1950
 
-# cloudfront_distribution_config:
-#   default_cache_behavior:
-#     min_ttl: <%= 60 * 60 * 24 %>
-#   aliases:
-#     quantity: 1
-#     items:
-#       - http://groove-sds.s3-website-us-east-1.amazonaws.com
+cloudfront_distribution_config:
+  default_cache_behavior:
+    min_ttl: <%= 60 * 60 * 24 %>
+  aliases:
+    quantity: 1
+    items:
+      - sds.groovehq.com
 
 # cloudfront_invalidate_root: true
 
