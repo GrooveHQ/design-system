@@ -21,7 +21,7 @@ const StyledHeading = styled.span`
   font-weight: ${props => typography.sizes[SIZES[props.size]].weight};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
-  color: ${color.jetBlack};
+  color: ${props => color[props.color]};
   text-align: ${props => ALIGNMENT[props.align]};
 `
 
@@ -33,6 +33,10 @@ Heading.propTypes = {
    */
   size: PropTypes.oneOf(Object.keys(SIZES)),
   /**
+   * Specify color
+   */
+  color: PropTypes.string,
+  /**
    * Specify alignmnet
    */
   align: PropTypes.oneOf(Object.keys(ALIGNMENT)),
@@ -40,5 +44,6 @@ Heading.propTypes = {
 
 Heading.defaultProps = {
   size: 'medium',
+  color: 'jetBlack',
   align: ALIGNMENT.left,
 }

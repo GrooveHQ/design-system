@@ -23,7 +23,7 @@ const StyledParagraph = styled.span`
   font-weight: ${props => typography.sizes[SIZES[props.size]].weight};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
-  color: ${color.jetBlack};
+  color: ${props => color[props.color]};
   text-align: ${props => ALIGNMENT[props.align]};
 `
 
@@ -34,6 +34,10 @@ Paragraph.propTypes = {
    * Specify size
    */
   size: PropTypes.oneOf(Object.keys(SIZES)),
+  /**
+   * Specify color
+   */
+  color: PropTypes.string,
   /**
    * Specify alignmnet
    */
@@ -46,6 +50,7 @@ Paragraph.propTypes = {
 
 Paragraph.defaultProps = {
   size: 'medium',
+  color: 'jetBlack',
   align: ALIGNMENT.left,
   isInline: false,
 }
