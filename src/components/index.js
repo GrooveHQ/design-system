@@ -5,6 +5,7 @@ import * as animation from './shared/animation'
 export { styles, global, animation }
 
 export * from './Container'
+export * from './Header'
 export * from './Heading'
 export * from './Paragraph'
 export * from './Icon'
