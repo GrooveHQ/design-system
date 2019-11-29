@@ -1,3 +1,21 @@
+# v0.4.0 (Fri Nov 29 2019)
+
+#### 🚀  Enhancement
+
+- Header component [#4](https://github.com/GrooveHQ/design-system/pull/4) ([@assimovt](https://github.com/assimovt))
+- Add Container with branding component [#3](https://github.com/GrooveHQ/design-system/pull/3) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Update README.md on usage locally  ([@assimovt](https://github.com/assimovt))
+- Add CloudFront to s3_website  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.2.0 (Fri Nov 22 2019)
 
 #### 🚀  Enhancement
