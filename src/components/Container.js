@@ -11,7 +11,7 @@ const StyleContainer = styled.div`
   height: 608px;
   width: 352px;
   border-radius: ${spacing.borderRadius.default}px;
-  background-color: ${color.moonGrey};
+  background-color: ${props => color[props.backgroundColor]};
   box-shadow: ${shadows.default};
 `
 
@@ -60,9 +60,14 @@ Container.propTypes = {
    * Specify branding app name
    */
   appName: PropTypes.string,
+  /**
+   * Specify background color
+   */
+  backgroundColor: PropTypes.string,
 }
 
 Container.defaultProps = {
   branded: false,
   appName: null,
+  backgroundColor: 'moonGrey',
 }
