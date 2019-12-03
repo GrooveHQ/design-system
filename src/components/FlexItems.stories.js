@@ -59,6 +59,7 @@ export const HorizontalAlignBetweenVerticalCenter = () => (
     direction="horizontal"
     alignHorizontal="between"
     alignVertical="center"
+    style={{ height: '120px' }}
   >
     <FlexItem>1</FlexItem>
     <FlexItem>2</FlexItem>
