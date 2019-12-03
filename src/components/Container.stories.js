@@ -9,9 +9,9 @@ export default {
   },
 }
 
-export const ContainerDefault = () => <Container />
-export const ContainerBranded = () => <Container branded appName="Chat" />
-export const ContainerWithChildren = () => (
+export const Default = () => <Container />
+export const Branded = () => <Container branded appName="Chat" />
+export const WithChildren = () => (
   <Container branded appName="Chat">
     <Heading size="medium" align="center">
       Take care of your children

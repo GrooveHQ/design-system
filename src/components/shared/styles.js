@@ -2,6 +2,7 @@ import { css } from '@emotion/core'
 
 // Colors
 export const color = {
+  groovy: '#0BA0BE',
   primary: '#6187E0',
   mintGreen: '#1BB99D',
   sunYellow: '#D4A929',
