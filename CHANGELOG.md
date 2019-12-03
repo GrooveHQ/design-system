@@ -1,3 +1,23 @@
+# v0.5.0 (Tue Dec 03 2019)
+
+#### 🚀  Enhancement
+
+- Upgrade to Storybook 5.2.8 [#5](https://github.com/GrooveHQ/design-system/pull/5) ([@assimovt](https://github.com/assimovt))
+- FlexItems component [#8](https://github.com/GrooveHQ/design-system/pull/8) ([@assimovt](https://github.com/assimovt))
+- Add backgroundColor to Container and Groovy color [#6](https://github.com/GrooveHQ/design-system/pull/6) ([@assimovt](https://github.com/assimovt))
+- Add Avatar component [#7](https://github.com/GrooveHQ/design-system/pull/7) ([@assimovt](https://github.com/assimovt))
+- Add medium font weight [#9](https://github.com/GrooveHQ/design-system/pull/9) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Update SDS website protocol in README  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.4.0 (Fri Nov 29 2019)
 
 #### 🚀  Enhancement
