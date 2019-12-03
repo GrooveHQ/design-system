@@ -1,8 +1,8 @@
 # Groove Storybook Design System
 
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](http://sds.groovehq.com)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://sds.groovehq.com)
 
-[Groove Storybook Design System (SDS)](http://sds.groovehq.com) is a reusable component library that helps developers build Groove branded, consistent UIs faster. It's an SSOT (single source of truth) for all UI components used across various Groove applications.
+[Groove Storybook Design System (SDS)](https://sds.groovehq.com) is a reusable component library that helps developers build Groove branded, consistent UIs faster. It's an SSOT (single source of truth) for all UI components used across various Groove applications.
 
 ## Running and developing SDS locally
 
@@ -44,7 +44,7 @@ We use [`auto`](https://github.com/intuit/auto) to generate a changelog and push
 
 ## Using in your application
 
-To use Groove Storybook Design System (SDS) in your React applications, follow the storybook [Design System > Getting Started Guide](http://sds.groovehq.com/?path=/docs/design-system-getting-started--page).
+To use Groove Storybook Design System (SDS) in your React applications, follow the storybook [Design System > Getting Started Guide](https://sds.groovehq.com/?path=/docs/design-system-getting-started--page).
 
 ## **Resources**
 
