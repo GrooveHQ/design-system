@@ -96,4 +96,4 @@ export const bodyStyles = css`
 // Allow design system consumers to access font settings but control how and
 // where they load the font.
 export const fontUrl =
-  'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,700&display=swap&subset=cyrillic,greek,vietnamese'
+  'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=cyrillic,greek,vietnamese'

@@ -77,7 +77,6 @@ export const typography = {
   },
   weight: {
     regular: '400',
-    medium: '500',
     bold: '700',
   },
   sizes: {
