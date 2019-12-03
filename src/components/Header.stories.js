@@ -10,7 +10,7 @@ export default {
   },
 }
 
-export const HeaderSmall = () => (
+export const Small = () => (
   <Container
     header={
       <Header>
@@ -22,7 +22,7 @@ export const HeaderSmall = () => (
   />
 )
 
-export const HeaderMedium = () => (
+export const Medium = () => (
   <Container
     header={
       <Header size="medium">
@@ -34,7 +34,7 @@ export const HeaderMedium = () => (
   />
 )
 
-export const HeaderBig = () => (
+export const Big = () => (
   <Container
     header={
       <Header size="big">
