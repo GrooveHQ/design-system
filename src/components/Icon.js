@@ -7,7 +7,7 @@ import { color } from './shared/styles'
 const SIZES = {
   small: 16,
   medium: 24,
-  large: 32,
+  big: 32,
 }
 
 const Svg = styled.svg`
