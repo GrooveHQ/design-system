@@ -1,5 +1,7 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import { Avatar } from './Avatar'
+import { color, spacing } from './shared/styles'
 
 export default {
   title: 'Design System|Avatar',
@@ -8,35 +10,40 @@ export default {
   },
 }
 
+const Background = styled.div`
+  background: ${color.moonGrey};
+  padding: ${spacing.padding.medium}px;
+`
+
 export const big = () => (
-  <div>
+  <Background>
     <Avatar
       size="big"
       name="Tair Assimov"
       src="https://avatars2.githubusercontent.com/u/5113"
     />
     <Avatar isLoading size="big" />
-  </div>
+  </Background>
 )
 
 export const medium = () => (
-  <div>
+  <Background>
     <Avatar
       size="medium"
       name="Tair Assimov"
       src="https://avatars2.githubusercontent.com/u/6704740"
     />
     <Avatar isLoading size="medium" />
-  </div>
+  </Background>
 )
 
 export const small = () => (
-  <div>
+  <Background>
     <Avatar
       size="small"
       name="Tair Assimov"
       src="https://avatars2.githubusercontent.com/u/211478"
     />
     <Avatar isLoading size="small" />
-  </div>
+  </Background>
 )
