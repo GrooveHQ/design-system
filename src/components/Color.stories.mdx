@@ -5,14 +5,31 @@ import { color, infoColor, backgroundColor, borderColor } from './shared/styles'
 
 # Colors
 
+SDS provides a number of base, monochrome, info, background and border colors, which all can be accessed by the mentioned below variable names.
+
+## Base Colors
+
 <ColorPalette>
-  <ColorItem title="color.groovy" subtitle="Groovy" colors={[color.groovy]} />
   <ColorItem title="color.primary" subtitle="Primary" colors={[color.primary]} />
+  <ColorItem title="color.groovy" subtitle="Groovy" colors={[color.groovy]} />
   <ColorItem title="color.mintGreen" subtitle="Mint Green" colors={[color.mintGreen]} />
   <ColorItem title="color.sunYellow" subtitle="Sun Yellow" colors={[color.sunYellow]} />
   <ColorItem title="color.lightYellow" subtitle="Light Yellow" colors={[color.lightYellow]} />
   <ColorItem title="color.candyRed" subtitle="Candy Red" colors={[color.candyRed]} />
+</ColorPalette>
 
+### Active and Hover Colors
+
+Every _base color_ has a corresponding `Hover` and `Active` color, for example for the `primary` color:
+
+<ColorPalette>
+  <ColorItem title="color.primaryHover" subtitle="PrimaryHover" colors={[color.primaryHover]} />
+  <ColorItem title="color.primaryActive" subtitle="PrimaryActive" colors={[color.primaryActive]} />
+</ColorPalette>
+
+## Monochrome Colors
+
+<ColorPalette>
   <ColorItem title="color.jetBlack" subtitle="Jet Black" colors={[color.jetBlack]} />
   <ColorItem title="color.gunGrey" subtitle="Gun Grey" colors={[color.gunGrey]} />
   <ColorItem title="color.stoneGrey" subtitle="Stone Grey" colors={[color.stoneGrey]} />

@@ -1,14 +1,19 @@
 import { css } from '@emotion/core'
 
-// Colors
-export const color = {
-  groovy: '#0BA0BE',
+const Color = require('color')
+
+// Base Colors
+const baseColors = {
   primary: '#6187E0',
+  groovy: '#0BA0BE',
   mintGreen: '#1BB99D',
   sunYellow: '#D4A929',
   lightYellow: '#FAEEC7',
   candyRed: '#CC2B3E',
+}
 
+// Monochrome Colors
+const monochromeColors = {
   jetBlack: '#1B1B1B',
   gunGrey: '#4F5D6A',
   stoneGrey: '#7E8F9F',
@@ -16,11 +21,29 @@ export const color = {
   ashGrey: '#EEF1F5',
   moonGrey: '#F7F9FA',
   paperWhite: '#FFFFFF',
+}
 
-  // FIXME: Color HSL variations @tair
-  // primaryDark: '#3D61BA',
-  // primaryDoused: '#224094',
-  // candyDark: '##A61221',
+// Base Color Active & Hover states by this formula:
+// Hover: H - Up 1˚, S - Up 10%, B - Down 10%
+// Active: H - Up 2˚, S - Up 20%, B - Down 20%
+Object.keys(baseColors).forEach(colorName => {
+  const curColor = Color(baseColors[colorName])
+
+  baseColors[`${colorName}Hover`] = curColor
+    .rotate(1)
+    .saturate(0.1)
+    .darken(0.1)
+    .hex()
+  baseColors[`${colorName}Active`] = curColor
+    .rotate(2)
+    .saturate(0.2)
+    .darken(0.2)
+    .hex()
+})
+
+export const color = {
+  ...baseColors,
+  ...monochromeColors,
 }
 
 // Info Colors
