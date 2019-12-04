@@ -1,3 +1,25 @@
+# v0.6.0 (Wed Dec 04 2019)
+
+#### 🚀  Enhancement
+
+- Add Label component [#12](https://github.com/GrooveHQ/design-system/pull/12) ([@assimovt](https://github.com/assimovt))
+
+#### 🐛  Bug Fix
+
+- Add hover and active base colors [#11](https://github.com/GrooveHQ/design-system/pull/11) ([@assimovt](https://github.com/assimovt))
+- Add user and group icons [#10](https://github.com/GrooveHQ/design-system/pull/10) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Revert "Add medium font weight (#9)"  ([@assimovt](https://github.com/assimovt))
+- Update FlexItems stories with container height  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.5.0 (Tue Dec 03 2019)
 
 #### 🚀  Enhancement
