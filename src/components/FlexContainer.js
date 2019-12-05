@@ -39,9 +39,7 @@ const StyledFlexContainer = styled.div`
   }
 `
 
-const FlexContainer = props => {
-  const { children } = props
-
+export const FlexContainer = ({ children, ...props }) => {
   return <StyledFlexContainer {...props}>{children}</StyledFlexContainer>
 }
 
@@ -75,5 +73,3 @@ FlexContainer.defaultProps = {
   gapHorizontal: undefined,
   gapVertical: undefined,
 }
-
-export default FlexContainer
