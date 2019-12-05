@@ -1,3 +1,15 @@
+# v0.6.1 (Thu Dec 05 2019)
+
+#### 🐛  Bug Fix
+
+- Fix missing exports [#13](https://github.com/GrooveHQ/design-system/pull/13) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.6.0 (Wed Dec 04 2019)
 
 #### 🚀  Enhancement
