@@ -31,9 +31,7 @@ const StyledFlexItem = styled.div`
   margin-top: ${props => (props.gapVertical ? GAP[props.gapVertical] : 0)};
 `
 
-const FlexItem = props => {
-  const { children } = props
-
+export const FlexItem = ({ children, ...props }) => {
   return <StyledFlexItem {...props}>{children}</StyledFlexItem>
 }
 
@@ -67,5 +65,3 @@ FlexItem.defaultProps = {
   gapHorizontal: undefined,
   gapVertical: undefined,
 }
-
-export default FlexItem

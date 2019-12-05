@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { color, spacing, typography } from './shared/styles'
-import UnstyledFlexContainer from './FlexContainer'
-import UnstyledFlexItem from './FlexItem'
+import { FlexContainer as UnstyledFlexContainer } from './FlexContainer'
+import { FlexItem as UnstyledFlexItem } from './FlexItem'
 
 const FlexContainer = styled(UnstyledFlexContainer)`
   width: 100%;

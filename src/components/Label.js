@@ -14,7 +14,7 @@ const StyledLabel = styled.div`
   background: ${props => color[props.color]};
 `
 
-export function Label({ ...props }) {
+export const Label = ({ ...props }) => {
   return <StyledLabel {...props} />
 }
 
