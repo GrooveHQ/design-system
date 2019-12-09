@@ -8,7 +8,7 @@ export default {
   },
 }
 
-export const Heading1 = () => (
+export const Big = () => (
   <div>
     <Heading size="big">Heading 1 / Left </Heading>
     <Heading size="big" align="center">
@@ -20,7 +20,7 @@ export const Heading1 = () => (
   </div>
 )
 
-export const Heading2 = () => (
+export const Medium = () => (
   <div>
     <Heading size="medium">Heading 2 / Left</Heading>
     <Heading size="medium" align="center">
