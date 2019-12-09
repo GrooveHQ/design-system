@@ -43,7 +43,7 @@ export const Colored = () => (
 )
 
 export const Plain = () => (
-  <Card radius="big" color="ashGrey">
+  <Card radius="big" color="ashGrey" plain>
     <Paragraph size="medium" padded={false}>
       Plain card
     </Paragraph>
