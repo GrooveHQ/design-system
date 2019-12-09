@@ -87,7 +87,7 @@ export const spacing = {
   borderRadius: {
     small: 2,
     medium: 4,
-    large: 10,
+    big: 10,
     default: 4,
   },
 }

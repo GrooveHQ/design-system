@@ -17,8 +17,8 @@ const ALIGNMENT = {
 }
 
 const StyledParagraph = styled.span`
-  display: ${props => (props.isInline ? 'inline' : 'inline-block')};
-  padding-bottom: ${spacing.padding.tiny}px;
+  display: ${props => (props.inline ? 'inline' : 'block')};
+  padding-bottom: ${props => (props.padded ? spacing.padding.tiny : 0)}px;
   letter-spacing: normal;
   font-weight: ${props => typography.sizes[SIZES[props.size]].weight};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
@@ -45,12 +45,17 @@ Paragraph.propTypes = {
   /**
    * Whether it is inline
    */
-  isInline: PropTypes.bool,
+  inline: PropTypes.bool,
+  /**
+   * Whether it is padded
+   */
+  padded: PropTypes.bool,
 }
 
 Paragraph.defaultProps = {
   size: 'medium',
   color: 'jetBlack',
   align: ALIGNMENT.left,
-  isInline: false,
+  inline: false,
+  padded: true,
 }
