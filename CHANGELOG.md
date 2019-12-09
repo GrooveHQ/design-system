@@ -1,3 +1,16 @@
+# v0.7.0 (Mon Dec 09 2019)
+
+#### 🚀  Enhancement
+
+- Add Card component [#17](https://github.com/GrooveHQ/design-system/pull/17) ([@assimovt](https://github.com/assimovt))
+- Better Heading & Paragraph props and titles [#16](https://github.com/GrooveHQ/design-system/pull/16) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.6.2 (Mon Dec 09 2019)
 
 #### 🐛  Bug Fix
