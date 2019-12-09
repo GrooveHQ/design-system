@@ -15,6 +15,21 @@ const StyledHeader = styled.div`
   height: ${props => SIZES[props.size]}px;
   border-top-left-radius: ${spacing.borderRadius.default}px;
   border-top-right-radius: ${spacing.borderRadius.default}px;
+
+  // Links within Header
+  a {
+    opacity: 0.8;
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+
+  // Heading/Paragraph hover
+  a:hover span,
+  a:hover div {
+    text-decoration: underline;
+  }
 `
 
 export const Header = props => {
