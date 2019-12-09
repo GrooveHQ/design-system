@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { icons } from './shared/icons'
-import { color } from './shared/styles'
+import { color as stylesColor } from './shared/styles'
 
 const SIZES = {
   small: 16,
@@ -22,7 +22,7 @@ const Svg = styled.svg`
 `
 
 const Path = styled.path`
-  fill: currentColor;
+  fill: ${props => stylesColor[props.color]};
 `
 
 /**
@@ -32,10 +32,10 @@ const Path = styled.path`
  * - *decorative only*: for example, it illustrates a label next to it. We must ensure that it is ignored by screen readers, by setting `aria-hidden` attribute (ex: `<Icon icon="check" aria-hidden />`)
  * - *non-decorative*: it means that it delivers information. For example, an icon as only child in a button. The meaning can be obvious visually, but it must have a proper text alternative via `aria-label` for screen readers. (ex: `<Icon icon="print" aria-label="Print this document" />`)
  */
-export const Icon = ({ icon, block, ...props }) => {
+export const Icon = ({ icon, block, color, ...props }) => {
   return (
     <Svg viewBox="0 0 24 24" block={block} {...props}>
-      <Path d={icons[icon]} />
+      <Path d={icons[icon]} color={color} />
     </Svg>
   )
 }
@@ -55,6 +55,6 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   block: false,
-  color: color.stoneGrey,
+  color: stylesColor.stoneGrey,
   size: 'medium',
 }
