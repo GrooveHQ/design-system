@@ -1,3 +1,16 @@
+# v0.6.2 (Mon Dec 09 2019)
+
+#### 🐛  Bug Fix
+
+- Fix style of links in the Header component [#14](https://github.com/GrooveHQ/design-system/pull/14) ([@assimovt](https://github.com/assimovt))
+- Fix Icon component color prop [#15](https://github.com/GrooveHQ/design-system/pull/15) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.6.1 (Thu Dec 05 2019)
 
 #### 🐛  Bug Fix
