@@ -1,3 +1,15 @@
+# v0.7.1 (Tue Dec 10 2019)
+
+#### 🐛  Bug Fix
+
+- Fix Header component link styles [#18](https://github.com/GrooveHQ/design-system/pull/18) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.7.0 (Mon Dec 09 2019)
 
 #### 🚀  Enhancement
