@@ -17,8 +17,12 @@ const StyledHeader = styled.div`
   border-top-right-radius: ${spacing.borderRadius.default}px;
 
   // Links within Header
-  a {
+  a,
+  a:visited,
+  a:active,
+  a:focus {
     opacity: 0.8;
+    text-decoration: none;
   }
 
   a:hover {
