@@ -135,7 +135,7 @@ export const typography = {
     },
     p5: {
       size: '10',
-      height: '15',
+      height: '13',
     },
   },
 }
