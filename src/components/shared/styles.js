@@ -133,6 +133,10 @@ export const typography = {
       height: '18',
       weight: '400',
     },
+    p5: {
+      size: '10',
+      height: '15',
+    },
   },
 }
 

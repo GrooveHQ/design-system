@@ -8,6 +8,7 @@ const SIZES = {
   medium: 'p2',
   small: 'p3',
   tiny: 'p4',
+  mini: 'p5',
 }
 
 const ALIGNMENT = {
