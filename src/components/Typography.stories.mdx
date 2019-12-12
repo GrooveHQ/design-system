@@ -7,19 +7,33 @@ import { typography } from './shared/styles'
 
 **Fonts:** IBM Plex Sans, IBM Plex Mono
 
-**Weights:** 400 (regular), 700 (bold)
+**Weights:** 400 (regular), 500 (medium), 700 (bold)
 
 ## Headings
+
+Bold headings:
 
 <Typeset
   fontSizes={[
     Number(typography.sizes.h1.size),
     Number(typography.sizes.h2.size),
   ]}
-  fontWeight={typography.sizes.h1.weight}
+  fontWeight={typography.weight.bold}
+/>
+
+Standard headings:
+
+<Typeset
+  fontSizes={[
+    Number(typography.sizes.h1.size),
+    Number(typography.sizes.h2.size),
+  ]}
+  fontWeight={typography.weight.medium}
 />
 
 ## Paragraphs
+
+Bold paragraphs:
 
 <Typeset
   fontSizes={[
@@ -28,7 +42,19 @@ import { typography } from './shared/styles'
     Number(typography.sizes.p3.size),
     Number(typography.sizes.p4.size),
   ]}
-  fontWeight={typography.sizes.p1.weight}
+  fontWeight={typography.weight.medium}
+/>
+
+Standard paragraphs:
+
+<Typeset
+  fontSizes={[
+    Number(typography.sizes.p1.size),
+    Number(typography.sizes.p2.size),
+    Number(typography.sizes.p3.size),
+    Number(typography.sizes.p4.size),
+  ]}
+  fontWeight={typography.weight.normal}
 />
 
 ## Code

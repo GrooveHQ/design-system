@@ -20,7 +20,8 @@ const StyledParagraph = styled.span`
   display: ${props => (props.inline ? 'inline' : 'block')};
   padding-bottom: ${props => (props.padded ? spacing.padding.tiny : 0)}px;
   letter-spacing: normal;
-  font-weight: ${props => typography.sizes[SIZES[props.size]].weight};
+  font-weight: ${props =>
+    props.bold ? typography.weight.medium : typography.weight.normal};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
   color: ${props => color[props.color]};
@@ -34,6 +35,10 @@ Paragraph.propTypes = {
    * Specify size
    */
   size: PropTypes.oneOf(Object.keys(SIZES)),
+  /**
+   * Specify whether its bold
+   */
+  bold: PropTypes.bool,
   /**
    * Specify color
    */
@@ -54,6 +59,7 @@ Paragraph.propTypes = {
 
 Paragraph.defaultProps = {
   size: 'medium',
+  bold: false,
   color: 'jetBlack',
   align: ALIGNMENT.left,
   inline: false,

@@ -18,7 +18,8 @@ const StyledHeading = styled.span`
   display: block;
   margin-bottom: ${spacing.padding.tiny}px;
   letter-spacing: normal;
-  font-weight: ${props => typography.sizes[SIZES[props.size]].weight};
+  font-weight: ${props =>
+    props.bold ? typography.weight.bold : typography.weight.medium};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
   color: ${props => color[props.color]};
@@ -33,6 +34,10 @@ Heading.propTypes = {
    */
   size: PropTypes.oneOf(Object.keys(SIZES)),
   /**
+   * Specify whether its bold
+   */
+  bold: PropTypes.bool,
+  /**
    * Specify color
    */
   color: PropTypes.string,
@@ -44,6 +49,7 @@ Heading.propTypes = {
 
 Heading.defaultProps = {
   size: 'medium',
+  bold: false,
   color: 'jetBlack',
   align: ALIGNMENT.left,
 }
