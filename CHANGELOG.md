@@ -1,3 +1,25 @@
+# v0.8.0 (Fri Dec 13 2019)
+
+#### 🚀  Enhancement
+
+- Add Badge component [#21](https://github.com/GrooveHQ/design-system/pull/21) ([@assimovt](https://github.com/assimovt))
+- Add medium weight to typography and bold prop [#19](https://github.com/GrooveHQ/design-system/pull/19) ([@assimovt](https://github.com/assimovt))
+
+#### 🐛  Bug Fix
+
+- Add mini sized paragraph [#20](https://github.com/GrooveHQ/design-system/pull/20) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Move react, react-dom, emotion to peer dependencies  ([@assimovt](https://github.com/assimovt))
+- Update README.md with local yarn linking  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.7.1 (Tue Dec 10 2019)
 
 #### 🐛  Bug Fix
