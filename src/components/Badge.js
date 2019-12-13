@@ -48,7 +48,7 @@ const StyledIcon = styled(Icon)`
 
 const textWrapper = css`
   overflow: hidden;
-  transition: width 200ms ease-in-out 0ms;
+  transition: width 120ms ease-in-out 0ms;
 `
 
 const textContent = css`
@@ -57,7 +57,7 @@ const textContent = css`
 
 const countWrapper = css`
   overflow: hidden;
-  transition: opacity 200ms ease-in-out 200ms;
+  transition: opacity 120ms ease-in-out 120ms;
   &.closing {
     transition: none;
   }
@@ -68,7 +68,10 @@ const StyledCount = styled.div`
   border: 2px solid ${color.paperWhite};
   background-color: ${color.candyRed};
   position: absolute;
-  left: ${props => props.width + SIZES[props.size] / 2 + 14}px;
+  left: ${props =>
+    props.opened || props.closing
+      ? 0
+      : props.width + SIZES[props.size] / 2 + 14}px;
   top: 0;
   padding: 0 ${spacing.padding.mini}px;
   z-index: 1;
@@ -86,7 +89,7 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
 
     setTimeout(() => {
       setClosing(!closing)
-    }, 200) // this delay must match width transition delay above
+    }, 120) // this delay must match width transition delay above
 
     if (onClick) {
       onClick()
@@ -106,9 +109,9 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
 
   return (
     <StyledBadge {...props} text={text} onClick={handleClick}>
-      {opened && <Icon {...props} icon="close" color="paperWhite" />}
+      {closing && <Icon {...props} icon="close" color="paperWhite" />}
 
-      {!opened && icon && (
+      {!closing && icon && (
         <StyledIcon {...props} icon={icon} text={text} color="paperWhite" />
       )}
       <div
@@ -136,7 +139,12 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
             `,
           ]}
         >
-          <StyledCount {...props} width={width}>
+          <StyledCount
+            {...props}
+            width={width}
+            opened={opened}
+            closing={closing}
+          >
             <Paragraph size="mini" color="paperWhite" bold padded={false}>
               {count}
             </Paragraph>
