@@ -16,9 +16,10 @@ The storybook will be running at: http://localhost:9009
 To avoid NPM package release process and test things locally in your application:
 
     yarn build-pkg
+    yarn link
 
     # In your app:
-    yarn add ../design-system
+    yarn link "@groovehq/design-system"
 
 ## Building and deploying
 
