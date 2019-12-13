@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { Paragraph } from './Paragraph'
@@ -46,24 +44,18 @@ const StyledIcon = styled(Icon)`
     props.text && props.reverse ? spacing.padding.mini : 0}px;
 `
 
-const textWrapper = css`
+const StyledTextWrapper = styled.div`
+  white-space: nowrap;
   overflow: hidden;
   transition: width 120ms ease-in-out 0ms;
-`
-
-const textContent = css`
-  white-space: nowrap;
-`
-
-const countWrapper = css`
-  overflow: hidden;
-  transition: opacity 120ms ease-in-out 120ms;
-  &.closing {
-    transition: none;
-  }
+  width: ${props => (props.opened ? 0 : props.width)}px;
 `
 
 const StyledCount = styled.div`
+  opacity: ${props => (props.opened ? 0 : 1)};
+  overflow: hidden;
+  transition: ${props =>
+    props.closing ? 'opacity 120ms ease-in-out 120ms' : 'none'};
   border-radius: ${spacing.padding.tiny}px;
   border: 2px solid ${color.paperWhite};
   background-color: ${color.candyRed};
@@ -130,42 +122,20 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
       {!closing && icon && (
         <StyledIcon {...props} icon={icon} text={text} color="paperWhite" />
       )}
-      <div
-        css={[
-          textWrapper,
-          css`
-            width: ${opened ? 0 : width}px;
-          `,
-        ]}
-      >
-        <div ref={textContentRef} css={textContent}>
+      <StyledTextWrapper opened={opened} width={width}>
+        <div ref={textContentRef}>
           <Paragraph {...props} padded={false} color="paperWhite" bold>
             {text}
           </Paragraph>
         </div>
-      </div>
+      </StyledTextWrapper>
 
       {count > 0 && (
-        <div
-          className={closing ? '' : 'closing'}
-          css={[
-            countWrapper,
-            css`
-              opacity: ${opened ? 0 : 1};
-            `,
-          ]}
-        >
-          <StyledCount
-            {...props}
-            width={width}
-            opened={opened}
-            closing={closing}
-          >
-            <Paragraph size="mini" color="paperWhite" bold padded={false}>
-              {count}
-            </Paragraph>
-          </StyledCount>
-        </div>
+        <StyledCount {...props} width={width} opened={opened} closing={closing}>
+          <Paragraph size="mini" color="paperWhite" bold padded={false}>
+            {count}
+          </Paragraph>
+        </StyledCount>
       )}
     </StyledBadge>
   )
@@ -190,7 +160,7 @@ Badge.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Specify whether icon/text are reversed
+   * Specify whether icon & text are reversed (right-hand placement)
    */
   reverse: PropTypes.bool,
   /**
