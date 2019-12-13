@@ -55,3 +55,10 @@ export const Tiny = () => (
     standout customer experiences easily with Groove.
   </Paragraph>
 )
+
+export const Mini = () => (
+  <Paragraph size="mini">
+    We&apos;re here every step of the way making sure you and your team deliver
+    standout customer experiences easily with Groove.
+  </Paragraph>
+)
