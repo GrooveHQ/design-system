@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
@@ -77,14 +77,14 @@ const StyledCount = styled.div`
   z-index: 1;
 `
 
-export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
+const useTransition = (open, text, onClick) => {
   const [opened, setOpen] = useState(open)
   const [width, setWidth] = useState(0)
   const [closing, setClosing] = useState(false)
 
   const textContentRef = useRef(null)
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setOpen(!opened)
 
     setTimeout(() => {
@@ -94,7 +94,7 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
     if (onClick) {
       onClick()
     }
-  }
+  }, [opened, onClick, closing])
 
   useEffect(() => {
     if (text) {
@@ -106,6 +106,22 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
       setWidth(measuredWidth > 0 ? measuredWidth : 0) // including padding
     }
   }, [text])
+
+  return {
+    handleClick,
+    opened,
+    closing,
+    width,
+    textContentRef,
+  }
+}
+
+export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
+  const { opened, closing, width, handleClick, textContentRef } = useTransition(
+    open,
+    text,
+    onClick
+  )
 
   return (
     <StyledBadge {...props} text={text} onClick={handleClick}>
