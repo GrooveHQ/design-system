@@ -100,38 +100,33 @@ export const typography = {
   },
   weight: {
     regular: '400',
+    medium: '500',
     bold: '700',
   },
   sizes: {
     h1: {
       size: '25',
       height: '32',
-      weight: '700',
     },
     h2: {
       size: '20',
       height: '26',
-      weight: '700',
     },
     p1: {
       size: '16',
       height: '24',
-      weight: '400',
     },
     p2: {
       size: '14',
       height: '21',
-      weight: '400',
     },
     p3: {
       size: '13',
       height: '19',
-      weight: '400',
     },
     p4: {
       size: '12',
       height: '18',
-      weight: '400',
     },
     p5: {
       size: '10',

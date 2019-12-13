@@ -14,6 +14,11 @@ export const Big = () => (
       We&apos;re here every step of the way making sure you and your team
       deliver standout customer experiences easily with Groove.
     </Paragraph>
+    <Paragraph size="big" bold>
+      We&apos;re here every step of the way making sure you and your team
+      deliver standout customer experiences easily with Groove.
+    </Paragraph>
+
     <Paragraph size="big" align="center">
       We&apos;re here every step of the way making sure you and your team
       deliver standout customer experiences easily with Groove.
@@ -28,6 +33,10 @@ export const Big = () => (
 export const Medium = () => (
   <div>
     <Paragraph size="medium">
+      We&apos;re here every step of the way making sure you and your team
+      deliver standout customer experiences easily with Groove.
+    </Paragraph>
+    <Paragraph size="medium" bold>
       We&apos;re here every step of the way making sure you and your team
       deliver standout customer experiences easily with Groove.
     </Paragraph>
