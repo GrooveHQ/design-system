@@ -12,8 +12,14 @@ export const Big = () => <Badge icon="chat" />
 export const Medium = () => <Badge size="medium" icon="chat" />
 export const WithText = () => <Badge text="Need help?" icon="chat" />
 export const TextOnly = () => <Badge text="Need help?" />
+export const Opened = () => <Badge text="Need help?" icon="chat" open />
 export const WithOnClick = () => (
-  <Badge text="Need help?" icon="chat" onClick={() => alert('Clicked')} />
+  <Badge
+    text="Need help?"
+    icon="chat"
+    onClick={() => alert('Clicked')}
+    open={false}
+  />
 )
 export const WithCounts = () => (
   <div>
@@ -25,20 +31,6 @@ export const WithCounts = () => (
     </div>
     <div>
       <Badge icon="chat" count={1} />
-    </div>
-  </div>
-)
-
-export const WithCountsMedium = () => (
-  <div>
-    <div style={{ marginBottom: '16px' }}>
-      <Badge icon="bot" size="medium" text="Need help?" count={4242} />
-    </div>
-    <div style={{ marginBottom: '16px' }}>
-      <Badge icon="chat" size="medium" count={42} />
-    </div>
-    <div style={{ marginBottom: '16px' }}>
-      <Badge icon="chat" size="medium" count={1} />
     </div>
   </div>
 )
