@@ -91,6 +91,13 @@ export const bodyStyles = css`
     border-radius: 3px;
     margin: 1rem 0;
   }
+
+  a,
+  a:visited,
+  a:active,
+  a:focus {
+    text-decoration: none;
+  }
 `
 
 // Allow design system consumers to access font settings but control how and
