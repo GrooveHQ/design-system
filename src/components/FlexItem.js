@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { FlexContainerContext } from './FlexContainer'
 
 const ALIGNMENT = {
   start: 'flex-start',
@@ -31,8 +32,22 @@ const StyledFlexItem = styled.div`
   margin-top: ${props => (props.gapVertical ? GAP[props.gapVertical] : 0)};
 `
 
-export const FlexItem = ({ children, ...props }) => {
-  return <StyledFlexItem {...props}>{children}</StyledFlexItem>
+export const FlexItem = ({
+  children,
+  gapHorizontal,
+  gapVertical,
+  ...props
+}) => {
+  const containerContext = useContext(FlexContainerContext)
+  return (
+    <StyledFlexItem
+      gapHorizontal={gapHorizontal || containerContext.gapHorizontal}
+      gapVertical={gapVertical || containerContext.gapVertical}
+      {...props}
+    >
+      {children}
+    </StyledFlexItem>
+  )
 }
 
 FlexItem.propTypes = {

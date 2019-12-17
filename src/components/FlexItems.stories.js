@@ -68,18 +68,18 @@ export const HorizontalAlignBetweenVerticalCenter = () => (
 )
 
 export const HorizontalGap = () => (
-  <FlexContainer direction="horizontal" gapHorizontal="medium">
-    <FlexItem gapHorizontal="medium">1</FlexItem>
-    <FlexItem gapHorizontal="medium">2</FlexItem>
-    <FlexItem gapHorizontal="medium">3</FlexItem>
+  <FlexContainer direction="horizontal" gapHorizontal="mini">
+    <FlexItem>1</FlexItem>
+    <FlexItem>2</FlexItem>
+    <FlexItem gapHorizontal="large">3</FlexItem>
   </FlexContainer>
 )
 
 export const VerticalGap = () => (
   <FlexContainer direction="vertical" gapVertical="medium">
-    <FlexItem gapVertical="medium">1</FlexItem>
-    <FlexItem gapVertical="medium">2</FlexItem>
-    <FlexItem gapVertical="medium">3</FlexItem>
+    <FlexItem>1</FlexItem>
+    <FlexItem>2</FlexItem>
+    <FlexItem>3</FlexItem>
   </FlexContainer>
 )
 
