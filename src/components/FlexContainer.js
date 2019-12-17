@@ -23,7 +23,7 @@ const GAP = {
 }
 
 const StyledFlexContainer = styled.div`
-  display: flex;
+  display: ${props => (props.inline ? 'inline-flex' : 'flex')};
   flex-direction: ${props =>
     props.direction === 'vertical' ? 'column' : 'row'};
   justify-content: ${props => ALIGNMENT[props.alignHorizontal]};
@@ -39,8 +39,24 @@ const StyledFlexContainer = styled.div`
   }
 `
 
-export const FlexContainer = ({ children, ...props }) => {
-  return <StyledFlexContainer {...props}>{children}</StyledFlexContainer>
+export const FlexContainerContext = React.createContext({
+  gapHorizontal: undefined,
+  gapVertical: undefined,
+})
+
+export const FlexContainer = ({ children, ...rest }) => {
+  return (
+    <StyledFlexContainer {...rest}>
+      <FlexContainerContext.Provider
+        value={{
+          gapHorizontal: rest.gapHorizontal,
+          gapVertical: rest.gapVertical,
+        }}
+      >
+        {children}
+      </FlexContainerContext.Provider>
+    </StyledFlexContainer>
+  )
 }
 
 FlexContainer.propTypes = {
@@ -48,6 +64,10 @@ FlexContainer.propTypes = {
    * Specify direction
    */
   direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * Use inline-flex
+   */
+  inline: PropTypes.bool,
   /**
    * Specify horizontal alignmnet
    */
@@ -68,6 +88,7 @@ FlexContainer.propTypes = {
 
 FlexContainer.defaultProps = {
   direction: 'horizontal',
+  inline: false,
   alignHorizontal: 'start',
   alignVertical: 'start',
   gapHorizontal: undefined,
