@@ -1,22 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { color, spacing } from './shared/styles'
 
-const SIZES = {
-  big: 176,
-  medium: 128,
-  small: 64,
-}
-
 const StyledHeader = styled.div`
   background-color: ${color.primary};
-  padding: ${spacing.padding.small}px;
-  height: ${props => SIZES[props.size]}px;
   border-top-left-radius: ${spacing.borderRadius.default}px;
   border-top-right-radius: ${spacing.borderRadius.default}px;
+  overflow: hidden;
+  position: relative;
+  /* HACK (jscheel): This clips the bottom in a way that clips the inner height
+     instead of the outer height. */
+  &:after {
+    content: ' ';
+    display: block;
+    height: 16px;
+    background-color: ${color.primary};
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
 
-  // Links within Header
+  /* Links within Header */
   a,
   a:visited,
   a:active,
@@ -29,25 +34,25 @@ const StyledHeader = styled.div`
     opacity: 1;
   }
 
-  // Heading/Paragraph hover
+  /* Heading/Paragraph hover */
   a:hover span,
   a:hover div {
     text-decoration: underline;
   }
 `
 
+// HACK (jscheel): We use margins here to make margins collapse with the content.
+const InnerHeader = styled.div`
+  margin: ${spacing.padding.small}px;
+  min-height: ${64 - spacing.padding.small * 2}px;
+  max-height: ${224 - spacing.padding.small * 2}px;
+`
+
 export const Header = props => {
   const { children } = props
-  return <StyledHeader {...props}>{children}</StyledHeader>
-}
-
-Header.propTypes = {
-  /**
-   * Specify size
-   */
-  size: PropTypes.oneOf(Object.keys(SIZES)),
-}
-
-Header.defaultProps = {
-  size: 'small',
+  return (
+    <StyledHeader {...props}>
+      <InnerHeader>{children}</InnerHeader>
+    </StyledHeader>
+  )
 }
