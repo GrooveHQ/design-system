@@ -6,6 +6,7 @@ import * as Forms from './Forms'
 export { styles, global, animation, Forms }
 
 export * from './Avatar'
+export * from './AvatarList'
 export * from './Badge'
 export * from './Button'
 export * from './Card'
