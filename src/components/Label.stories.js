@@ -10,7 +10,7 @@ export default {
 }
 
 const Span = styled.span`
-  dispay: inline-block;
+  display: inline-block;
   margin-right: ${spacing.padding.tiny}px;
 `
 
@@ -36,6 +36,16 @@ export const all = () => (
     </Span>
     <Span>
       <Label color="gunGrey">Gun Grey</Label>
+    </Span>
+  </div>
+)
+
+export const InvertTextColor = () => (
+  <div>
+    <Span>
+      <Label color="moonGrey" invertText>
+        Moon Grey (text inverted)
+      </Label>
     </Span>
   </div>
 )

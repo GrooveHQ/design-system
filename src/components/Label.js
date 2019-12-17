@@ -10,7 +10,8 @@ const StyledLabel = styled.div`
   line-height: ${typography.sizes.p4.size}px;
   padding: ${spacing.padding.mini}px;
   border-radius: ${spacing.borderRadius.small}px;
-  color: ${color.paperWhite};
+  color: ${({ invertText }) =>
+    invertText ? color.stoneGrey : color.paperWhite};
   background: ${props => color[props.color]};
 `
 
@@ -22,9 +23,14 @@ Label.propTypes = {
   /**
    * Specify color
    */
-  color: PropTypes.string,
+  color: PropTypes.oneOf(Object.keys(color)),
+  /**
+   * Invert text color
+   */
+  invertText: PropTypes.bool,
 }
 
 Label.defaultProps = {
   color: 'primary',
+  invertText: false,
 }
