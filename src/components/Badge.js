@@ -40,8 +40,6 @@ const StyledBadge = styled.div`
 const StyledIcon = styled(Icon)`
   margin-right: ${props =>
     props.text && !props.reverse ? spacing.padding.mini : 0}px;
-  margin-left: ${props =>
-    props.text && props.reverse ? spacing.padding.mini : 0}px;
 `
 
 const StyledTextWrapper = styled.div`
@@ -72,7 +70,7 @@ const StyledCount = styled.div`
 const useTransition = (open, text, onClick) => {
   const [opened, setOpen] = useState(open)
   const [width, setWidth] = useState(0)
-  const [closing, setClosing] = useState(false)
+  const [closing, setClosing] = useState(open)
 
   const textContentRef = useRef(null)
 
@@ -95,7 +93,7 @@ const useTransition = (open, text, onClick) => {
       textContentRef.current.appendChild(measure)
       const measuredWidth = measure.offsetWidth
       textContentRef.current.removeChild(measure)
-      setWidth(measuredWidth > 0 ? measuredWidth : 0) // including padding
+      setWidth(measuredWidth > 0 ? measuredWidth + spacing.padding.tiny : 0) // including padding
     }
   }, [text])
 
