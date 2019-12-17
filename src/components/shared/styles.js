@@ -2,18 +2,39 @@ import { css } from '@emotion/core'
 
 const Color = require('color')
 
-// Base Colors
-const baseColors = {
-  primary: '#6187E0',
-  groovy: '#0BA0BE',
-  mintGreen: '#1BB99D',
-  sunYellow: '#D4A929',
-  lightYellow: '#FAEEC7',
-  candyRed: '#CC2B3E',
+const disabledMixColor = '#F7F9FA' // moonGrey
+
+// Color Active, Hover, and disable states by this formula:
+// Hover: H - Up 1˚, S - Up 10%, B - Down 10%
+// Active: H - Up 2˚, S - Up 20%, B - Down 20%
+// Disabled: 50% mix with moonGrey
+function generateStateColors(baseColors = {}) {
+  return Object.keys(baseColors).reduce(
+    (acc, colorName) => {
+      const curColor = Color(baseColors[colorName])
+      return {
+        ...acc,
+        [`${colorName}Hover`]: curColor
+          .rotate(1)
+          .saturate(0.1)
+          .darken(0.1)
+          .hex(),
+        [`${colorName}Active`]: curColor
+          .rotate(2)
+          .saturate(0.2)
+          .darken(0.2)
+          .hex(),
+        [`${colorName}Disabled`]: curColor
+          .mix(Color(disabledMixColor), 0.5)
+          .hex(),
+      }
+    },
+    { ...baseColors }
+  )
 }
 
 // Monochrome Colors
-const monochromeColors = {
+const monochromeColors = generateStateColors({
   jetBlack: '#1B1B1B',
   gunGrey: '#4F5D6A',
   stoneGrey: '#7E8F9F',
@@ -21,24 +42,16 @@ const monochromeColors = {
   ashGrey: '#EEF1F5',
   moonGrey: '#F7F9FA',
   paperWhite: '#FFFFFF',
-}
+})
 
-// Base Color Active & Hover states by this formula:
-// Hover: H - Up 1˚, S - Up 10%, B - Down 10%
-// Active: H - Up 2˚, S - Up 20%, B - Down 20%
-Object.keys(baseColors).forEach(colorName => {
-  const curColor = Color(baseColors[colorName])
-
-  baseColors[`${colorName}Hover`] = curColor
-    .rotate(1)
-    .saturate(0.1)
-    .darken(0.1)
-    .hex()
-  baseColors[`${colorName}Active`] = curColor
-    .rotate(2)
-    .saturate(0.2)
-    .darken(0.2)
-    .hex()
+// Base Colors
+const baseColors = generateStateColors({
+  primary: '#6187E0',
+  groovy: '#0BA0BE',
+  mintGreen: '#1BB99D',
+  sunYellow: '#D4A929',
+  lightYellow: '#FAEEC7',
+  candyRed: '#CC2B3E',
 })
 
 export const color = {
@@ -47,12 +60,12 @@ export const color = {
 }
 
 // Info Colors
-export const infoColor = {
+export const infoColor = generateStateColors({
   success: color.mintGreen,
   warning: color.sunYellow,
   error: color.candyRed,
   info: color.lightYellow,
-}
+})
 
 // Background Colors
 export const backgroundColor = {
