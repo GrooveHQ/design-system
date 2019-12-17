@@ -168,11 +168,6 @@ export const pageMargins = css`
   }
 `
 
-// Borders
-export const borders = {
-  width: 1,
-}
-
 // Forms
 export const forms = {
   input: {

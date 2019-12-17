@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { icons } from './shared/icons'
 import { color as stylesColor } from './shared/styles'
 
-const SIZES = {
+export const ICON_SIZES = {
   small: 16,
   medium: 24,
   big: 32,
@@ -17,8 +17,8 @@ const Svg = styled.svg`
   shape-rendering: inherit;
   transform: translate3d(0, 0, 0);
 
-  width: ${props => SIZES[props.size]}px;
-  height: ${props => SIZES[props.size]}px;
+  width: ${props => ICON_SIZES[props.size]}px;
+  height: ${props => ICON_SIZES[props.size]}px;
 `
 
 const Path = styled.path`
@@ -41,7 +41,7 @@ export const Icon = ({ icon, block, color, ...props }) => {
 }
 
 Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.oneOf(Object.keys(icons)).isRequired,
   /**
    * Specify color
    */
@@ -49,7 +49,7 @@ Icon.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(SIZES)),
+  size: PropTypes.oneOf(Object.keys(ICON_SIZES)),
   block: PropTypes.bool,
 }
 
