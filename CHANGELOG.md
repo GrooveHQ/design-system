@@ -1,3 +1,16 @@
+# v0.8.1 (Tue Dec 17 2019)
+
+#### 🐛  Bug Fix
+
+- Remove text decoration globally from links [#23](https://github.com/GrooveHQ/design-system/pull/23) ([@assimovt](https://github.com/assimovt))
+- Fix Badge component default open state and padding [#22](https://github.com/GrooveHQ/design-system/pull/22) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.8.0 (Fri Dec 13 2019)
 
 #### 🚀  Enhancement
