@@ -167,3 +167,32 @@ export const pageMargins = css`
     margin: 0 ${pageMargin * 4}%;
   }
 `
+
+// Borders
+export const borders = {
+  width: 1,
+}
+
+// Forms
+export const forms = {
+  input: {
+    width: 280,
+    height: {
+      regular: 40,
+      small: 32,
+    },
+  },
+  typography: {
+    regular: { ...typography.sizes.p1 },
+    small: { ...typography.sizes.p3 },
+  },
+}
+
+// Avatars
+export const avatars = {
+  sizes: {
+    small: 24,
+    medium: 40,
+    big: 60,
+  },
+}
