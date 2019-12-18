@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import { useState, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import PropTypes from 'prop-types'
 import { color, spacing, typography } from './shared/styles'
 
 const wrapper = css`
   position: relative;
-  display: inline-block;
 `
 
 const tooltipContent = css`
@@ -20,8 +19,11 @@ const tooltipContent = css`
   padding: ${spacing.padding.tiny}px;
   position: absolute;
   text-align: center;
-  transform: translateX(-50%);
-  width: 211px;
+  max-width: 216px;
+  /* HACK (jscheel): Makes tooltip width fit content and max width even in limited width containers */
+  margin-left: -2147483647px;
+  transform: translateX(2147483647px) translateX(-50%);
+  /* END HACK */
   &:after {
     left: 50%;
     border: solid transparent;
@@ -61,7 +63,7 @@ const POSITIONS = { top, bottom }
 // to the tooltip's actual div, but at the same time, we have a wrapper div that
 // should be used for event props.
 export const Tooltip = ({
-  label,
+  text,
   position,
   visible,
   onMouseEnter,
@@ -70,13 +72,23 @@ export const Tooltip = ({
 }) => {
   const [show, setShow] = useState(visible)
   const controlled = visible !== null && visible !== undefined
-  const createEvent = (val, propFn) => {
-    if (controlled && !propFn) return undefined
-    return e => {
-      if (!controlled) setShow(val)
-      if (propFn) propFn(e)
-    }
-  }
+
+  const handleMouseEnter = useCallback(
+    e => {
+      if (!controlled) setShow(true)
+      if (onMouseEnter) onMouseEnter(e)
+    },
+    [controlled, onMouseEnter]
+  )
+
+  const handleMouseLeave = useCallback(
+    e => {
+      if (!controlled) setShow(false)
+      if (onMouseLeave) onMouseLeave(e)
+    },
+    [controlled, onMouseLeave]
+  )
+
   useEffect(() => {
     setShow(visible)
   }, [visible])
@@ -84,11 +96,11 @@ export const Tooltip = ({
   return (
     <div
       css={[wrapper]}
-      onMouseEnter={createEvent(true, onMouseEnter)}
-      onMouseLeave={createEvent(false, onMouseLeave)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {children}
-      {show && <div css={[tooltipContent, POSITIONS[position]]}>{label}</div>}
+      {show && <div css={[tooltipContent, POSITIONS[position]]}>{text}</div>}
     </div>
   )
 }
@@ -97,7 +109,7 @@ Tooltip.propTypes = {
   /**
    * Text of tooltip
    */
-  label: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   /**
    * State of field, inherited by child form components
    */

@@ -8,6 +8,7 @@ import { FlexContainer } from './FlexContainer'
 import { FlexItem } from './FlexItem'
 import { Tooltip } from './Tooltip'
 import { Button } from './Button'
+import { Paragraph } from './Paragraph'
 
 const wrapper = css`
   margin-top: 50px;
@@ -26,33 +27,33 @@ export default {
 }
 
 export const Basic = () => (
-  <Tooltip label="Please enter the replicant's full name (e.g. Roy Batty)">
-    <Field>
-      <Input label="Name (hover to see tooltip)" type="text" name="name" />
-    </Field>
-  </Tooltip>
+  <Field>
+    <Tooltip text="Please enter the replicant's full name (e.g. Roy Batty)">
+      <Input
+        label="Name (hover to see tooltip)"
+        type="text"
+        name="name"
+        stretched={false}
+      />
+    </Tooltip>
+  </Field>
 )
 
 export const Controlled = () => {
   const [visible, setVisible] = useState(true)
 
   return (
-    <FlexContainer direction="horizontal" inline>
-      <FlexItem>
-        <Tooltip
-          label="Please enter the replicant's full name (e.g. Roy Batty)"
-          visible={visible}
-        >
-          <Button
-            variant={visible ? 'primary' : 'secondary'}
-            onClick={() => setVisible(!visible)}
-          >
-            {visible ? 'hide' : 'show'}
-          </Button>
-        </Tooltip>
-      </FlexItem>
-      <FlexItem gapHorizontal="small" />
-    </FlexContainer>
+    <Tooltip
+      text="Please enter the replicant's full name (e.g. Roy Batty)"
+      visible={visible}
+    >
+      <Button
+        variant={visible ? 'primary' : 'secondary'}
+        onClick={() => setVisible(!visible)}
+      >
+        {visible ? 'hide' : 'show'}
+      </Button>
+    </Tooltip>
   )
 }
 Controlled.story = {
@@ -62,26 +63,37 @@ Controlled.story = {
 export const Position = () => (
   <FlexContainer direction="horizontal">
     <FlexItem>
-      <Tooltip
-        label="Please enter the replicant's full name (e.g. Roy Batty)"
-        visible
-        position="top"
-      >
-        <Field>
+      <Field>
+        <Tooltip
+          text="Please enter the replicant's full name (e.g. Roy Batty)"
+          visible
+          position="top"
+        >
           <Input label="Replicant's Name" type="text" name="name" size="30" />
-        </Field>
-      </Tooltip>
+        </Tooltip>
+      </Field>
     </FlexItem>
     <FlexItem gapHorizontal="large">
-      <Tooltip
-        label="Please enter the replicant's full name (e.g. Roy Batty)"
-        visible
-        position="bottom"
-      >
-        <Field>
+      <Field>
+        <Tooltip
+          text="Please enter the replicant's full name (e.g. Roy Batty)"
+          visible
+          position="bottom"
+        >
           <Input label="Replicant's Name" type="text" name="name" size="30" />
-        </Field>
-      </Tooltip>
+        </Tooltip>
+      </Field>
     </FlexItem>
   </FlexContainer>
+)
+
+export const AnyComponent = () => (
+  <Tooltip text="Roy Batty" visible>
+    <Paragraph>
+      I've seen things you people wouldn't believe. Attack ships on fire off the
+      shoulder of Orion. I watched C-beams glitter in the dark near the
+      Tannhäuser Gate. All those moments will be lost in time, like tears in
+      rain. Time to die.
+    </Paragraph>
+  </Tooltip>
 )
