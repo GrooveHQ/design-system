@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from './Container'
 import { Header } from './Header'
 import { Heading } from './Heading'
+import { Paragraph } from './Paragraph'
 
 export default {
   title: 'Design System|Header',
@@ -10,37 +11,37 @@ export default {
   },
 }
 
-export const Small = () => (
+export const Basic = () => (
   <Container
     header={
       <Header>
         <Heading size="medium" color="paperWhite">
-          Container header small
+          Container header
         </Heading>
       </Header>
     }
   />
 )
 
-export const Medium = () => (
+export const MaxHeight = () => (
   <Container
     header={
-      <Header size="medium">
+      <Header>
         <Heading size="medium" color="paperWhite">
-          Container header medium
+          Container header
         </Heading>
-      </Header>
-    }
-  />
-)
-
-export const Big = () => (
-  <Container
-    header={
-      <Header size="big">
-        <Heading size="medium" color="paperWhite">
-          Container header big
-        </Heading>
+        <Paragraph color="paperWhite">
+          Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+          vestibulum. Integer posuere erat a ante venenatis dapibus posuere
+          velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+          posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed
+          odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+          venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu
+          leo. Cum sociis natoque penatibus et magnis dis parturient montes,
+          nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum.
+        </Paragraph>
       </Header>
     }
   />
