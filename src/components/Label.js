@@ -4,8 +4,8 @@ import styled from '@emotion/styled'
 import { color, spacing, typography } from './shared/styles'
 
 const StyledLabel = styled.div`
-  display: inline-block;
-  vertical-align: top;
+  display: inline-flex;
+  align-items: center;
   font-size: ${typography.sizes.p4.size}px;
   line-height: ${typography.sizes.p4.size}px;
   padding: ${spacing.padding.mini}px;
