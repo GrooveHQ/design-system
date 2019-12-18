@@ -1,11 +1,13 @@
 import * as styles from './shared/styles'
 import * as global from './shared/global'
 import * as animation from './shared/animation'
+import * as Forms from './Forms'
 
-export { styles, global, animation }
+export { styles, global, animation, Forms }
 
 export * from './Avatar'
 export * from './Badge'
+export * from './Button'
 export * from './Card'
 export * from './Container'
 export * from './FlexContainer'
