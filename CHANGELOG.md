@@ -1,3 +1,22 @@
+# v0.9.0 (Thu Dec 19 2019)
+
+#### 🚀  Enhancement
+
+- Basic Form Components [#29](https://github.com/GrooveHQ/design-system/pull/29) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Refactors Header component to use min and max heights instead of fixed heights [#25](https://github.com/GrooveHQ/design-system/pull/25) ([@jscheel](https://github.com/jscheel))
+- Specify docs-addon in the storybook config [#28](https://github.com/GrooveHQ/design-system/pull/28) ([@jscheel](https://github.com/jscheel))
+- Fix vertical alignment of Label component [#31](https://github.com/GrooveHQ/design-system/pull/31) ([@jscheel](https://github.com/jscheel))
+- Use context to pass flex container's gap properties down to flex items [#24](https://github.com/GrooveHQ/design-system/pull/24) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v0.8.1 (Tue Dec 17 2019)
 
 #### 🐛  Bug Fix
