@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types'
-import { css, jsx } from '@emotion/core'
+import { css, jsx, keyframes } from '@emotion/core'
+import styled from '@emotion/styled'
 import { color, infoColor, spacing, forms } from './shared/styles'
 import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
@@ -134,11 +135,81 @@ const VARIANTS = { primary, secondary, warning, primaryInverted }
 const SIZES = { regular, small }
 const SIZE_ICON_SIZE_MAP = { regular: regularIcon, small: smallIcon }
 
+const blink = keyframes`
+  0% {
+    opacity: 0;
+  }
+  14% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const fade = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+`
+
+const LoadingDots = styled(({ verticalAlign, ...rest }) => {
+  return (
+    <span aria-hidden="true" {...rest}>
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
+    </span>
+  )
+})`
+  animation-name: ${fade};
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  display: inline-block;
+  ${({ verticalAlign }) =>
+    verticalAlign &&
+    css`
+      transform: translateY(-0.3em);
+    `}
+
+  & span {
+    animation-name: ${blink};
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-delay: -0.4s;
+  }
+
+  & span:nth-of-type(2n) {
+    animation-delay: -0.2s;
+  }
+
+  & span:nth-of-type(3n) {
+    animation-delay: 0s;
+  }
+`
+
 export const Button = ({
   variant,
   size,
   stretched,
   icon: iconName,
+  loading,
   children,
   ...rest
 }) => {
@@ -171,9 +242,10 @@ export const Button = ({
     )
   }
   return (
-    <button css={classes} type="button" {...rest}>
-      {icon}
+    <button css={classes} type="button" {...rest} aria-busy={loading}>
+      {!loading && iconName && icon}
       {children}
+      {loading && <LoadingDots verticalAlign={!children} />}
     </button>
   )
 }
@@ -195,6 +267,10 @@ Button.propTypes = {
    * Icon
    */
   icon: PropTypes.oneOf(Object.keys(icons)),
+  /**
+   * Show loading indicator
+   */
+  loading: PropTypes.bool,
 }
 
 Button.defaultProps = {
@@ -202,4 +278,5 @@ Button.defaultProps = {
   size: 'regular',
   icon: undefined,
   stretched: false,
+  loading: false,
 }

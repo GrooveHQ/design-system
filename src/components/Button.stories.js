@@ -76,3 +76,13 @@ export const IconOnly = () => (
   </FlexContainer>
 )
 
+export const Loading = () => (
+  <FlexContainer gapHorizontal="small">
+    <FlexItem>
+      <Button loading>Loading</Button>
+    </FlexItem>
+    <FlexItem>
+      <Button icon="arrowLeft" loading />
+    </FlexItem>
+  </FlexContainer>
+)
