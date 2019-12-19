@@ -31,7 +31,6 @@ const StyledParagraph = styled.span`
   a:hover &,
   a:focus & {
     color: ${props => color[`${props.color}Hover`]};
-    text-decoration: underline;
   }
 
   a:visited &,
