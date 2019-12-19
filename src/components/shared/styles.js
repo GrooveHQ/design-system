@@ -34,15 +34,21 @@ function generateStateColors(baseColors = {}) {
 }
 
 // Monochrome Colors
-const monochromeColors = generateStateColors({
-  jetBlack: '#1B1B1B',
-  gunGrey: '#4F5D6A',
-  stoneGrey: '#7E8F9F',
-  metalGrey: '#E4E8ED',
-  ashGrey: '#EEF1F5',
-  moonGrey: '#F7F9FA',
-  paperWhite: '#FFFFFF',
-})
+const monochromeColors = {
+  ...generateStateColors({
+    jetBlack: '#1B1B1B',
+    gunGrey: '#4F5D6A',
+    stoneGrey: '#7E8F9F',
+    metalGrey: '#E4E8ED',
+    ashGrey: '#EEF1F5',
+    moonGrey: '#F7F9FA',
+    paperWhite: '#FFFFFF',
+  }),
+  // white is white, we don't want color variations
+  paperWhiteActive: '#FFFFFF',
+  paperWhiteHover: '#FFFFFF',
+  paperWhiteDisabled: '#FFFFFF',
+}
 
 // Base Colors
 const baseColors = generateStateColors({
