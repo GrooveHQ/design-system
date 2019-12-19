@@ -28,23 +28,19 @@ const StyledParagraph = styled.span`
   color: ${props => color[props.color]};
   text-align: ${props => ALIGNMENT[props.align]};
 
-  a & {
-    color: ${color.primary};
-  }
-
   a:hover &,
   a:focus & {
-    color: ${color.primaryHover};
+    color: ${props => color[`${props.color}Hover`]};
     text-decoration: underline;
   }
 
   a:visited &,
   a:active & {
-    color: ${color.primaryActive};
+    color: ${props => color[`${props.color}Active`]};
   }
 
   a:disabled & {
-    color: ${color.primaryDisabled};
+    color: ${props => color[`${props.color}Disabled`]};
   }
 `
 
