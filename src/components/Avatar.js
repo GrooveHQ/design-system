@@ -1,14 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
-import { color } from './shared/styles'
-
-const SIZES = {
-  small: 24,
-  medium: 40,
-  big: 60,
-}
+import { color, avatars } from './shared/styles'
+import { AvatarListContext } from './AvatarList'
 
 const StyledAvatar = styled.div`
   background: ${props =>
@@ -18,9 +13,9 @@ const StyledAvatar = styled.div`
   display: inline-block;
   vertical-align: top;
   overflow: hidden;
-  height: ${props => SIZES[props.size]}px;
-  width: ${props => SIZES[props.size]}px;
-  line-height: ${props => SIZES[props.size] - 6}px;
+  height: ${props => avatars.sizes[props.size]}px;
+  width: ${props => avatars.sizes[props.size]}px;
+  line-height: ${props => avatars.sizes[props.size] - 6}px;
   text-align: center;
 
   img {
@@ -33,6 +28,7 @@ const StyledAvatar = styled.div`
 export const Avatar = ({ src, size, name, isLoading, ...props }) => {
   let avatarFigure = <Icon size={size} icon="user" />
   const a11yProps = {}
+  const listContext = useContext(AvatarListContext)
 
   if (isLoading) {
     a11yProps['aria-busy'] = true
@@ -42,7 +38,7 @@ export const Avatar = ({ src, size, name, isLoading, ...props }) => {
   }
 
   return (
-    <StyledAvatar size={size} {...a11yProps} {...props}>
+    <StyledAvatar size={listContext.size || size} {...a11yProps} {...props}>
       {avatarFigure}
     </StyledAvatar>
   )
@@ -58,7 +54,7 @@ Avatar.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(SIZES)),
+  size: PropTypes.oneOf(Object.keys(avatars.sizes)),
 }
 
 Avatar.defaultProps = {
