@@ -14,6 +14,7 @@ const base = css`
   cursor: pointer;
   /* NOTE (jscheel): Normally, this padding will be larger because children will exist. */
   padding: 0 ${spacing.padding.tiny}px;
+  min-width: ${spacing.padding.tiny * 2 + 24}px;
   vertical-align: middle;
   /* HACK (jscheel): Hack for https://github.com/facebook/react/issues/4251 */
   &[disabled] {
@@ -105,14 +106,12 @@ const small = css`
   font-size: ${forms.typography.small.size}px;
   line-height: ${forms.input.height.small - 2}px; /* subtract border width */
   padding: 0 ${spacing.padding.mini}px;
+  min-width: ${spacing.padding.tiny * 2 + 16}px;
 `
 
-const regularWithChildren = css`
+const withChildren = css`
   padding: 0 ${spacing.padding.small}px;
-`
-
-const smallWithChildren = css`
-  padding: 0 ${spacing.padding.small}px;
+  min-width: ${spacing.padding.small * 2 + 24}px;
 `
 
 const stretch = css`
@@ -132,7 +131,7 @@ const smallIcon = css`
 `
 
 const VARIANTS = { primary, secondary, warning, primaryInverted }
-const SIZES = { regular, small, regularWithChildren, smallWithChildren }
+const SIZES = { regular, small }
 const SIZE_ICON_SIZE_MAP = { regular: regularIcon, small: smallIcon }
 
 export const Button = ({
@@ -147,7 +146,7 @@ export const Button = ({
     base,
     VARIANTS[variant],
     SIZES[size],
-    children && SIZES[`${size}WithChildren`],
+    children && withChildren,
   ]
   if (stretched) classes.push(stretch)
   let icon = null

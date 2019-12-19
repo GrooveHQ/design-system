@@ -52,6 +52,27 @@ export const Disabled = () => <Button disabled>Submit</Button>
 
 export const Stretched = () => <Button stretched>Submit</Button>
 
-export const WithIcon = () => <Button icon="paperPlane">Send</Button>
+export const WithIcon = () => (
+  <FlexContainer gapHorizontal="small">
+    <FlexItem>
+      <Button icon="paperPlane">Send</Button>
+    </FlexItem>
+    <FlexItem>
+      <Button icon="paperPlane" size="small">
+        Send
+      </Button>
+    </FlexItem>
+  </FlexContainer>
+)
 
-export const IconOnly = () => <Button icon="arrowLeft" variant="secondary" />
+export const IconOnly = () => (
+  <FlexContainer gapHorizontal="small">
+    <FlexItem>
+      <Button icon="arrowLeft" variant="secondary" />
+    </FlexItem>
+    <FlexItem>
+      <Button icon="arrowLeft" variant="secondary" size="small" />
+    </FlexItem>
+  </FlexContainer>
+)
+
