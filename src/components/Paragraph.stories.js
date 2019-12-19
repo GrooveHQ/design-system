@@ -71,3 +71,12 @@ export const Mini = () => (
     standout customer experiences easily with Groove.
   </Paragraph>
 )
+
+export const Linked = () => (
+  <a href="/">
+    <Paragraph size="small">
+      We&apos;re here every step of the way making sure you and your team
+      deliver standout customer experiences easily with Groove.
+    </Paragraph>
+  </a>
+)

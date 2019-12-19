@@ -82,7 +82,8 @@ export const borderColor = {
 
 // Shadows
 export const shadows = {
-  default: '0 4px 16px 0 rgba(0, 0, 0, 0.1)',
+  low: '0 2px 6px 0 rgba(0, 0, 0, 0.15)',
+  high: '0 4px 16px 0 rgba(0, 0, 0, 0.1)',
 }
 
 // Spacing

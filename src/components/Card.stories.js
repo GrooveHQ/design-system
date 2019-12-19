@@ -53,3 +53,16 @@ export const Plain = () => (
     </Paragraph>
   </Card>
 )
+
+export const Linked = () => (
+  <a href="/">
+    <Card>
+      <Paragraph size="medium" padded={false}>
+        Default card
+      </Paragraph>
+      <Paragraph size="small" padded={false}>
+        White card with a bit of border radius and nice shadow.
+      </Paragraph>
+    </Card>
+  </a>
+)

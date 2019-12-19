@@ -12,7 +12,7 @@ const StyleContainer = styled.div`
   width: 352px;
   border-radius: ${spacing.borderRadius.default}px;
   background-color: ${props => color[props.backgroundColor]};
-  box-shadow: ${shadows.default};
+  box-shadow: ${shadows.high};
 `
 
 const StyledContent = styled.div`
