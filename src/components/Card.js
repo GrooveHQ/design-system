@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, spacing } from './shared/styles'
+import { color, shadows, spacing } from './shared/styles'
 
 const BORDER_SIZES = {
   big: 'big',
@@ -14,9 +14,13 @@ const StyledCard = styled.div`
   border-radius: ${props => spacing.borderRadius[props.radius]}px;
   margin-bottom: ${spacing.padding.tiny}px;
   text-align: left;
-  box-shadow: ${props =>
-    props.plain ? 'none' : '0 2px 6px 0 rgba(0, 0, 0, 0.15)'};
+  box-shadow: ${props => (props.plain ? 'none' : shadows.low)};
   padding: ${spacing.padding.tiny}px ${spacing.padding.small}px;
+
+  a:hover & {
+    cursor: pointer;
+    box-shadow: ${props => (props.plain ? 'none' : shadows.high)};
+  }
 `
 
 export const Card = ({ children, ...props }) => (

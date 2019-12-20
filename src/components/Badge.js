@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { Paragraph } from './Paragraph'
-import { color, spacing } from './shared/styles'
+import { color, shadows, spacing } from './shared/styles'
 
 const SIZES = {
   big: 56,
@@ -19,7 +19,7 @@ const StyledBadge = styled.div`
   cursor: pointer;
   position: relative;
   outline: none;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: ${props => (props.opened ? shadows.high : shadows.low)};
 
   border-radius: ${props => SIZES[props.size]}px;
   background-color: ${color.primary};
@@ -114,7 +114,7 @@ export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
   )
 
   return (
-    <StyledBadge {...props} text={text} onClick={handleClick}>
+    <StyledBadge {...props} text={text} onClick={handleClick} opened={opened}>
       {closing && <Icon {...props} icon="close" color="paperWhite" />}
 
       {!closing && icon && (

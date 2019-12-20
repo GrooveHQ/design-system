@@ -27,6 +27,20 @@ const StyledParagraph = styled.span`
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
   color: ${props => color[props.color]};
   text-align: ${props => ALIGNMENT[props.align]};
+
+  a:hover &,
+  a:focus & {
+    color: ${props => color[`${props.color}Hover`]};
+  }
+
+  a:visited &,
+  a:active & {
+    color: ${props => color[`${props.color}Active`]};
+  }
+
+  a:disabled & {
+    color: ${props => color[`${props.color}Disabled`]};
+  }
 `
 
 export const Paragraph = props => <StyledParagraph {...props} />
