@@ -15,7 +15,7 @@ const ALIGNMENT = {
 }
 
 const StyledHeading = styled.span`
-  display: block;
+  display: ${props => (props.inline ? 'inline-block' : 'block')};
   margin-bottom: ${spacing.padding.tiny}px;
   letter-spacing: normal;
   font-weight: ${props =>
@@ -45,6 +45,10 @@ Heading.propTypes = {
    * Specify alignmnet
    */
   align: PropTypes.oneOf(Object.keys(ALIGNMENT)),
+  /**
+   * Whether it is inline
+   */
+  inline: PropTypes.bool,
 }
 
 Heading.defaultProps = {
@@ -52,4 +56,5 @@ Heading.defaultProps = {
   bold: false,
   color: 'jetBlack',
   align: ALIGNMENT.left,
+  inline: false,
 }

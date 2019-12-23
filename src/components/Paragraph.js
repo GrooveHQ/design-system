@@ -18,7 +18,7 @@ const ALIGNMENT = {
 }
 
 const StyledParagraph = styled.span`
-  display: ${props => (props.inline ? 'inline' : 'block')};
+  display: ${props => (props.inline ? 'inline-block' : 'block')};
   padding-bottom: ${props => (props.padded ? spacing.padding.tiny : 0)}px;
   letter-spacing: normal;
   font-weight: ${props =>
