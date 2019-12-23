@@ -8,6 +8,8 @@ export const ICON_SIZES = {
   small: 16,
   medium: 24,
   big: 32,
+  huge: 64,
+  massive: 112, // 80 + 16 svg view box padding
 }
 
 const Svg = styled.svg`
