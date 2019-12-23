@@ -32,23 +32,21 @@ const StyledFlexItem = styled.div`
   margin-top: ${props => (props.gapVertical ? GAP[props.gapVertical] : 0)};
 `
 
-export const FlexItem = ({
-  children,
-  gapHorizontal,
-  gapVertical,
-  ...props
-}) => {
-  const containerContext = useContext(FlexContainerContext)
-  return (
-    <StyledFlexItem
-      gapHorizontal={gapHorizontal || containerContext.gapHorizontal}
-      gapVertical={gapVertical || containerContext.gapVertical}
-      {...props}
-    >
-      {children}
-    </StyledFlexItem>
-  )
-}
+export const FlexItem = React.forwardRef(
+  ({ children, gapHorizontal, gapVertical, ...props }, ref) => {
+    const containerContext = useContext(FlexContainerContext)
+    return (
+      <StyledFlexItem
+        ref={ref}
+        gapHorizontal={gapHorizontal || containerContext.gapHorizontal}
+        gapVertical={gapVertical || containerContext.gapVertical}
+        {...props}
+      >
+        {children}
+      </StyledFlexItem>
+    )
+  }
+)
 
 FlexItem.propTypes = {
   /**
