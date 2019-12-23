@@ -19,6 +19,7 @@ const StyledContent = styled.div`
   flex: 1 1 auto;
   ${props => props.padded && `padding: ${spacing.padding.small}px`};
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 `
@@ -35,7 +36,7 @@ const StyledHeader = styled.div`
 `
 
 export const Container = props => {
-  const { branded, appName, children, header, padded } = props
+  const { branded, appName, children, header } = props
 
   return (
     <StyleContainer {...props}>
