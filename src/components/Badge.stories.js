@@ -17,6 +17,7 @@ export const WithOnClick = () => (
   <Badge
     text="Need help?"
     icon="chat"
+    // eslint-disable-next-line no-alert
     onClick={() => alert('Clicked')}
     open={false}
   />

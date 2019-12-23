@@ -90,9 +90,9 @@ export const Position = () => (
 export const AnyComponent = () => (
   <Tooltip text="Roy Batty" visible>
     <Paragraph>
-      I've seen things you people wouldn't believe. Attack ships on fire off the
-      shoulder of Orion. I watched C-beams glitter in the dark near the
-      Tannhäuser Gate. All those moments will be lost in time, like tears in
+      I&apos;ve seen things you people wouldn&apos;t believe. Attack ships on
+      fire off the shoulder of Orion. I watched C-beams glitter in the dark near
+      the Tannhäuser Gate. All those moments will be lost in time, like tears in
       rain. Time to die.
     </Paragraph>
   </Tooltip>
