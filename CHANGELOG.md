@@ -24,6 +24,32 @@
 
 ---
 
+# v0.10.0 (Fri Dec 27 2019)
+
+#### 🚀  Enhancement
+
+- Add AvatarList component [#26](https://github.com/GrooveHQ/design-system/pull/26) ([@jscheel](https://github.com/jscheel))
+- Add Tooltip component [#27](https://github.com/GrooveHQ/design-system/pull/27) ([@jscheel](https://github.com/jscheel))
+- Add loading indicator to button [#33](https://github.com/GrooveHQ/design-system/pull/33) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Padding and reference fixes [#35](https://github.com/GrooveHQ/design-system/pull/35) ([@kevinrademan](https://github.com/kevinrademan))
+- Inine prop to Heading/Paragaph. Icon massive size. [#36](https://github.com/GrooveHQ/design-system/pull/36) ([@assimovt](https://github.com/assimovt))
+- Fix shadows and link styles [#34](https://github.com/GrooveHQ/design-system/pull/34) ([@assimovt](https://github.com/assimovt))
+- Fix icon-only button widths [#32](https://github.com/GrooveHQ/design-system/pull/32) ([@jscheel](https://github.com/jscheel))
+
+#### ⚠️  Pushed to master
+
+- Eslint fixes  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 2
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.9.0 (Thu Dec 19 2019)
 
 #### 🚀  Enhancement
