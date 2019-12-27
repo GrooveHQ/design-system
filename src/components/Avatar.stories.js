@@ -50,6 +50,26 @@ export const small = () => (
   </Background>
 )
 
+export const autoAvatar = () => (
+  <Background>
+    <Avatar size="big" name="Tair Assimov" />
+    <Avatar size="big" name="Jared Scheel" />
+  </Background>
+)
+
+export const customizedAutoAvatar = () => (
+  <Background>
+    <Avatar
+      size="big"
+      name="Kevin Rademan"
+      background="ff0000"
+      color="#ffffff"
+      bold={false}
+      length={1}
+    />
+  </Background>
+)
+
 export const BasicList = () => (
   <Background>
     <AvatarList>
