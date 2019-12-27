@@ -17,9 +17,11 @@ const StyleContainer = styled.div`
 
 const StyledContent = styled.div`
   flex: 1 1 auto;
-  padding: ${spacing.padding.small}px ${spacing.padding.small}px 0
-    ${spacing.padding.small}px;
+  ${props => props.padded && `padding: ${spacing.padding.small}px`};
   overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 `
 
 const StyledParagraph = styled(Paragraph)`
@@ -40,7 +42,7 @@ export const Container = props => {
     <StyleContainer {...props}>
       {header && <StyledHeader>{header}</StyledHeader>}
 
-      <StyledContent>{children}</StyledContent>
+      <StyledContent {...props}>{children}</StyledContent>
 
       {branded && (
         <StyledParagraph size="small" align="center" color="stoneGrey">
@@ -64,10 +66,15 @@ Container.propTypes = {
    * Specify background color
    */
   backgroundColor: PropTypes.string,
+  /**
+   * Specify if adding is added to this container. Setting this causes gap to be ignored
+   */
+  padded: PropTypes.bool,
 }
 
 Container.defaultProps = {
   branded: false,
   appName: null,
   backgroundColor: 'moonGrey',
+  padded: true,
 }
