@@ -7,7 +7,7 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
   exit 1
 fi
 
-export PATH=$(npm bin):$PATH
+export PATH="$(npm bin):$PATH"
 
 VERSION=`auto version`
 
