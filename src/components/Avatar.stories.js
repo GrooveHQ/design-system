@@ -53,7 +53,8 @@ export const small = () => (
 export const autoAvatar = () => (
   <Background>
     <Avatar size="big" name="Tair Assimov" />
-    <Avatar size="big" name="Jared Scheel" />
+    <Avatar size="medium" name="Jared Scheel" />
+    <Avatar size="small" name="Kevin Rademan" />
   </Background>
 )
 
@@ -62,8 +63,8 @@ export const customizedAutoAvatar = () => (
     <Avatar
       size="big"
       name="Kevin Rademan"
-      background="ff0000"
-      color="#ffffff"
+      background={color.candyRed}
+      color={color.paperWhite}
       bold={false}
       length={1}
     />

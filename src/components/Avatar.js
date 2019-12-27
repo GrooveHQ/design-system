@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
-import { contrast, stringToColour } from '../utils/colors'
+import { contrast, stringToColor } from '../utils/colors'
 import { color as sharedColors, avatars } from './shared/styles'
 import { AvatarListContext } from './AvatarList'
 
@@ -28,15 +28,15 @@ const StyledAvatar = styled.div`
 
 function generateAvatarUrl(config) {
   const uiAvatarsUrl = `https://ui-avatars.com/api/?`
-  const paramters = []
+  const parameters = []
 
   const configWithDefaults = {
     ...config,
-    background: (config.background || stringToColour(config.name)).replace(
+    background: (config.background || stringToColor(config.name)).replace(
       '#',
       ''
     ),
-    color: (config.color || contrast(stringToColour(config.name))).replace(
+    color: (config.color || contrast(stringToColor(config.name))).replace(
       '#',
       ''
     ),
@@ -44,10 +44,10 @@ function generateAvatarUrl(config) {
   }
 
   ;['background', 'color', 'name', 'size', 'length', 'bold'].forEach(option => {
-    paramters.push(`${option}=${configWithDefaults[option]}`)
+    parameters.push(`${option}=${configWithDefaults[option]}`)
   })
 
-  return `${uiAvatarsUrl}${paramters.join('&')}`
+  return `${uiAvatarsUrl}${parameters.join('&')}`
 }
 
 export const Avatar = ({
