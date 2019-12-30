@@ -41,12 +41,12 @@ export const WithIcon = () => (
       name="email"
       stretched={false}
       icon="envelope"
-      iconAlign="left"
+      iconPosition="left"
     />
   </Field>
 )
 
-export const WithIconRightReset = () => (
+export const WithIconRightClick = () => (
   <Field>
     <Input
       label="Search for articles"
@@ -54,9 +54,9 @@ export const WithIconRightReset = () => (
       name="search"
       stretched={false}
       icon="search"
-      onReset={() => {
+      onIconClick={() => {
         // eslint-disable-next-line no-alert
-        alert('Reset handler')
+        alert('Icon click handler')
       }}
     />
   </Field>

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, useRef, useCallback } from 'react'
+import { useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
@@ -15,8 +15,8 @@ import {
 
 const StyledIcon = styled(Icon)`
   position: absolute;
-  right: ${props => (props.align === 'right' ? '12px' : 'auto')};
-  left: ${props => (props.align === 'left' ? '12px' : 'auto')};
+  right: ${props => (props.position === 'right' ? '12px' : 'auto')};
+  left: ${props => (props.position === 'left' ? '12px' : 'auto')};
   top: ${spacing.padding.tiny}px;
   cursor: ${props => (props.onClick ? 'pointer' : 'auto')};
 `
@@ -25,12 +25,11 @@ export const Input = ({
   stretched,
   label: labelText,
   icon,
-  iconAlign,
-  onReset,
+  iconPosition,
+  onIconClick,
   ...rest
 }) => {
   const fieldCtx = useContext(FieldContext)
-  const inputRef = useRef(null)
 
   const classes = [
     baseStyle,
@@ -43,20 +42,22 @@ export const Input = ({
       fill: ${color.primary};
     }
     padding: 0
-      ${iconAlign === 'right' ? spacing.padding.big : spacing.padding.small}px 0
-      ${iconAlign === 'left' ? spacing.padding.big : spacing.padding.small}px;
+      ${iconPosition === 'right'
+        ? spacing.padding.big
+        : spacing.padding.small}px
+      0
+      ${iconPosition === 'left' ? spacing.padding.big : spacing.padding.small}px;
   `
 
   if (icon) {
     classes.push(iconInputStyle)
   }
 
-  const handleReset = useCallback(() => {
-    if (onReset) {
-      inputRef.current.value = ''
-      onReset()
+  const handleIconClick = useCallback(() => {
+    if (onIconClick) {
+      onIconClick()
     }
-  }, [onReset])
+  }, [onIconClick])
 
   return (
     <Label stretched={stretched} text={labelText}>
@@ -64,14 +65,13 @@ export const Input = ({
         size={labelText.length}
         placeholder={labelText}
         css={[classes]}
-        ref={inputRef}
         {...rest}
       />
       {icon && (
         <StyledIcon
-          onClick={onReset ? handleReset : undefined}
+          onClick={onIconClick ? handleIconClick : undefined}
           icon={icon}
-          align={iconAlign}
+          position={iconPosition}
           color="metalGrey"
         />
       )}
@@ -93,19 +93,15 @@ Input.propTypes = {
    */
   icon: PropTypes.string,
   /**
-   * Specify icon alignmnet
+   * Specify icon position
    */
-  iconAlign: PropTypes.oneOf(['left', 'right']),
-  /**
-   * If reset handler provided, will empty the input. If icon provided,
-   * clicking on the icon will also trigger reset.
-   */
-  onReset: PropTypes.func,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
+  onIconClick: PropTypes.func,
 }
 
 Input.defaultProps = {
   stretched: true,
   icon: null,
-  iconAlign: 'right',
-  onReset: null,
+  iconPosition: 'right',
+  onIconClick: null,
 }
