@@ -100,7 +100,7 @@ export const spacing = {
     small: 16,
     medium: 24,
     large: 32,
-    big: 48,
+    big: 40,
     huge: 64,
     massive: 80,
   },

@@ -33,6 +33,35 @@ export const Unstretched = () => (
   </Field>
 )
 
+export const WithIcon = () => (
+  <Field>
+    <Input
+      label="Enter your email"
+      type="text"
+      name="email"
+      stretched={false}
+      icon="envelope"
+      iconAlign="left"
+    />
+  </Field>
+)
+
+export const WithIconRightReset = () => (
+  <Field>
+    <Input
+      label="Search for articles"
+      type="text"
+      name="search"
+      stretched={false}
+      icon="search"
+      onReset={() => {
+        // eslint-disable-next-line no-alert
+        alert('Reset handler')
+      }}
+    />
+  </Field>
+)
+
 export const SuccessState = () => (
   <Field validationState="success" successMessage="Username is available">
     <Input
