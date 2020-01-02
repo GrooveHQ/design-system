@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { spacing, avatars, color } from '../shared/styles'
+import { spacing, avatars } from '../shared/styles'
 import { Avatar } from '../Avatar'
 import AvatarListContext from './AvatarListContext'
 
@@ -80,7 +80,7 @@ AvatarList.propTypes = {
   inline: PropTypes.bool,
   align: PropTypes.oneOf(Object.keys(ALIGNMENT)),
   max: PropTypes.number,
-  children: PropTypes.arrayOf(PropTypes.instanceOf(Avatar)),
+  children: PropTypes.arrayOf(PropTypes.instanceOf(Avatar)).isRequired,
 }
 
 AvatarList.defaultProps = {
