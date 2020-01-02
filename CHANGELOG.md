@@ -1,3 +1,16 @@
+# v0.10.1 (Thu Jan 02 2020)
+
+#### 🐛  Bug Fix
+
+- NEW: Add presence for avatars [#39](https://github.com/GrooveHQ/design-system/pull/39) ([@kevinrademan](https://github.com/kevinrademan))
+- Extend Avatar for automatic generation [#38](https://github.com/GrooveHQ/design-system/pull/38) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v0.10.0 (Fri Dec 27 2019)
 
 #### 🚀  Enhancement
