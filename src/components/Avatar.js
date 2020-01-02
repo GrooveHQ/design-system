@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { contrast, stringToColor } from '../utils/colors'
 import { color as sharedColors, avatars } from './shared/styles'
-import { AvatarListContext } from './AvatarList'
+import AvatarListContext from './AvatarList/AvatarListContext'
 
 const presenceConfig = {
   colors: {
@@ -105,11 +105,16 @@ export const Avatar = ({
   color,
   length,
   bold,
+  presence,
   ...props
 }) => {
   let avatarFigure = <Icon size={size} icon="user" />
   const a11yProps = {}
   const listContext = useContext(AvatarListContext)
+  let decodedName = decodeURIComponent(name)
+  if (presence !== 'none') {
+    decodedName += ` (${presence})`
+  }
 
   if (isLoading) {
     a11yProps['aria-busy'] = true
@@ -120,13 +125,17 @@ export const Avatar = ({
     avatarFigure = (
       <img
         src={generateAvatarUrl({ background, color, name, size, length, bold })}
-        alt={name}
+        alt={decodedName}
       />
     )
   }
 
   return (
-    <StyledAvatarContainer size={listContext.size || size} {...props}>
+    <StyledAvatarContainer
+      size={listContext.size || size}
+      title={decodedName}
+      presence={presence}
+    >
       <StyledAvatar size={listContext.size || size} {...a11yProps} {...props}>
         {avatarFigure}
       </StyledAvatar>

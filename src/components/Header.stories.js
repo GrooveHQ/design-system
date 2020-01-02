@@ -23,6 +23,18 @@ export const Basic = () => (
   />
 )
 
+export const BasicWithSpacing = () => (
+  <Container
+    header={
+      <Header spacing="small">
+        <Heading size="medium" color="paperWhite">
+          Container header
+        </Heading>
+      </Header>
+    }
+  />
+)
+
 export const MaxHeight = () => (
   <Container
     header={

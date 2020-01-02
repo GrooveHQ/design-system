@@ -16,7 +16,10 @@ const ALIGNMENT = {
 
 const StyledHeading = styled.span`
   display: ${props => (props.inline ? 'inline-block' : 'block')};
-  margin-bottom: ${spacing.padding.tiny}px;
+  ${props => {
+    if (!props.padded) return ''
+    return `margin-bottom: ${spacing.padding.tiny}px;`
+  }}
   letter-spacing: normal;
   font-weight: ${props =>
     props.bold ? typography.weight.bold : typography.weight.medium};
@@ -49,6 +52,10 @@ Heading.propTypes = {
    * Whether it is inline
    */
   inline: PropTypes.bool,
+  /**
+   * Specify if adding is added to this container. Setting this causes gap to be ignored
+   */
+  padded: PropTypes.bool,
 }
 
 Heading.defaultProps = {
@@ -57,4 +64,5 @@ Heading.defaultProps = {
   color: 'jetBlack',
   align: ALIGNMENT.left,
   inline: false,
+  padded: true,
 }
