@@ -71,6 +71,14 @@ export const customizedAutoAvatar = () => (
   </Background>
 )
 
+export const avatarWithPresence = () => (
+  <Background>
+    <Avatar size="big" name="Tair Assimov" presence="online" />
+    <Avatar size="medium" name="Jared Scheel" presence="away" />
+    <Avatar size="small" name="Kevin Rademan" presence="offline" />
+  </Background>
+)
+
 export const BasicList = () => (
   <Background>
     <AvatarList>
