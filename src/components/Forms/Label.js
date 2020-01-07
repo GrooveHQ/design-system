@@ -6,6 +6,7 @@ import { stretchedStyle } from '../shared/forms'
 
 const base = css`
   display: inline-flex;
+  position: relative;
 `
 
 export const Label = ({ stretched, children, text, ...rest }) => {

@@ -33,6 +33,35 @@ export const Unstretched = () => (
   </Field>
 )
 
+export const WithIcon = () => (
+  <Field>
+    <Input
+      label="Enter your email"
+      type="text"
+      name="email"
+      stretched={false}
+      icon="envelope"
+      iconPosition="left"
+    />
+  </Field>
+)
+
+export const WithIconRightClick = () => (
+  <Field>
+    <Input
+      label="Search for articles"
+      type="text"
+      name="search"
+      stretched={false}
+      icon="search"
+      onIconClick={() => {
+        // eslint-disable-next-line no-alert
+        alert('Icon click handler')
+      }}
+    />
+  </Field>
+)
+
 export const SuccessState = () => (
   <Field validationState="success" successMessage="Username is available">
     <Input
