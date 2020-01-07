@@ -42,6 +42,23 @@ const primary = css`
   }
 `
 
+const primarySimple = css`
+  color: ${color.primary};
+  background-color: transparent;
+  border: none;
+  padding: 0 !important;
+  min-width: auto !important;
+  &:hover {
+    color: ${color.primaryHover};
+  }
+  &:active {
+    color: ${color.primaryActive};
+  }
+  &:disabled {
+    color: ${color.primaryDisabled};
+  }
+`
+
 const secondary = css`
   background-color: ${color.paperWhite};
   border-color: ${color.primary};
@@ -60,7 +77,7 @@ const secondary = css`
 
 const warning = css`
   background-color: ${infoColor.error};
-  border-color: ${color.candyRed};
+  border-color: ${infoColor.error};
   color: ${color.paperWhite};
   &:hover {
     background-color: ${infoColor.errorHover};
@@ -73,6 +90,23 @@ const warning = css`
   &:disabled {
     background-color: ${infoColor.errorDisabled};
     border-color: ${infoColor.errorDisabled};
+  }
+`
+
+const warningSimple = css`
+  color: ${infoColor.error};
+  background-color: transparent;
+  border: none;
+  padding: 0 !important;
+  min-width: auto !important;
+  &:hover {
+    color: ${infoColor.errorHover};
+  }
+  &:active {
+    color: ${infoColor.errorActive};
+  }
+  &:disabled {
+    color: ${infoColor.errorDisabled};
   }
 `
 
@@ -131,8 +165,26 @@ const smallIcon = css`
   margin-top: -${Math.abs((ICON_SIZES.small - forms.typography.small.size) / 2)}px;
 `
 
-const VARIANTS = { primary, secondary, warning, primaryInverted }
+const VARIANTS = {
+  primary,
+  secondary,
+  warning,
+  primarySimple,
+  warningSimple,
+  primaryInverted,
+}
+
+const ICON_COLOR_MAP = {
+  primary: 'paperWhite',
+  secondary: 'primary',
+  warning: 'paperWhite',
+  primarySimple: 'primary',
+  warningSimple: 'candyRed',
+  primaryInverted: 'paperWhite',
+}
+
 const SIZES = { regular, small }
+
 const SIZE_ICON_SIZE_MAP = { regular: regularIcon, small: smallIcon }
 
 const blink = keyframes`
@@ -222,7 +274,7 @@ export const Button = ({
   if (stretched) classes.push(stretch)
   let icon = null
   if (iconName) {
-    let iconColor = variant === 'secondary' ? 'primary' : 'paperWhite'
+    let iconColor = ICON_COLOR_MAP[variant]
     if (variant === 'secondary' && rest.disabled) {
       iconColor = 'primaryDisabled'
     }
