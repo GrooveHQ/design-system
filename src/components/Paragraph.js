@@ -29,16 +29,21 @@ const StyledParagraph = styled.span`
   text-align: ${props => ALIGNMENT[props.align]};
 
   a:hover &,
-  a:focus & {
+  a:focus &,
+  & a:hover,
+  & a:focus {
     color: ${props => color[`${props.color}Hover`]};
   }
 
   a:visited &,
-  a:active & {
+  a:active &,
+  & a:visited,
+  & a:active {
     color: ${props => color[`${props.color}Active`]};
   }
 
-  a:disabled & {
+  a:disabled &,
+  & a:disabled {
     color: ${props => color[`${props.color}Disabled`]};
   }
 `
