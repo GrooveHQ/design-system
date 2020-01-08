@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { color, spacing } from './shared/styles'
+import { transition } from './shared/animation'
 import { Card } from './Card'
 import { Paragraph } from './Paragraph'
 
@@ -20,7 +21,9 @@ const StyledCard = styled(Card)`
   z-index: 1;
   overflow-y: auto;
   max-height: 124px;
-  transition: visibility 0s ease-in-out 120ms, opacity 120ms;
+  transition: visibility 0s ${transition.effect.default}
+      ${transition.duration.default},
+    opacity ${transition.duration.default};
   left: ${props => (props.stretched || props.align === 'left' ? '0' : 'auto')};
   right: ${props =>
     props.stretched || props.align === 'right' ? '0' : 'auto'};

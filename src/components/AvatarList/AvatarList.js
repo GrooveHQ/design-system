@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { spacing, avatars } from '../shared/styles'
+import { transition } from '../shared/animation'
 import { Avatar } from '../Avatar'
 import AvatarListContext from './AvatarListContext'
 
@@ -21,7 +22,7 @@ const AvatarListContainer = styled(
 `
 
 const AvatarItem = styled.div`
-  transition: 0.2s;
+  transition: ${transition.duration.default};
   z-index: 1;
   &:not(:first-of-type) {
     margin-right: ${({ compact, spacing: spacingName }) =>
