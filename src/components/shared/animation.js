@@ -58,3 +58,12 @@ export const inlineGlow = css`
   color: transparent;
   cursor: progress;
 `
+
+export const transition = {
+  duration: {
+    default: '120ms',
+  },
+  effect: {
+    default: 'ease-in-out',
+  },
+}

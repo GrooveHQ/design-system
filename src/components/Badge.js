@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { Paragraph } from './Paragraph'
 import { color, shadows, spacing } from './shared/styles'
+import { transition } from './shared/animation'
 
 const SIZES = {
   big: 56,
@@ -45,7 +46,8 @@ const StyledIcon = styled(Icon)`
 const StyledTextWrapper = styled.div`
   white-space: nowrap;
   overflow: hidden;
-  transition: width 120ms ease-in-out 0ms;
+  transition: width ${transition.duration.default} ${transition.effect.default}
+    0ms;
   width: ${props => (props.opened ? 0 : props.width)}px;
 `
 
@@ -53,7 +55,9 @@ const StyledCount = styled.div`
   opacity: ${props => (props.opened ? 0 : 1)};
   overflow: hidden;
   transition: ${props =>
-    props.closing ? 'opacity 120ms ease-in-out 120ms' : 'none'};
+    props.closing
+      ? `opacity ${transition.duration.default} ${transition.effect.default} ${transition.duration.default}`
+      : 'none'};
   border-radius: ${spacing.padding.tiny}px;
   border: 2px solid ${color.paperWhite};
   background-color: ${color.candyRed};
