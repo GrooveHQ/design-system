@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types'
 import { css, jsx, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
-import { color, infoColor, spacing, forms } from './shared/styles'
+import { color, infoColor, spacing, forms, typography } from './shared/styles'
 import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
 
@@ -46,8 +46,7 @@ const primarySimple = css`
   color: ${color.primary};
   background-color: transparent;
   border: none;
-  padding: 0 !important;
-  min-width: auto !important;
+  font-weight: ${typography.weight.medium};
   &:hover {
     color: ${color.primaryHover};
   }
@@ -97,8 +96,7 @@ const warningSimple = css`
   color: ${infoColor.error};
   background-color: transparent;
   border: none;
-  padding: 0 !important;
-  min-width: auto !important;
+  font-weight: ${typography.weight.medium};
   &:hover {
     color: ${infoColor.errorHover};
   }
@@ -163,6 +161,13 @@ const regularIcon = css`
 
 const smallIcon = css`
   margin-top: -${Math.abs((ICON_SIZES.small - forms.typography.small.size) / 2)}px;
+`
+
+const simpleSpacing = css`
+  line-height: initial;
+  padding: 0;
+  min-width: initial;
+  vertical-align: initial;
 `
 
 const VARIANTS = {
@@ -270,6 +275,8 @@ export const Button = ({
     VARIANTS[variant],
     SIZES[size],
     children && withChildren,
+    (variant === 'primarySimple' || variant === 'warningSimple') &&
+      simpleSpacing,
   ]
   if (stretched) classes.push(stretch)
   let icon = null
