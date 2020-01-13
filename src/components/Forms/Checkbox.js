@@ -1,26 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, spacing } from '../shared/styles'
-
-const StyledLabel = styled.label`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-`
-
-const HiddenCheckbox = styled.input`
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`
+import {
+  CheckRadioBase,
+  CheckRadioGroup,
+  GroupContext,
+  HiddenElement,
+} from './CheckRadioBase'
+import { color } from '../shared/styles'
 
 const Icon = styled.svg`
   fill: ${color.paperWhite};
@@ -28,7 +15,7 @@ const Icon = styled.svg`
   user-select: none;
 `
 
-const StyledCheckbox = styled.div`
+export const StyledCheckbox = styled.div`
   display: inline-flex;
   justify-content: center;
   width: 16px;
@@ -37,46 +24,27 @@ const StyledCheckbox = styled.div`
   border: 1px solid ${color.metalGrey};
   background: ${color.paperWhite};
   cursor: pointer;
-  ${HiddenCheckbox}:focus + &,
+  ${HiddenElement}:focus + &,
   &:hover {
     border: 1px solid ${color.primary};
   }
-  ${Icon} {
-    visibility: hidden;
-  }
-  ${HiddenCheckbox}:checked + & {
+  ${HiddenElement}:checked + & {
     background: ${color.primary};
     border: 1px solid ${color.primary};
   }
-  ${HiddenCheckbox}:checked + & ${Icon} {
-    visibility: visible;
-  }
 `
 
-const CheckboxContainer = styled.div`
-  display: block;
-  margin-right: ${spacing.padding.tiny}px;
-  font-size: 0;
-  line-height: 0;
-`
-
-const CheckboxGroupContainer = styled.div`
-  ${StyledLabel} {
-    margin-bottom: ${spacing.padding.mini}px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-`
-
-const GroupContext = React.createContext({
-  name: undefined,
-  selectedValues: {},
-  onChange: undefined,
-  // HACK (jscheel): Shibboleth to know that an actual context was really
-  // provided by the group, and not by the context defaults.
-  contextProvided: false,
-})
+const renderOptions = options => {
+  return options.map(
+    ({ key: optionKey, name: optionName, label: optionLabel }) => (
+      <CheckboxOption
+        key={optionKey || optionName}
+        name={optionName}
+        label={optionLabel}
+      />
+    )
+  )
+}
 
 export const CheckboxGroup = ({
   name,
@@ -91,37 +59,31 @@ export const CheckboxGroup = ({
     setSelectedValues(controlledValues || {})
   }, [controlledValues, options, children])
 
-  const handleSelection = e => {
-    e.persist()
-    setSelectedValues(state => {
-      const newState = { ...state, [e.target.name]: e.target.checked }
-      if (onChange) onChange(e, { groupName: name, groupValues: newState })
-      return newState
-    })
-  }
+  const handleSelection = useCallback(
+    e => {
+      e.persist()
+      setSelectedValues(state => {
+        const newState = { ...state, [e.target.name]: e.target.checked }
+        if (onChange) onChange(e, { groupName: name, groupValues: newState })
+        return newState
+      })
+    },
+    [name, onChange]
+  )
 
   return (
-    <GroupContext.Provider
-      value={{
+    <CheckRadioGroup
+      contextValue={{
         name,
-        selectedValues,
+        value: selectedValues,
         onChange: handleSelection,
         contextProvided: true,
       }}
+      options={options}
+      optionsMapFn={renderOptions}
     >
-      <CheckboxGroupContainer>
-        {children ||
-          options.map(
-            ({ key: optionKey, name: optionName, label: optionLabel }) => (
-              <CheckboxOption
-                key={optionKey || optionName}
-                name={optionName}
-                label={optionLabel}
-              />
-            )
-          )}
-      </CheckboxGroupContainer>
-    </GroupContext.Provider>
+      {children}
+    </CheckRadioGroup>
   )
 }
 
@@ -161,14 +123,13 @@ export const CheckboxOption = ({
   className,
   checked: controlledChecked,
   defaultChecked,
-  label,
   name,
   onChange,
   ...rest
 }) => {
   const {
     name: groupName,
-    selectedValues,
+    value: selectedValues,
     onChange: groupOnChange,
     contextProvided,
   } = useContext(GroupContext)
@@ -198,34 +159,34 @@ export const CheckboxOption = ({
     }
   }, [contextProvided, controlled, controlledChecked, name, selectedValues])
 
+  const handleChange = useCallback(
+    e => {
+      const newChecked = !checked
+      setChecked(newChecked)
+      if (contextProvided && groupOnChange) groupOnChange(e)
+      if (onChange)
+        onChange(e, {
+          groupName,
+          name: e.target.name,
+          value: newChecked,
+        })
+    },
+    [checked, contextProvided, groupName, groupOnChange, onChange]
+  )
+
   return (
-    <StyledLabel>
-      <CheckboxContainer className={className}>
-        <HiddenCheckbox
-          type="checkbox"
-          checked={checked}
-          name={name}
-          onChange={e => {
-            const newChecked = !checked
-            setChecked(newChecked)
-            if (contextProvided && groupOnChange) groupOnChange(e)
-            if (onChange)
-              onChange(e, {
-                groupName,
-                name: e.target.name,
-                value: newChecked,
-              })
-          }}
-          {...rest}
-        />
-        <StyledCheckbox>
-          <Icon viewBox="0 0 38 32">
-            <path d="M17.7625631,27.2374369 L37.9497475,7.05025253 L31.8994949,1 L13.9748737,18.9246212 L6.05025253,11 L0,17.0502525 L13.9748737,31.0251263 L17.7625631,27.2374369 Z" />
-          </Icon>
-        </StyledCheckbox>
-      </CheckboxContainer>
-      {label}
-    </StyledLabel>
+    <CheckRadioBase
+      type="checkbox"
+      checked={checked}
+      name={name}
+      onChange={handleChange}
+      StyledComponent={StyledCheckbox}
+      {...rest}
+    >
+      <Icon viewBox="0 0 38 32">
+        <path d="M17.7625631,27.2374369 L37.9497475,7.05025253 L31.8994949,1 L13.9748737,18.9246212 L6.05025253,11 L0,17.0502525 L13.9748737,31.0251263 L17.7625631,27.2374369 Z" />
+      </Icon>
+    </CheckRadioBase>
   )
 }
 

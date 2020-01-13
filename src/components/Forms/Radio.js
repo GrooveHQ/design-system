@@ -1,26 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, spacing } from '../shared/styles'
-
-const StyledLabel = styled.label`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-`
-
-const HiddenRadio = styled.input`
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`
+import {
+  CheckRadioBase,
+  CheckRadioGroup,
+  GroupContext,
+  HiddenElement,
+} from './CheckRadioBase'
+import { color } from '../shared/styles'
 
 const Icon = styled.svg`
   fill: ${color.primary};
@@ -37,45 +24,26 @@ const StyledRadio = styled.div`
   border: 1px solid ${color.metalGrey};
   background: ${color.paperWhite};
   cursor: pointer;
-  ${HiddenRadio}:focus + &,
+  ${HiddenElement}:focus + &,
   &:hover {
     border: 1px solid ${color.primary};
   }
-  ${Icon} {
-    visibility: hidden;
-  }
-  ${HiddenRadio}:checked + & {
+  ${HiddenElement}:checked + & {
     border: 1px solid ${color.primary};
   }
-  ${HiddenRadio}:checked + & ${Icon} {
-    visibility: visible;
-  }
 `
 
-const RadioContainer = styled.div`
-  display: block;
-  margin-right: ${spacing.padding.tiny}px;
-  font-size: 0;
-  line-height: 0;
-`
-
-const RadioGroupContainer = styled.div`
-  ${StyledLabel} {
-    margin-bottom: ${spacing.padding.mini}px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-`
-
-const GroupContext = React.createContext({
-  name: undefined,
-  value: undefined,
-  onChange: undefined,
-  // HACK (jscheel): Shibboleth to know that an actual context was really
-  // provided by the group, and not by the context defaults.
-  contextProvided: false,
-})
+const renderOptions = options => {
+  return options.map(
+    ({ key: optionKey, value: optionValue, label: optionLabel }) => (
+      <RadioOption
+        key={optionKey || optionValue}
+        value={optionValue}
+        label={optionLabel}
+      />
+    )
+  )
+}
 
 export const RadioGroup = ({
   name,
@@ -96,27 +64,18 @@ export const RadioGroup = ({
   }
 
   return (
-    <GroupContext.Provider
-      value={{
+    <CheckRadioGroup
+      contextValue={{
         name,
         value: selectedValue,
         onChange: handleSelection,
         contextProvided: true,
       }}
+      options={options}
+      optionsMapFn={renderOptions}
     >
-      <RadioGroupContainer>
-        {children ||
-          options.map(
-            ({ key: optionKey, value: optionValue, label: optionLabel }) => (
-              <RadioOption
-                key={optionKey || optionValue}
-                value={optionValue}
-                label={optionLabel}
-              />
-            )
-          )}
-      </RadioGroupContainer>
-    </GroupContext.Provider>
+      {children}
+    </CheckRadioGroup>
   )
 }
 
@@ -155,7 +114,6 @@ RadioGroup.defaultProps = {
 export const RadioOption = ({
   className,
   checked,
-  label,
   value,
   onChange,
   ...rest
@@ -166,32 +124,34 @@ export const RadioOption = ({
     onChange: groupOnChange,
     contextProvided,
   } = useContext(GroupContext)
+
   let finalChecked = checked
   if (contextProvided) {
     finalChecked = selectedValue === value
   }
+
+  const handleChange = useCallback(
+    e => {
+      if (contextProvided && groupOnChange) groupOnChange(e)
+      if (onChange) onChange(e, { groupName, value: e.target.value })
+    },
+    [contextProvided, groupName, groupOnChange, onChange]
+  )
+
   return (
-    <StyledLabel>
-      <RadioContainer className={className}>
-        <HiddenRadio
-          type="radio"
-          checked={finalChecked}
-          name={groupName}
-          value={value}
-          onChange={e => {
-            if (contextProvided && groupOnChange) groupOnChange(e)
-            if (onChange) onChange(e, { groupName, value: e.target.value })
-          }}
-          {...rest}
-        />
-        <StyledRadio>
-          <Icon viewBox="0 0 6 6">
-            <circle cx="3" cy="3" r="3" />
-          </Icon>
-        </StyledRadio>
-      </RadioContainer>
-      {label}
-    </StyledLabel>
+    <CheckRadioBase
+      type="radio"
+      name={groupName}
+      checked={finalChecked}
+      value={value}
+      onChange={handleChange}
+      StyledComponent={StyledRadio}
+      {...rest}
+    >
+      <Icon viewBox="0 0 6 6">
+        <circle cx="3" cy="3" r="3" />
+      </Icon>
+    </CheckRadioBase>
   )
 }
 
