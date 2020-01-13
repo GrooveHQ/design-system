@@ -159,7 +159,8 @@ CheckboxGroup.defaultProps = {
 
 export const CheckboxOption = ({
   className,
-  checked,
+  checked: controlledChecked,
+  defaultChecked,
   label,
   name,
   onChange,
@@ -171,20 +172,49 @@ export const CheckboxOption = ({
     onChange: groupOnChange,
     contextProvided,
   } = useContext(GroupContext)
-  let finalChecked = checked
-  if (contextProvided) {
-    finalChecked = selectedValues[name] === true
+
+  const controlled =
+    contextProvided ||
+    (controlledChecked !== null && controlledChecked !== undefined)
+
+  let checkedHookStateDefault = defaultChecked
+  if (controlled) {
+    if (contextProvided) {
+      checkedHookStateDefault = selectedValues[name] === true
+    } else {
+      checkedHookStateDefault = controlledChecked
+    }
   }
+
+  const [checked, setChecked] = useState(checkedHookStateDefault)
+
+  useEffect(() => {
+    if (controlled) {
+      if (contextProvided) {
+        setChecked(selectedValues[name] === true)
+      } else {
+        setChecked(controlledChecked)
+      }
+    }
+  }, [contextProvided, controlled, controlledChecked, name, selectedValues])
+
   return (
     <StyledLabel>
       <CheckboxContainer className={className}>
         <HiddenCheckbox
           type="checkbox"
-          checked={finalChecked}
+          checked={checked}
           name={name}
           onChange={e => {
+            const newChecked = !checked
+            setChecked(newChecked)
             if (contextProvided && groupOnChange) groupOnChange(e)
-            if (onChange) onChange(e, { groupName, checked: e.target.checked })
+            if (onChange)
+              onChange(e, {
+                groupName,
+                name: e.target.name,
+                value: newChecked,
+              })
           }}
           {...rest}
         />
