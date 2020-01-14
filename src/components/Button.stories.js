@@ -28,6 +28,12 @@ export const Variants = () => (
     <FlexItem>
       <Button variant="warning">warning</Button>
     </FlexItem>
+    <FlexItem>
+      <Button variant="primarySimple">primary simple</Button>
+    </FlexItem>
+    <FlexItem>
+      <Button variant="warningSimple">warning simple</Button>
+    </FlexItem>
   </FlexContainer>
 )
 
