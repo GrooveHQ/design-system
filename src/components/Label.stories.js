@@ -17,25 +17,39 @@ const Span = styled.span`
 export const all = () => (
   <div>
     <Span>
-      <Label>Primary</Label>
+      <a href="/">
+        <Label>Primary</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="groovy">Groovy</Label>
+      <a href="/">
+        <Label color="groovy">Groovy</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="mintGreen">Mint Green</Label>
+      <a href="/">
+        <Label color="mintGreen">Mint Green</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="sunYellow">Sun Yellow</Label>
+      <a href="/">
+        <Label color="sunYellow">Sun Yellow</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="candyRed">Candy Red</Label>
+      <a href="/">
+        <Label color="candyRed">Candy Red</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="jetBlack">Jet Black</Label>
+      <a href="/">
+        <Label color="jetBlack">Jet Black</Label>
+      </a>
     </Span>
     <Span>
-      <Label color="gunGrey">Gun Grey</Label>
+      <a href="/">
+        <Label color="gunGrey">Gun Grey</Label>
+      </a>
     </Span>
   </div>
 )

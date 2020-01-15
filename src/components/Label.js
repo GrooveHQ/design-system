@@ -12,6 +12,20 @@ const StyledLabel = styled.div`
   border-radius: ${spacing.borderRadius.small}px;
   color: ${color.paperWhite};
   background: ${props => color[props.color]};
+
+  a:hover &,
+  a:focus & {
+    background: ${props => color[`${props.color}Hover`]} !important;
+  }
+
+  a:visited &,
+  a:active & {
+    background: ${props => color[`${props.color}Active`]};
+  }
+
+  a:disabled & {
+    background: ${props => color[`${props.color}Disabled`]};
+  }
 `
 
 export const Label = ({ ...props }) => {
