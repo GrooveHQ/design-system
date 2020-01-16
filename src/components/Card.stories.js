@@ -66,3 +66,40 @@ export const Linked = () => (
     </Card>
   </a>
 )
+
+export const WithBorders = () => (
+  <div>
+    <Card border="top" borderColor="primary">
+      <Paragraph size="medium" padded={false}>
+        Card with top border
+      </Paragraph>
+      <Paragraph size="small" padded={false}>
+        Card with a top border and primary color
+      </Paragraph>
+    </Card>
+    <Card border="right" borderColor="sunYellow">
+      <Paragraph size="medium" padded={false}>
+        Card with right border
+      </Paragraph>
+      <Paragraph size="small" padded={false}>
+        Card with a right border and sunYellow color
+      </Paragraph>
+    </Card>
+    <Card border="bottom" borderColor="groovy">
+      <Paragraph size="medium" padded={false}>
+        Card with bottom border
+      </Paragraph>
+      <Paragraph size="small" padded={false}>
+        Card with a bottom border and groovy color
+      </Paragraph>
+    </Card>
+    <Card border="left" borderColor="candyRed">
+      <Paragraph size="medium" padded={false}>
+        Card with left border
+      </Paragraph>
+      <Paragraph size="small" padded={false}>
+        Card with a left border and candyRed color
+      </Paragraph>
+    </Card>
+  </div>
+)

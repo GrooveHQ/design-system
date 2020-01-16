@@ -9,6 +9,13 @@ const BORDER_SIZES = {
   small: 'small',
 }
 
+const BORDERS = {
+  top: 'top',
+  left: 'left',
+  right: 'right',
+  bottom: 'bottom',
+}
+
 const StyledCard = styled.div`
   background-color: ${props => color[props.color]};
   border-radius: ${props => spacing.borderRadius[props.radius]}px;
@@ -17,9 +24,26 @@ const StyledCard = styled.div`
   box-shadow: ${props => (props.plain ? 'none' : shadows.low)};
   padding: ${spacing.padding.tiny}px ${spacing.padding.small}px;
 
+  border-style: ${props =>
+    props.border && props.borderColor ? 'solid' : 'none'};
+  border-color: ${props =>
+    props.border && props.borderColor ? color[props.borderColor] : 'none'};
+  border-top-width: ${props =>
+    props.border === 'top' ? spacing.borderRadius.medium : 0}px;
+  border-right-width: ${props =>
+    props.border === 'right' ? spacing.borderRadius.medium : 0}px;
+  border-bottom-width: ${props =>
+    props.border === 'bottom' ? spacing.borderRadius.medium : 0}px;
+  border-left-width: ${props =>
+    props.border === 'left' ? spacing.borderRadius.medium : 0}px;
+
   a:hover & {
     cursor: pointer;
     box-shadow: ${props => (props.plain ? 'none' : shadows.high)};
+    border-color: ${props =>
+      props.border && props.borderColor
+        ? color[`${props.borderColor}Hover`]
+        : 'none'};
   }
 `
 
@@ -40,10 +64,20 @@ Card.propTypes = {
    * Specify whether card is plain
    */
   plain: PropTypes.bool,
+  /**
+   * Specify border
+   */
+  border: PropTypes.oneOf(Object.keys(BORDERS)),
+  /**
+   * Specify border color, applied if `border` is provided
+   */
+  borderColor: PropTypes.string,
 }
 
 Card.defaultProps = {
   radius: 'medium',
   color: 'paperWhite',
   plain: false,
+  border: undefined,
+  borderColor: undefined,
 }
