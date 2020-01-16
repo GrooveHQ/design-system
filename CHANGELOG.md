@@ -1,3 +1,29 @@
+# v0.11.0 (Thu Jan 16 2020)
+
+#### 🚀  Enhancement
+
+- Add checkbox and radio components [#44](https://github.com/GrooveHQ/design-system/pull/44) ([@jscheel](https://github.com/jscheel))
+- Simple dropdown menu component [#42](https://github.com/GrooveHQ/design-system/pull/42) ([@assimovt](https://github.com/assimovt))
+
+#### 🐛  Bug Fix
+
+- Add states to Label when wrapped in a link [#45](https://github.com/GrooveHQ/design-system/pull/45) ([@assimovt](https://github.com/assimovt))
+- Add simple text-based button variants [#41](https://github.com/GrooveHQ/design-system/pull/41) ([@jscheel](https://github.com/jscheel))
+- Add the emotion plugin to the babel config [#43](https://github.com/GrooveHQ/design-system/pull/43) ([@jscheel](https://github.com/jscheel))
+- Input component icon with click handler [#40](https://github.com/GrooveHQ/design-system/pull/40) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Upgrade to Storybook 5.3.4  ([@assimovt](https://github.com/assimovt))
+- Fix release binary  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 2
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.11.0 (Wed Jan 15 2020)
 
 #### 🚀  Enhancement
