@@ -1,3 +1,20 @@
+# v0.11.1 (Wed Jan 22 2020)
+
+#### 🐛  Bug Fix
+
+- Add colored border to the Card component [#46](https://github.com/GrooveHQ/design-system/pull/46) ([@assimovt](https://github.com/assimovt))
+
+#### ⚠️  Pushed to master
+
+- Upgrade to Storybook 5.3.8  ([@assimovt](https://github.com/assimovt))
+- Remove duplicate change log entry  ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.11.0 (Thu Jan 16 2020)
 
 #### 🚀  Enhancement
