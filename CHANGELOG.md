@@ -1,3 +1,15 @@
+# v0.11.2 (Thu Jan 30 2020)
+
+#### 🐛  Bug Fix
+
+- Support for an Input with a button [#47](https://github.com/GrooveHQ/design-system/pull/47) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Assimov ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v0.11.1 (Wed Jan 22 2020)
 
 #### 🐛  Bug Fix
