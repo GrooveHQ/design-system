@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input } from './Input'
 import { Field } from './Field'
+import { Button } from '../Button'
 
 export default {
   title: 'Design System|Forms/Input',
@@ -58,6 +59,18 @@ export const WithIconRightClick = () => (
         // eslint-disable-next-line no-alert
         alert('Icon click handler')
       }}
+    />
+  </Field>
+)
+
+export const WithButton = () => (
+  <Field>
+    <Input
+      label="Enter your email"
+      type="text"
+      name="email"
+      stretched={false}
+      button={<Button icon="arrowRight" />}
     />
   </Field>
 )
