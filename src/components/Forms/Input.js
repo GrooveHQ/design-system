@@ -87,7 +87,7 @@ export const Input = ({
 
   if (icon) {
     classes.push(iconInputStyle)
-  } else if (buttonPosition) {
+  } else if (button) {
     classes.push(buttonInputStyle)
   }
 
