@@ -45,7 +45,6 @@ const ButtonWrapper = styled.div`
 `
 
 export const Input = ({
-  stretched,
   label: labelText,
   icon,
   iconPosition,
@@ -98,7 +97,7 @@ export const Input = ({
   }, [onIconClick])
 
   return (
-    <Label stretched={stretched} text={labelText}>
+    <Label text={labelText}>
       <input
         size={labelText ? labelText.length : 0}
         placeholder={labelText}
@@ -126,10 +125,6 @@ Input.propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Stretch width to fill container
-   */
-  stretched: PropTypes.bool,
-  /**
    * Specify icon name
    */
   icon: PropTypes.string,
@@ -149,7 +144,6 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  stretched: true,
   icon: null,
   iconPosition: 'right',
   onIconClick: null,

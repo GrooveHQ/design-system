@@ -17,7 +17,6 @@ const FieldContainer = styled.div`
 const ChildrenContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
 `
 
 const ValidationIcon = styled(Icon)`

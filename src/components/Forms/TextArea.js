@@ -14,7 +14,7 @@ const multiLineStyle = css`
   padding: 13px ${spacing.padding.small}px;
 `
 
-export const TextArea = ({ stretched, label: labelText, ...rest }) => {
+export const TextArea = ({ label: labelText, ...rest }) => {
   const fieldCtx = useContext(FieldContext)
   const classes = [
     baseStyle,
@@ -22,7 +22,7 @@ export const TextArea = ({ stretched, label: labelText, ...rest }) => {
     getValidationStateStyle(fieldCtx.validationState),
   ]
   return (
-    <Label stretched={stretched} text={labelText}>
+    <Label text={labelText}>
       <textarea {...rest} css={[classes]} placeholder={labelText} />
     </Label>
   )
@@ -33,12 +33,4 @@ TextArea.propTypes = {
    * Label text (also wraps Input in Label component)
    */
   label: PropTypes.string.isRequired,
-  /**
-   * Stretch width to fill container
-   */
-  stretched: PropTypes.bool,
-}
-
-TextArea.defaultProps = {
-  stretched: true,
 }

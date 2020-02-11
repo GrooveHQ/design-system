@@ -25,6 +25,20 @@ export const Basic = () => {
   )
 }
 
+export const Horizontal = () => {
+  return (
+    <Field>
+      <RadioGroup name="replicantBasic" value="" direction="horizontal">
+        <RadioOption value="leon" label="Leon Kowalski" />
+        <RadioOption value="pris" label="Pris Stratton" />
+        <RadioOption value="roy" label="Roy Batty" />
+        <RadioOption value="zhora" label="Zhora Salome" />
+        <RadioOption value="deckard" label="Rick Deckard" />
+      </RadioGroup>
+    </Field>
+  )
+}
+
 export const OptionsParam = () => {
   return (
     <Field>

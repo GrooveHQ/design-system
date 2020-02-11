@@ -14,12 +14,9 @@ import {
 import { Icon, ICON_SIZES } from '../Icon'
 
 const wrapper = css`
+  display: flex;
+  flex: 1 1 0%;
   position: relative;
-  display: inline-flex;
-`
-
-const stretch = css`
-  width: 100%;
 `
 
 const selectBox = css`
@@ -44,7 +41,6 @@ const arrow = css`
 
 export const Select = ({
   value: controlledValue = '',
-  stretched,
   label: labelText,
   onChange,
   options,
@@ -74,8 +70,8 @@ export const Select = ({
   // reason. On first render, it doesn't render the label option that is added
   // below. We need to figure _why_ SSR is ignoring this on first render.
   return (
-    <Label stretched={stretched} text={labelText}>
-      <div css={[wrapper, stretched && stretch]}>
+    <Label text={labelText}>
+      <div css={wrapper}>
         <select
           {...rest}
           css={classes}
@@ -112,10 +108,6 @@ Select.propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Stretch width to fill container
-   */
-  stretched: PropTypes.bool,
-  /**
    * Array of options matching the shape {key: 'string', value: 'string', label: 'string'}. You can either pass this array as a prop, or simply render option elements as children of this component. Children take precendence over this prop.
    */
   options: PropTypes.arrayOf(
@@ -128,6 +120,5 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
-  stretched: true,
   options: null,
 }

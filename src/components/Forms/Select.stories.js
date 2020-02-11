@@ -24,23 +24,6 @@ export const Basic = () => (
   </Field>
 )
 
-export const Unstretched = () => (
-  <Field>
-    <Select
-      label="Select Replicant…"
-      name="replicant"
-      value=""
-      stretched={false}
-    >
-      <option value="leon">Leon Kowalski</option>
-      <option value="pris">Pris Stratton</option>
-      <option value="roy">Roy Batty</option>
-      <option value="zhora">Zhora Salome</option>
-      <option value="deckard">Rick Deckard</option>
-    </Select>
-  </Field>
-)
-
 export const OptionsParam = () => (
   <Field>
     <Select

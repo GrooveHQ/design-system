@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Button } from './Button'
 import { FlexContainer } from './FlexContainer'
 import { FlexItem } from './FlexItem'
+import { Field } from './Forms/Field'
 import { color, spacing } from './shared/styles'
 
 export default {
@@ -91,4 +92,16 @@ export const Loading = () => (
       <Button icon="arrowLeft" loading />
     </FlexItem>
   </FlexContainer>
+)
+
+export const FormField = () => (
+  <Field>
+    <Button>Submit</Button>
+  </Field>
+)
+
+export const FormFieldStretched = () => (
+  <Field>
+    <Button stretched>Submit</Button>
+  </Field>
 )

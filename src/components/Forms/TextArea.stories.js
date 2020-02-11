@@ -15,12 +15,6 @@ export const Basic = () => (
   </Field>
 )
 
-export const Unstretched = () => (
-  <Field>
-    <TextArea label="Replicant's Name" name="bio" stretched={false} rows={10} />
-  </Field>
-)
-
 export const Validation = () => {
   const [validationState, setValidationState] = useState('error')
   const handleChange = e => {
