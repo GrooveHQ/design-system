@@ -37,6 +37,20 @@ export const Group = () => {
   )
 }
 
+export const HorizontalGroup = () => {
+  return (
+    <Field>
+      <CheckboxGroup direction="horizontal">
+        <CheckboxOption name="leon" label="Leon Kowalski" />
+        <CheckboxOption name="pris" label="Pris Stratton" />
+        <CheckboxOption name="roy" label="Roy Batty" />
+        <CheckboxOption name="zhora" label="Zhora Salome" />
+        <CheckboxOption name="deckard" label="Rick Deckard" />
+      </CheckboxGroup>
+    </Field>
+  )
+}
+
 export const OptionsParam = () => {
   return (
     <Field>

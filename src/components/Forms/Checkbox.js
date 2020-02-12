@@ -51,6 +51,7 @@ export const CheckboxGroup = ({
   value: controlledValues,
   onChange,
   options,
+  direction,
   children,
 }) => {
   const [selectedValues, setSelectedValues] = useState(controlledValues || {})
@@ -81,6 +82,7 @@ export const CheckboxGroup = ({
       }}
       options={options}
       optionsMapFn={renderOptions}
+      direction={direction}
     >
       {children}
     </CheckRadioGroup>
@@ -110,6 +112,10 @@ CheckboxGroup.propTypes = {
    * Handler function for any checkbox in group, has signature (event, { groupName: string, groupValues: { name: bool }) => {}
    */
   onChange: PropTypes.func,
+  /**
+   * Direction of checkboxes in group
+   */
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
 }
 
 CheckboxGroup.defaultProps = {
@@ -117,6 +123,7 @@ CheckboxGroup.defaultProps = {
   options: undefined,
   value: undefined,
   onChange: undefined,
+  direction: 'vertical',
 }
 
 export const CheckboxOption = ({

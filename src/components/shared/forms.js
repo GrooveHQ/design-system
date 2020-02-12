@@ -7,7 +7,9 @@ export const baseStyle = css`
   border: 1px solid ${color.metalGrey};
   border-radius: ${spacing.borderRadius.default}px;
   color: ${color.jetBlack};
+  flex: 1 1 0%;
   font-size: ${forms.typography.small.size}px;
+  min-width: 0;
   padding: 0 ${spacing.padding.small}px;
   width: 100%;
   ::placeholder {

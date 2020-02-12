@@ -8,6 +8,7 @@ import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
 
 const base = css`
+  align-self: flex-start;
   background-color: ${color.paperWhite};
   border-radius: ${spacing.borderRadius.default}px;
   border-style: solid;

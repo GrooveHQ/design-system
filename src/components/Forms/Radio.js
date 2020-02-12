@@ -50,6 +50,7 @@ export const RadioGroup = ({
   value: controlledValue,
   onChange,
   options,
+  direction,
   children,
 }) => {
   const [selectedValue, setSelectedValue] = useState(controlledValue)
@@ -73,6 +74,7 @@ export const RadioGroup = ({
       }}
       options={options}
       optionsMapFn={renderOptions}
+      direction={direction}
     >
       {children}
     </CheckRadioGroup>
@@ -102,6 +104,10 @@ RadioGroup.propTypes = {
    * Handler function with signature (event, { groupName: string, value: string }) => {}
    */
   onChange: PropTypes.func,
+  /**
+   * Direction of radio options in group
+   */
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
 }
 
 RadioGroup.defaultProps = {
@@ -109,6 +115,7 @@ RadioGroup.defaultProps = {
   options: undefined,
   value: undefined,
   onChange: undefined,
+  direction: 'vertical',
 }
 
 export const RadioOption = ({

@@ -5,10 +5,16 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { color, spacing } from '../shared/styles'
 
-export const StyledLabel = styled.label`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
+`
+
+const StyledLabel = styled.label`
+  display: inline-flex;
+  flex-direction: row;
   align-items: flex-start;
+  align-self: flex-start;
 `
 
 export const HiddenElement = styled.input`
@@ -38,10 +44,16 @@ export const ElementContainer = styled.div`
 `
 
 const StyledGroupContainer = styled.div`
-  ${StyledLabel} {
-    margin-bottom: ${spacing.padding.mini}px;
+  display: flex;
+  flex-direction: ${({ direction }) =>
+    direction === 'horizontal' ? 'row' : 'column'};
+  ${Container} {
+    margin: ${({ direction }) =>
+      direction === 'horizontal'
+        ? `0 ${spacing.padding.medium}px 0 0`
+        : `0 0 ${spacing.padding.mini}px 0`};
     &:last-child {
-      margin-bottom: 0;
+      margin: 0;
     }
   }
 `
@@ -59,11 +71,12 @@ export const CheckRadioGroup = ({
   contextValue,
   options,
   optionsMapFn,
+  direction,
   children,
 }) => {
   return (
     <GroupContext.Provider value={contextValue}>
-      <StyledGroupContainer>
+      <StyledGroupContainer direction={direction}>
         {children || optionsMapFn(options)}
       </StyledGroupContainer>
     </GroupContext.Provider>
@@ -81,18 +94,20 @@ export const CheckRadioBase = ({
   ...rest
 }) => {
   return (
-    <StyledLabel className={className}>
-      <ElementContainer>
-        <HiddenElement
-          type="checkbox"
-          checked={checked}
-          name={name}
-          onChange={onChange}
-          {...rest}
-        />
-        <StyledComponent>{checked && children}</StyledComponent>
-      </ElementContainer>
-      {label}
-    </StyledLabel>
+    <Container>
+      <StyledLabel className={className}>
+        <ElementContainer>
+          <HiddenElement
+            type="checkbox"
+            checked={checked}
+            name={name}
+            onChange={onChange}
+            {...rest}
+          />
+          <StyledComponent>{checked && children}</StyledComponent>
+        </ElementContainer>
+        {label}
+      </StyledLabel>
+    </Container>
   )
 }

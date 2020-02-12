@@ -2,17 +2,19 @@
 
 import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
-import { stretchedStyle } from '../shared/forms'
 
 const base = css`
-  display: inline-flex;
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
   position: relative;
+  width: 100%;
 `
 
-export const Label = ({ stretched, children, text, ...rest }) => {
+export const Label = ({ children, text, inline, ...rest }) => {
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label css={[base, stretched && stretchedStyle]} {...rest}>
+    <label css={base} {...rest}>
       <span css={{ display: 'none' }}>{text}</span>
       {children}
     </label>
@@ -24,12 +26,4 @@ Label.propTypes = {
    * Text of label (invisible for now, as all components use placeholder labels)
    */
   text: PropTypes.string.isRequired,
-  /**
-   * Stretch width to fill container
-   */
-  stretched: PropTypes.bool,
-}
-
-Label.defaultProps = {
-  stretched: false,
 }

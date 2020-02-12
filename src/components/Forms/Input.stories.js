@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import React from 'react'
+import { jsx, css } from '@emotion/core'
 import { Input } from './Input'
 import { Field } from './Field'
 import { Button } from '../Button'
@@ -28,9 +30,13 @@ export const Basic = () => (
   </React.Fragment>
 )
 
-export const Unstretched = () => (
-  <Field>
-    <Input label="Replicant's Name" type="text" name="name" stretched={false} />
+export const Sized = () => (
+  <Field
+    css={css`
+      max-width: 200px;
+    `}
+  >
+    <Input label="Replicant's Name" type="text" name="name" />
   </Field>
 )
 
