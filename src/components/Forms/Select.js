@@ -39,68 +39,74 @@ const arrow = css`
 // empty string for the purposes of setting values and determining if the
 // label is still selected.
 
-export const Select = ({
-  value: controlledValue = '',
-  label: labelText,
-  onChange,
-  options,
-  children,
-  ...rest
-}) => {
-  const fieldCtx = useContext(FieldContext)
-  const classes = [
-    baseStyle,
-    singleLineStyle,
-    selectBox,
-    getValidationStateStyle(fieldCtx.validationState),
-  ]
-  const [selectedValue, setSelectedValue] = useState(controlledValue)
-  useEffect(() => {
-    setSelectedValue(controlledValue || '')
-  }, [controlledValue, options, children])
+export const Select = React.forwardRef(
+  (
+    {
+      value: controlledValue = '',
+      label: labelText,
+      onChange,
+      options,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
+    const fieldCtx = useContext(FieldContext)
+    const classes = [
+      baseStyle,
+      singleLineStyle,
+      selectBox,
+      getValidationStateStyle(fieldCtx.validationState),
+    ]
+    const [selectedValue, setSelectedValue] = useState(controlledValue)
+    useEffect(() => {
+      setSelectedValue(controlledValue || '')
+    }, [controlledValue, options, children])
 
-  const handleSelection = e => {
-    if (onChange) onChange(e)
-    setSelectedValue(e.target.value)
+    const handleSelection = e => {
+      if (onChange) onChange(e)
+      setSelectedValue(e.target.value)
+    }
+
+    if (!selectedValue) classes.push(placeholder)
+
+    // TODO (jscheel): Currently, SSR does not like when we add an option for some
+    // reason. On first render, it doesn't render the label option that is added
+    // below. We need to figure _why_ SSR is ignoring this on first render.
+    return (
+      <Label text={labelText}>
+        <div css={wrapper}>
+          <select
+            {...rest}
+            css={classes}
+            value={selectedValue}
+            onChange={handleSelection}
+            ref={ref}
+          >
+            <React.Fragment>
+              <option key="__placeholder__" value="" disabled>
+                {labelText}
+              </option>
+              {children ||
+                options.map(
+                  ({
+                    key: optionKey,
+                    value: optionValue,
+                    label: optionLabel,
+                  }) => (
+                    <option key={optionKey || optionValue} value={optionValue}>
+                      {optionLabel}
+                    </option>
+                  )
+                )}
+            </React.Fragment>
+          </select>
+          <Icon icon="arrowDown" size="small" color="stoneGrey" css={[arrow]} />
+        </div>
+      </Label>
+    )
   }
-
-  if (!selectedValue) classes.push(placeholder)
-
-  // TODO (jscheel): Currently, SSR does not like when we add an option for some
-  // reason. On first render, it doesn't render the label option that is added
-  // below. We need to figure _why_ SSR is ignoring this on first render.
-  return (
-    <Label text={labelText}>
-      <div css={wrapper}>
-        <select
-          {...rest}
-          css={classes}
-          value={selectedValue}
-          onChange={handleSelection}
-        >
-          <React.Fragment>
-            <option key="__placeholder__" value="" disabled>
-              {labelText}
-            </option>
-            {children ||
-              options.map(
-                ({
-                  key: optionKey,
-                  value: optionValue,
-                  label: optionLabel,
-                }) => (
-                  <option key={optionKey || optionValue} value={optionValue}>
-                    {optionLabel}
-                  </option>
-                )
-              )}
-          </React.Fragment>
-        </select>
-        <Icon icon="arrowDown" size="small" color="stoneGrey" css={[arrow]} />
-      </div>
-    </Label>
-  )
-}
+)
 
 Select.propTypes = {
   /**

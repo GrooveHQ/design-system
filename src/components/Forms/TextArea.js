@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
 import { FieldContext } from './Field'
@@ -14,19 +14,21 @@ const multiLineStyle = css`
   padding: 13px ${spacing.padding.small}px;
 `
 
-export const TextArea = ({ label: labelText, ...rest }) => {
-  const fieldCtx = useContext(FieldContext)
-  const classes = [
-    baseStyle,
-    multiLineStyle,
-    getValidationStateStyle(fieldCtx.validationState),
-  ]
-  return (
-    <Label text={labelText}>
-      <textarea {...rest} css={[classes]} placeholder={labelText} />
-    </Label>
-  )
-}
+export const TextArea = React.forwardRef(
+  ({ label: labelText, ...rest }, ref) => {
+    const fieldCtx = useContext(FieldContext)
+    const classes = [
+      baseStyle,
+      multiLineStyle,
+      getValidationStateStyle(fieldCtx.validationState),
+    ]
+    return (
+      <Label text={labelText}>
+        <textarea {...rest} css={[classes]} placeholder={labelText} ref={ref} />
+      </Label>
+    )
+  }
+)
 
 TextArea.propTypes = {
   /**
