@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, useCallback } from 'react'
+import React, { useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
@@ -43,81 +43,88 @@ const ButtonWrapper = styled.div`
     `}
   }
 `
+export const Input = React.forwardRef(
+  (
+    {
+      label: labelText,
+      icon,
+      iconPosition,
+      onIconClick,
+      button,
+      buttonPosition,
+      ...rest
+    },
+    ref
+  ) => {
+    const fieldCtx = useContext(FieldContext)
 
-export const Input = ({
-  label: labelText,
-  icon,
-  iconPosition,
-  onIconClick,
-  button,
-  buttonPosition,
-  ...rest
-}) => {
-  const fieldCtx = useContext(FieldContext)
+    const classes = [
+      baseStyle,
+      singleLineStyle,
+      getValidationStateStyle(fieldCtx.validationState),
+    ]
 
-  const classes = [
-    baseStyle,
-    singleLineStyle,
-    getValidationStateStyle(fieldCtx.validationState),
-  ]
+    const iconInputStyle = css`
+      &:focus ~ svg > path {
+        fill: ${color.primary};
+      }
+      padding: 0
+        ${iconPosition === 'right'
+          ? spacing.padding.big
+          : spacing.padding.small}px
+        0
+        ${iconPosition === 'left'
+          ? spacing.padding.big
+          : spacing.padding.small}px;
+    `
 
-  const iconInputStyle = css`
-    &:focus ~ svg > path {
-      fill: ${color.primary};
+    const buttonInputStyle = css`
+      padding: 0
+        ${buttonPosition === 'right'
+          ? spacing.padding.big + spacing.padding.small
+          : spacing.padding.small}px
+        0
+        ${buttonPosition === 'left'
+          ? spacing.padding.big + spacing.padding.small
+          : spacing.padding.small}px;
+    `
+
+    if (icon) {
+      classes.push(iconInputStyle)
+    } else if (button) {
+      classes.push(buttonInputStyle)
     }
-    padding: 0
-      ${iconPosition === 'right'
-        ? spacing.padding.big
-        : spacing.padding.small}px
-      0
-      ${iconPosition === 'left' ? spacing.padding.big : spacing.padding.small}px;
-  `
 
-  const buttonInputStyle = css`
-    padding: 0
-      ${buttonPosition === 'right'
-        ? spacing.padding.big + spacing.padding.small
-        : spacing.padding.small}px
-      0
-      ${buttonPosition === 'left'
-        ? spacing.padding.big + spacing.padding.small
-        : spacing.padding.small}px;
-  `
+    const handleIconClick = useCallback(() => {
+      if (onIconClick) {
+        onIconClick()
+      }
+    }, [onIconClick])
 
-  if (icon) {
-    classes.push(iconInputStyle)
-  } else if (button) {
-    classes.push(buttonInputStyle)
-  }
-
-  const handleIconClick = useCallback(() => {
-    if (onIconClick) {
-      onIconClick()
-    }
-  }, [onIconClick])
-
-  return (
-    <Label text={labelText}>
-      <input
-        size={labelText ? labelText.length : 0}
-        placeholder={labelText}
-        css={[classes]}
-        {...rest}
-      />
-      {icon && !button && (
-        <StyledIcon
-          onClick={onIconClick ? handleIconClick : undefined}
-          icon={icon}
-          position={iconPosition}
-          color="metalGrey"
+    return (
+      <Label text={labelText}>
+        <input
+          size={labelText ? labelText.length : 0}
+          placeholder={labelText}
+          css={[classes]}
+          {...rest}
+          ref={ref}
         />
-      )}
-      {button && !icon && (
-        <ButtonWrapper position={buttonPosition}>{button}</ButtonWrapper>
-      )}
-    </Label>
-  )
-}
+        {icon && !button && (
+          <StyledIcon
+            onClick={onIconClick ? handleIconClick : undefined}
+            icon={icon}
+            position={iconPosition}
+            color="metalGrey"
+          />
+        )}
+        {button && !icon && (
+          <ButtonWrapper position={buttonPosition}>{button}</ButtonWrapper>
+        )}
+      </Label>
+    )
+  }
+)
 
 Input.propTypes = {
   /**
