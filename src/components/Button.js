@@ -1,5 +1,6 @@
 /** @jsx jsx */
 
+import React from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
@@ -261,7 +262,7 @@ const LoadingDots = styled(({ verticalAlign, ...rest }) => {
   }
 `
 
-export const Button = ({
+export const Button = React.forwardRef(({
   variant,
   size,
   stretched,
@@ -269,7 +270,7 @@ export const Button = ({
   loading,
   children,
   ...rest
-}) => {
+}, ref) => {
   const classes = [
     base,
     VARIANTS[variant],
@@ -301,13 +302,13 @@ export const Button = ({
     )
   }
   return (
-    <button css={classes} type="button" {...rest} aria-busy={loading}>
+    <button css={classes} type="button" {...rest} aria-busy={loading} ref={ref}>
       {!loading && iconName && icon}
       {children}
       {loading && <LoadingDots verticalAlign={!children} />}
     </button>
   )
-}
+})
 
 Button.propTypes = {
   /**
