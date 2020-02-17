@@ -25,10 +25,9 @@ const StyledContent = styled.div`
 `
 
 const StyledParagraph = styled(Paragraph)`
-  line-height: 0;
-  margin-bottom: ${spacing.padding.small}px;
   display: block;
   flex: 0 0 auto;
+  margin-top: auto;
 `
 
 const StyledHeader = styled.div`
@@ -42,13 +41,20 @@ export const Container = props => {
     <StyleContainer {...props}>
       {header && <StyledHeader>{header}</StyledHeader>}
 
-      <StyledContent {...props}>{children}</StyledContent>
-
-      {branded && (
-        <StyledParagraph size="small" align="center" color="stoneGrey">
-          {appName ? `${appName} ` : ''} ⚡️by Groove
-        </StyledParagraph>
-      )}
+      <StyledContent {...props}>
+        {children}
+        {branded && (
+          <StyledParagraph
+            branded={branded}
+            size="small"
+            align="center"
+            color="stoneGrey"
+            padded={false}
+          >
+            {appName ? `${appName} ` : ''} ⚡️by Groove
+          </StyledParagraph>
+        )}
+      </StyledContent>
     </StyleContainer>
   )
 }
