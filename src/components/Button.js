@@ -262,53 +262,56 @@ const LoadingDots = styled(({ verticalAlign, ...rest }) => {
   }
 `
 
-export const Button = React.forwardRef(({
-  variant,
-  size,
-  stretched,
-  icon: iconName,
-  loading,
-  children,
-  ...rest
-}, ref) => {
-  const classes = [
-    base,
-    VARIANTS[variant],
-    SIZES[size],
-    children && withChildren,
-    (variant === 'primarySimple' || variant === 'warningSimple') &&
-      simpleSpacing,
-  ]
-  if (stretched) classes.push(stretch)
-  let icon = null
-  if (iconName) {
-    let iconColor = ICON_COLOR_MAP[variant]
-    if (variant === 'secondary' && rest.disabled) {
-      iconColor = 'primaryDisabled'
+export const Button = React.forwardRef(
+  (
+    { variant, size, stretched, icon: iconName, loading, children, ...rest },
+    ref
+  ) => {
+    const classes = [
+      base,
+      VARIANTS[variant],
+      SIZES[size],
+      children && withChildren,
+      (variant === 'primarySimple' || variant === 'warningSimple') &&
+        simpleSpacing,
+    ]
+    if (stretched) classes.push(stretch)
+    let icon = null
+    if (iconName) {
+      let iconColor = ICON_COLOR_MAP[variant]
+      if (variant === 'secondary' && rest.disabled) {
+        iconColor = 'primaryDisabled'
+      }
+      icon = (
+        <Icon
+          icon={iconName}
+          color={iconColor}
+          // TODO (jscheel): Using `small` even though it is 16px, as 12px (as
+          // is defined in the sketch files), is too small here.
+          size={size === 'small' ? 'small' : 'medium'}
+          css={[
+            SIZE_ICON_SIZE_MAP[size],
+            children && iconWithChildren,
+            iconClassHoverTarget,
+          ]}
+        />
+      )
     }
-    icon = (
-      <Icon
-        icon={iconName}
-        color={iconColor}
-        // TODO (jscheel): Using `small` even though it is 16px, as 12px (as
-        // is defined in the sketch files), is too small here.
-        size={size === 'small' ? 'small' : 'medium'}
-        css={[
-          SIZE_ICON_SIZE_MAP[size],
-          children && iconWithChildren,
-          iconClassHoverTarget,
-        ]}
-      />
+    return (
+      <button
+        css={classes}
+        type="button"
+        {...rest}
+        aria-busy={loading}
+        ref={ref}
+      >
+        {!loading && iconName && icon}
+        {children}
+        {loading && <LoadingDots verticalAlign={!children} />}
+      </button>
     )
   }
-  return (
-    <button css={classes} type="button" {...rest} aria-busy={loading} ref={ref}>
-      {!loading && iconName && icon}
-      {children}
-      {loading && <LoadingDots verticalAlign={!children} />}
-    </button>
-  )
-})
+)
 
 Button.propTypes = {
   /**
