@@ -18,16 +18,22 @@ const Wrapper = styled.div`
 
 const StyledCard = styled(Card)`
   position: absolute;
-  z-index: 1;
+  z-index: ${props => props.zIndex};
   overflow-y: auto;
   max-height: 124px;
   transition: visibility 0s ${transition.effect.default}
       ${transition.duration.default},
     opacity ${transition.duration.default};
-  left: ${props => (props.stretched || props.align === 'left' ? '0' : 'auto')};
+  left: ${props =>
+    props.stretched || props.align === 'left'
+      ? `${0 + props.offsetSide}px`
+      : 'auto'};
   right: ${props =>
-    props.stretched || props.align === 'right' ? '0' : 'auto'};
-  top: ${spacing.padding.big + spacing.padding.tiny}px;
+    props.stretched || props.align === 'right'
+      ? `${0 + props.offsetSide}px`
+      : 'auto'};
+  top: ${props =>
+    `${spacing.padding.big + spacing.padding.tiny + props.offsetTop}px`};
   padding: 12px ${spacing.padding.small}px;
   visibility: ${props => (props.open ? 'visible' : 'hidden')};
   opacity: ${props => (props.open ? 1 : 0)};
@@ -58,11 +64,28 @@ const StyledList = styled.ul`
   }
 `
 
-export const Dropdown = ({ trigger, items, align, open, stretched, label }) => {
+export const Dropdown = ({
+  trigger,
+  items,
+  align,
+  open,
+  stretched,
+  label,
+  offsetTop,
+  offsetSide,
+  zIndex,
+}) => {
   return (
     <Wrapper align={align}>
       {trigger}
-      <StyledCard align={align} stretched={stretched} open={open}>
+      <StyledCard
+        offsetTop={offsetTop}
+        offsetSide={offsetSide}
+        zIndex={zIndex}
+        align={align}
+        stretched={stretched}
+        open={open}
+      >
         <StyledList>
           <React.Fragment>
             {label && (
@@ -122,6 +145,21 @@ Dropdown.propTypes = {
    * Label describing items
    */
   label: PropTypes.string,
+  /**
+   * Offset object.
+   * Allows specifying an offset top for the dropdown
+   */
+  offsetTop: PropTypes.number,
+  /**
+   * Offset object.
+   * Allows specifying for left or right based on your alignment
+   */
+  offsetSide: PropTypes.number,
+  /**
+   * zIndex
+   * Specify the zindex value for the dropdown
+   */
+  zIndex: PropTypes.number,
 }
 
 Dropdown.defaultProps = {
@@ -131,4 +169,7 @@ Dropdown.defaultProps = {
   label: null,
   open: true,
   align: ALIGNMENT.left,
+  offsetTop: 0,
+  offsetSide: 0,
+  zIndex: 1,
 }

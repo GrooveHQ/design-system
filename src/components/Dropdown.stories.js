@@ -94,3 +94,20 @@ export const RightAligned = () => {
     </div>
   )
 }
+
+export const RightAlignedWithOffsets = () => {
+  const [open, setOpen] = useState(false)
+  return (
+    <div style={{ height: '200px' }}>
+      <Dropdown
+        items={menuItems}
+        align="right"
+        open={open}
+        stretched={false}
+        offsetTop={20}
+        offsetSide={-40}
+        trigger={<Button onClick={() => setOpen(!open)}>Toggle</Button>}
+      />
+    </div>
+  )
+}

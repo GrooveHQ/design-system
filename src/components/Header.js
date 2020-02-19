@@ -18,7 +18,6 @@ const StyledHeader = styled.div`
   background-color: ${color.primary};
   border-top-left-radius: ${spacing.borderRadius.default}px;
   border-top-right-radius: ${spacing.borderRadius.default}px;
-  overflow: hidden;
   position: relative;
   /* HACK (jscheel): This clips the bottom in a way that clips the inner height
      instead of the outer height. */
@@ -53,9 +52,8 @@ const StyledHeader = styled.div`
   }
 `
 
-// HACK (jscheel): We use margins here to make margins collapse with the content.
 const InnerHeader = styled.div`
-  margin: ${props => containerSpacing[props.spacing].vertical}px
+  padding: ${props => containerSpacing[props.spacing].vertical}px
     ${props => containerSpacing[props.spacing].horizontal}px;
   min-height: ${props => 64 - containerSpacing[props.spacing].vertical * 2}px;
   max-height: ${props =>
