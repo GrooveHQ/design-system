@@ -132,6 +132,19 @@ const primaryInverted = css`
   }
 `
 
+const primaryInvertedSimple = css`
+  background-color: transparent;
+  border: none;
+  color: ${color.paperWhite};
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    opacity: 1;
+  }
+`
+
 const regular = css`
   font-size: ${forms.typography.regular.size}px;
   line-height: ${forms.input.height.regular - 2}px; /* subtract border width */
@@ -179,6 +192,7 @@ const VARIANTS = {
   primarySimple,
   warningSimple,
   primaryInverted,
+  primaryInvertedSimple,
 }
 
 const ICON_COLOR_MAP = {
@@ -188,6 +202,7 @@ const ICON_COLOR_MAP = {
   primarySimple: 'primary',
   warningSimple: 'candyRed',
   primaryInverted: 'paperWhite',
+  primaryInvertedSimple: 'paperWhite',
 }
 
 const SIZES = { regular, small }

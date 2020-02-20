@@ -80,8 +80,22 @@ export const IconOnly = () => (
     <FlexItem>
       <Button icon="arrowLeft" variant="secondary" size="small" />
     </FlexItem>
+    <FlexItem>
+      <Button icon="arrowLeft" variant="primaryInvertedSimple" size="medium" />
+    </FlexItem>
   </FlexContainer>
 )
+
+// Inverted color uses white for the icon color which renders it invisible on a white background
+IconOnly.story = {
+  decorators: [
+    storyFn => (
+      <div style={{ background: color.stoneGrey, padding: '10px 0' }}>
+        {storyFn()}
+      </div>
+    ),
+  ],
+}
 
 export const Loading = () => (
   <FlexContainer gapHorizontal="small">

@@ -21,20 +21,6 @@ const Svg = styled.svg`
 
   width: ${props => ICON_SIZES[props.size]}px;
   height: ${props => ICON_SIZES[props.size]}px;
-
-  ${({ onClick }) => {
-    if (onClick) {
-      return `
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity ease-in-out 0.125s;
-      &:hover {
-        opacity: 1;
-      }
-      `
-    }
-    return ''
-  }}
 `
 
 const Path = styled.path`
@@ -48,9 +34,9 @@ const Path = styled.path`
  * - *decorative only*: for example, it illustrates a label next to it. We must ensure that it is ignored by screen readers, by setting `aria-hidden` attribute (ex: `<Icon icon="check" aria-hidden />`)
  * - *non-decorative*: it means that it delivers information. For example, an icon as only child in a button. The meaning can be obvious visually, but it must have a proper text alternative via `aria-label` for screen readers. (ex: `<Icon icon="print" aria-label="Print this document" />`)
  */
-export const Icon = ({ icon, block, color, onClick, ...props }) => {
+export const Icon = ({ icon, block, color, ...props }) => {
   return (
-    <Svg viewBox="0 0 24 24" block={block} onClick={onClick} {...props}>
+    <Svg viewBox="0 0 24 24" block={block} {...props}>
       <Path d={icons[icon]} color={color} />
     </Svg>
   )
