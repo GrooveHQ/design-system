@@ -1,3 +1,20 @@
+# v0.11.3 (Thu Feb 27 2020)
+
+#### 🐛  Bug Fix
+
+- NEW: Button variation primaryInvertedSimple [#53](https://github.com/GrooveHQ/design-system/pull/53) ([@kevinrademan](https://github.com/kevinrademan))
+- Implement dropdown to support offsetTop, offsetSide and zIndex [#52](https://github.com/GrooveHQ/design-system/pull/52) ([@kevinrademan](https://github.com/kevinrademan))
+- Fixes for button and container components [#51](https://github.com/GrooveHQ/design-system/pull/51) ([@kevinrademan](https://github.com/kevinrademan))
+- Forward refs in form components [#50](https://github.com/GrooveHQ/design-system/pull/50) ([@jscheel](https://github.com/jscheel))
+- Extrinsically size components [#48](https://github.com/GrooveHQ/design-system/pull/48) ([@jscheel](https://github.com/jscheel))
+- Only add padding on form input if button exists [#49](https://github.com/GrooveHQ/design-system/pull/49) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v0.11.2 (Thu Jan 30 2020)
 
 #### 🐛  Bug Fix
