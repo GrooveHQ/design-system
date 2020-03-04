@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { color as stylesColor } from './shared/styles'
 
-export const ICON_SIZES = {
+export const LOADER_SIZES = {
   small: 16,
   medium: 24,
   big: 32,
@@ -35,8 +35,8 @@ export const Loader = ({ text, loaderColor, size, ...props }) => {
     <Container className="groove-loader" {...props}>
       <div className="groove-loader-body">
         <svg
-          width={ICON_SIZES[size]}
-          height={ICON_SIZES[size]}
+          width={LOADER_SIZES[size]}
+          height={LOADER_SIZES[size]}
           viewBox="0 0 38 38"
           xmlns="http://www.w3.org/2000/svg"
           stroke={loaderColor}
@@ -88,7 +88,7 @@ Loader.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(ICON_SIZES)),
+  size: PropTypes.oneOf(Object.keys(LOADER_SIZES)),
   zIndex: PropTypes.number,
 }
 
