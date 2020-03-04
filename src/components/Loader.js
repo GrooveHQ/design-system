@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { Paragraph, PARAGRAPH_SIZES as TEXT_SIZES } from './Paragraph'
 import { color as stylesColor } from './shared/styles'
 
 export const LOADER_SIZES = {
@@ -19,27 +20,34 @@ const Container = styled.div`
   left: 0;
   position: absolute;
   right: 0;
-  text-align: center;
   top: 0;
   z-index: ${({ zIndex }) => zIndex};
 
   > div {
     align-self: center;
-    color: ${({ color }) => color};
     flex-grow: 1;
+    text-align: center;
   }
 `
 
-export const Loader = ({ text, loaderColor, size, ...props }) => {
+export const Loader = ({
+  text,
+  color,
+  loaderColor,
+  loaderSize,
+  textSize,
+  ...props
+}) => {
+  console.log({ loaderSize, textSize })
   return (
     <Container className="groove-loader" {...props}>
       <div className="groove-loader-body">
         <svg
-          width={LOADER_SIZES[size]}
-          height={LOADER_SIZES[size]}
+          width={LOADER_SIZES[loaderSize]}
+          height={LOADER_SIZES[loaderSize]}
           viewBox="0 0 38 38"
           xmlns="http://www.w3.org/2000/svg"
-          stroke={loaderColor}
+          stroke={stylesColor[loaderColor]}
         >
           <g fill="none" fillRule="evenodd">
             <g transform="translate(1 1)" strokeWidth="2">
@@ -58,10 +66,9 @@ export const Loader = ({ text, loaderColor, size, ...props }) => {
           </g>
         </svg>
         {text && (
-          <Fragment>
-            <br />
+          <Paragraph color={color} align="center" size={textSize}>
             {text}
-          </Fragment>
+          </Paragraph>
         )}
       </div>
     </Container>
@@ -74,11 +81,11 @@ Loader.propTypes = {
    */
   text: PropTypes.string,
   /**
-   * Specify text color
+   * Specify name of text color
    */
   color: PropTypes.string,
   /**
-   * Specify icon color
+   * Specify name of icon color
    */
   loaderColor: PropTypes.string,
   /**
@@ -88,14 +95,19 @@ Loader.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(LOADER_SIZES)),
+  loaderSize: PropTypes.oneOf(Object.keys(LOADER_SIZES)),
+  /**
+   * Text size
+   */
+  textSize: PropTypes.oneOf(Object.keys(TEXT_SIZES)),
   zIndex: PropTypes.number,
 }
 
 Loader.defaultProps = {
-  loaderColor: stylesColor.primary,
-  color: stylesColor.jetBlack,
-  size: 'big',
+  loaderColor: 'primary',
+  color: 'stoneGrey',
+  loaderSize: 'big',
+  textSize: 'small',
   text: 'One moment...',
   zIndex: 5000,
   background: stylesColor.moonGrey,

@@ -31,8 +31,8 @@ export const Customized = () => (
   <LoaderExample>
     <Loader
       text="Hold tight, while content is loading..."
-      color={stylesColor.paperWhite}
-      loaderColor={stylesColor.candyRed}
+      color="paperWhite"
+      loaderColor="candyRed"
       background={stylesColor.groovyHover}
     />
   </LoaderExample>
