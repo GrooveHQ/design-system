@@ -38,10 +38,9 @@ export const Loader = ({
   textSize,
   ...props
 }) => {
-  console.log({ loaderSize, textSize })
   return (
-    <Container className="groove-loader" {...props}>
-      <div className="groove-loader-body">
+    <Container {...props}>
+      <div>
         <svg
           width={LOADER_SIZES[loaderSize]}
           height={LOADER_SIZES[loaderSize]}
