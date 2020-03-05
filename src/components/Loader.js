@@ -107,7 +107,7 @@ Loader.defaultProps = {
   color: 'stoneGrey',
   loaderSize: 'big',
   textSize: 'small',
-  text: 'One moment...',
+  text: '',
   zIndex: 5000,
   background: stylesColor.moonGrey,
 }

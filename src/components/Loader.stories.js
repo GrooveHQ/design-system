@@ -21,12 +21,6 @@ export const Normal = () => (
   </LoaderExample>
 )
 
-export const NoText = () => (
-  <LoaderExample>
-    <Loader text="" />
-  </LoaderExample>
-)
-
 export const Customized = () => (
   <LoaderExample>
     <Loader
