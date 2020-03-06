@@ -1,3 +1,19 @@
+# v0.12.0 (Fri Mar 06 2020)
+
+#### 🚀  Enhancement
+
+- NEW: Add loader component [#54](https://github.com/GrooveHQ/design-system/pull/54) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### 🐛  Bug Fix
+
+- Revert "NEW: Add loader component (#54)" [#55](https://github.com/GrooveHQ/design-system/pull/55) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v0.11.3 (Thu Feb 27 2020)
 
 #### 🐛  Bug Fix
