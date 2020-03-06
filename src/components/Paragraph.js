@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { color, typography, spacing } from './shared/styles'
 
-export const PARAGRAPH_SIZES = {
+const SIZES = {
   big: 'p1',
   medium: 'p2',
   small: 'p3',
@@ -23,9 +23,8 @@ const StyledParagraph = styled.span`
   letter-spacing: normal;
   font-weight: ${props =>
     props.bold ? typography.weight.medium : typography.weight.normal};
-  font-size: ${props => typography.sizes[PARAGRAPH_SIZES[props.size]].size}px;
-  line-height: ${props =>
-    typography.sizes[PARAGRAPH_SIZES[props.size]].height}px;
+  font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
+  line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
   color: ${props => color[props.color]};
   text-align: ${props => ALIGNMENT[props.align]};
 
@@ -55,7 +54,7 @@ Paragraph.propTypes = {
   /**
    * Specify size
    */
-  size: PropTypes.oneOf(Object.keys(PARAGRAPH_SIZES)),
+  size: PropTypes.oneOf(Object.keys(SIZES)),
   /**
    * Specify whether its bold
    */
