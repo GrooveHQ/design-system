@@ -1,3 +1,15 @@
+# v0.12.2 (Tue Mar 10 2020)
+
+#### 🐛  Bug Fix
+
+- Revert "Revert "NEW: Add loader component (#54)" (#55)" [#56](https://github.com/GrooveHQ/design-system/pull/56) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v0.12.1 (Tue Mar 10 2020)
 
 
