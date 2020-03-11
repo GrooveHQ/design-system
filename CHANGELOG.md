@@ -1,3 +1,15 @@
+# v0.12.3 (Wed Mar 11 2020)
+
+#### 🐛  Bug Fix
+
+- Add additional avatar size [#57](https://github.com/GrooveHQ/design-system/pull/57) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v0.12.2 (Tue Mar 10 2020)
 
 #### 🐛  Bug Fix
