@@ -17,6 +17,10 @@ const presenceConfig = {
       length: 0,
       positionOffset: 0,
     },
+    tiny: {
+      length: 5,
+      positionOffset: 0,
+    },
     small: {
       length: 5,
       positionOffset: 0,
@@ -55,7 +59,8 @@ const StyledAvatarContainer = styled.div`
 const StyledAvatar = styled.div`
   background: ${props =>
     !props.src || props.isLoading ? sharedColors.metalGrey : 'transparent'};
-  border: 2px solid ${sharedColors.paperWhite};
+  border: ${({ border }) =>
+    border ? `2px solid ${sharedColors.paperWhite}` : 'none'};
   border-radius: 50%;
   display: inline-block;
   vertical-align: top;
@@ -106,6 +111,7 @@ export const Avatar = ({
   length,
   bold,
   presence,
+  border,
   ...props
 }) => {
   let avatarFigure = <Icon size={size} icon="user" />
@@ -135,6 +141,7 @@ export const Avatar = ({
       size={listContext.size || size}
       title={decodedName}
       presence={presence}
+      border={border}
     >
       <StyledAvatar size={listContext.size || size} {...a11yProps} {...props}>
         {avatarFigure}
@@ -178,6 +185,11 @@ Avatar.propTypes = {
   bold: PropTypes.bool,
 
   /**
+   * Should the avatar have a border
+   */
+  border: PropTypes.bool,
+
+  /**
    * Specify if initial text for generated avatar should be bold
    */
   presence: PropTypes.oneOf(['none', 'online', 'offline', 'away']),
@@ -192,5 +204,6 @@ Avatar.defaultProps = {
   background: null,
   color: null,
   bold: true,
+  border: true,
   presence: 'none',
 }
