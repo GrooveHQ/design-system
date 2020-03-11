@@ -185,7 +185,7 @@ Avatar.propTypes = {
   bold: PropTypes.bool,
 
   /**
-   * Should the avatar have a border (default true)
+   * Should the avatar have a border
    */
   border: PropTypes.bool,
 
