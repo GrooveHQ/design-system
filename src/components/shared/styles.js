@@ -193,7 +193,8 @@ export const forms = {
 // Avatars
 export const avatars = {
   sizes: {
-    small: 24,
+    tiny: 24,
+    small: 32,
     medium: 40,
     big: 60,
   },
