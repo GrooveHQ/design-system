@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { motion, AnimatePresence } from 'framer-motion'
 import { color, spacing } from './shared/styles'
-import { transition } from './shared/animation'
 import { Card } from './Card'
 import { Paragraph } from './Paragraph'
 
@@ -16,14 +16,11 @@ const Wrapper = styled.div`
   text-align: ${props => props.align};
 `
 
-const StyledCard = styled(Card)`
+const StyledCard = styled(motion.custom(Card))`
   position: absolute;
   z-index: ${props => props.zIndex};
   overflow-y: auto;
   max-height: 124px;
-  transition: visibility 0s ${transition.effect.default}
-      ${transition.duration.default},
-    opacity ${transition.duration.default};
   left: ${props =>
     props.stretched || props.align === 'left'
       ? `${0 + props.offsetSide}px`
@@ -35,8 +32,6 @@ const StyledCard = styled(Card)`
   top: ${props =>
     `${spacing.padding.big + spacing.padding.tiny + props.offsetTop}px`};
   padding: 12px ${spacing.padding.small}px;
-  visibility: ${props => (props.open ? 'visible' : 'hidden')};
-  opacity: ${props => (props.open ? 1 : 0)};
   max-width: ${props => (props.stretched ? 'auto' : '172px')};
 `
 
@@ -64,6 +59,20 @@ const StyledList = styled.ul`
   }
 `
 
+const variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+  },
+  closed: {
+    opacity: 0,
+    y: -8,
+  },
+  exited: {
+    opacity: 0,
+  },
+}
+
 export const Dropdown = ({
   trigger,
   items,
@@ -78,36 +87,43 @@ export const Dropdown = ({
   return (
     <Wrapper align={align}>
       {trigger}
-      <StyledCard
-        offsetTop={offsetTop}
-        offsetSide={offsetSide}
-        zIndex={zIndex}
-        align={align}
-        stretched={stretched}
-        open={open}
-      >
-        <StyledList>
-          <React.Fragment>
-            {label && (
-              <Paragraph size="small" color="stoneGrey">
-                {label}
-              </Paragraph>
-            )}
-            {items.map(
-              (
-                { key: itemKey, text: itemText, component: itemComponent },
-                index
-              ) => (
-                <li key={itemKey || itemText || index}>
-                  <Paragraph size="small" color="primary">
-                    {itemComponent || itemText}
+      <AnimatePresence>
+        {open && (
+          <StyledCard
+            offsetTop={offsetTop}
+            offsetSide={offsetSide}
+            zIndex={zIndex}
+            align={align}
+            stretched={stretched}
+            variants={variants}
+            initial="closed"
+            animate="open"
+            exit="exited"
+          >
+            <StyledList>
+              <React.Fragment>
+                {label && (
+                  <Paragraph size="small" color="stoneGrey">
+                    {label}
                   </Paragraph>
-                </li>
-              )
-            )}
-          </React.Fragment>
-        </StyledList>
-      </StyledCard>
+                )}
+                {items.map(
+                  (
+                    { key: itemKey, text: itemText, component: itemComponent },
+                    index
+                  ) => (
+                    <li key={itemKey || itemText || index}>
+                      <Paragraph size="small" color="primary">
+                        {itemComponent || itemText}
+                      </Paragraph>
+                    </li>
+                  )
+                )}
+              </React.Fragment>
+            </StyledList>
+          </StyledCard>
+        )}
+      </AnimatePresence>
     </Wrapper>
   )
 }

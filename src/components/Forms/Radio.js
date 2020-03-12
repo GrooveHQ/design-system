@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import {
   CheckRadioBase,
   CheckRadioGroup,
@@ -8,8 +9,9 @@ import {
   HiddenElement,
 } from './CheckRadioBase'
 import { color } from '../shared/styles'
+import { generateTransition, transition } from '../shared/animation'
 
-const Icon = styled.svg`
+const Icon = styled(motion.svg)`
   fill: ${color.primary};
   width: 6px;
   user-select: none;
@@ -24,6 +26,7 @@ const StyledRadio = styled.div`
   border: 1px solid ${color.metalGrey};
   background: ${color.paperWhite};
   cursor: pointer;
+  transition: ${generateTransition()};
   ${HiddenElement}:focus + &,
   &:hover {
     border: 1px solid ${color.primary};
@@ -118,6 +121,20 @@ RadioGroup.defaultProps = {
   direction: 'vertical',
 }
 
+const circleVariants = {
+  checked: {
+    r: 3,
+    transition: {
+      delay:
+        (parseFloat(transition.duration.default) * 0.15) /
+        (transition.duration.default.indexOf('ms') > -1 ? 1000 : 1),
+    },
+  },
+  unchecked: {
+    r: 0,
+  },
+}
+
 export const RadioOption = ({
   className,
   checked,
@@ -155,8 +172,22 @@ export const RadioOption = ({
       StyledComponent={StyledRadio}
       {...rest}
     >
-      <Icon viewBox="0 0 6 6">
-        <circle cx="3" cy="3" r="3" />
+      <Icon
+        viewBox="0 0 6 6"
+        // initial={false}
+        // animate={finalChecked ? 'checked' : 'unchecked'}
+        whileHover="hover"
+      >
+        <motion.circle
+          variants={circleVariants}
+          // style={{ r: circleRadius }}
+          initial="unchecked"
+          animate={finalChecked ? 'checked' : 'unchecked'}
+          custom={checked}
+          cx="3"
+          cy="3"
+          r="3"
+        />
       </Icon>
     </CheckRadioBase>
   )

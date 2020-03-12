@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useRef, useContext, useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { motion, AnimatePresence } from 'framer-motion'
+import ContainerContext from './ContainerContext'
 import { color, spacing } from './shared/styles'
 
 const containerSpacing = {
@@ -14,23 +16,12 @@ const containerSpacing = {
   },
 }
 
-const StyledHeader = styled.div`
+const StyledHeader = styled(motion.div)`
   background-color: ${color.primary};
   border-top-left-radius: ${spacing.borderRadius.default}px;
   border-top-right-radius: ${spacing.borderRadius.default}px;
   position: relative;
-  /* HACK (jscheel): This clips the bottom in a way that clips the inner height
-     instead of the outer height. */
-  &:after {
-    content: ' ';
-    display: block;
-    height: ${props => containerSpacing[props.spacing].vertical}px;
-    background-color: ${color.primary};
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-  }
+  flex-shrink: 0;
 
   /* Links within Header */
   a,
@@ -52,30 +43,134 @@ const StyledHeader = styled.div`
   }
 `
 
-const InnerHeader = styled.div`
+const InnerHeader = styled(motion.div)`
   padding: ${props => containerSpacing[props.spacing].vertical}px
     ${props => containerSpacing[props.spacing].horizontal}px;
   min-height: ${props => 64 - containerSpacing[props.spacing].vertical * 2}px;
-  max-height: ${props =>
-    224 - containerSpacing[props.spacing].horizontal * 2}px;
 `
 
-export const Header = props => {
-  const { children } = props
+const heightVariants = {
+  initial: ({ prevHeight, withMedian }) => {
+    return {
+      height: prevHeight,
+      paddingBottom: withMedian ? spacing.padding.small : 0,
+    }
+  },
+  visible: ({ withMedian }) => {
+    return {
+      height: 'auto',
+      paddingBottom: withMedian ? spacing.padding.small : 0,
+    }
+  },
+  exit: ({ withMedian }) => {
+    return {
+      height: 'auto',
+      paddingBottom: withMedian ? spacing.padding.small : 0,
+    }
+  },
+}
+
+const headerVariants = {
+  initial: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    x: 20,
+  },
+}
+
+const HeaderContext = React.createContext({
+  previousHeight: 0,
+  setPreviousHeight: () => {},
+})
+
+export const HeaderAnimatedHeightWrapper = ({ headerKey, children }) => {
+  const [previousHeight, setPreviousHeight] = useState(0)
   return (
-    <StyledHeader {...props}>
-      <InnerHeader {...props}>{children}</InnerHeader>
-    </StyledHeader>
+    <HeaderContext.Provider value={{ previousHeight, setPreviousHeight }}>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <React.Fragment key={headerKey}>{children}</React.Fragment>
+      </AnimatePresence>
+    </HeaderContext.Provider>
   )
 }
+
+export const Header = React.forwardRef(
+  (
+    { spacing: spacingProp, withMedian, withOverlap, children, ...rest },
+    forwardedRef
+  ) => {
+    const headerRef = useRef(null)
+    // NOTE (jscheel): We use the entire context for the useLayoutEffect dependency
+    // so that it doesn't re-run each time a prop updates on the container.
+    const animatedHeaderCtx = useContext(HeaderContext)
+    const containerCtx = useContext(ContainerContext)
+    useLayoutEffect(() => {
+      const headerRefCurrent = headerRef.current
+      return () => {
+        if (!headerRefCurrent) return
+        let prevHeaderHeight = headerRefCurrent.offsetHeight
+        if (withMedian) {
+          prevHeaderHeight += spacing.padding.small
+        }
+        animatedHeaderCtx.setPreviousHeight(prevHeaderHeight)
+      }
+    }, [animatedHeaderCtx, headerRef, withMedian])
+
+    if (!React.Children.count(children)) return null
+
+    return (
+      <StyledHeader
+        spacing={spacingProp}
+        {...rest}
+        ref={forwardedRef}
+        variants={heightVariants}
+        initial="initial"
+        animate="visible"
+        exit="exit"
+        custom={{
+          prevHeight: animatedHeaderCtx.previousHeight,
+          withMedian,
+        }}
+      >
+        <InnerHeader
+          spacing={spacingProp}
+          ref={headerRef}
+          variants={headerVariants}
+        >
+          {children}
+          <motion.div
+            style={{ height: withOverlap ? containerCtx.headerStubHeight : 0 }}
+          />
+        </InnerHeader>
+      </StyledHeader>
+    )
+  }
+)
 
 Header.propTypes = {
   /**
    * Specify the padding sizes
    */
   spacing: PropTypes.oneOf(Object.keys(containerSpacing)),
+  /**
+   * Add space to bottom to account for median
+   */
+  withMedian: PropTypes.bool,
+  /**
+   * Header is used in overlap-enabled container
+   */
+  withOverlap: PropTypes.bool,
 }
 
 Header.defaultProps = {
-  spacing: 'small',
+  spacing: 'medium',
+  withMedian: false,
+  withOverlap: false,
 }

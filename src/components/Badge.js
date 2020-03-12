@@ -46,7 +46,7 @@ const StyledIcon = styled(Icon)`
 const StyledTextWrapper = styled.div`
   white-space: nowrap;
   overflow: hidden;
-  transition: width ${transition.duration.default} ${transition.effect.default}
+  transition: width ${transition.duration.default} ${transition.easing.default}
     0ms;
   width: ${props => (props.opened ? 0 : props.width)}px;
 `
@@ -56,7 +56,7 @@ const StyledCount = styled.div`
   overflow: hidden;
   transition: ${props =>
     props.closing
-      ? `opacity ${transition.duration.default} ${transition.effect.default} ${transition.duration.default}`
+      ? `opacity ${transition.duration.default} ${transition.easing.default} ${transition.duration.default}`
       : 'none'};
   border-radius: ${spacing.padding.tiny}px;
   border: 2px solid ${color.paperWhite};

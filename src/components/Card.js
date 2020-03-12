@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import { color, shadows, spacing } from './shared/styles'
 
 const BORDER_SIZES = {
@@ -16,7 +17,7 @@ const BORDERS = {
   bottom: 'bottom',
 }
 
-const StyledCard = styled.div`
+const StyledCard = styled(motion.div)`
   background-color: ${props => color[props.color]};
   border-radius: ${props => spacing.borderRadius[props.radius]}px;
   margin-bottom: ${spacing.padding.tiny}px;
@@ -39,7 +40,7 @@ const StyledCard = styled.div`
 
   a:hover & {
     cursor: pointer;
-    box-shadow: ${props => (props.plain ? 'none' : shadows.high)};
+    /* box-shadow: ${props => (props.plain ? 'none' : shadows.high)}; */
     border-color: ${props =>
       props.border && props.borderColor
         ? color[`${props.borderColor}Hover`]
@@ -47,9 +48,18 @@ const StyledCard = styled.div`
   }
 `
 
-export const Card = ({ children, ...props }) => (
-  <StyledCard {...props}>{children}</StyledCard>
-)
+export const Card = React.forwardRef(({ children, ...props }, ref) => (
+  <StyledCard
+    {...props}
+    ref={ref}
+    whileHover={{
+      boxShadow: props.plain ? 'none' : shadows.high,
+      scale: 1.015,
+    }}
+  >
+    {children}
+  </StyledCard>
+))
 
 Card.propTypes = {
   /**
@@ -72,6 +82,10 @@ Card.propTypes = {
    * Specify border color, applied if `border` is provided
    */
   borderColor: PropTypes.string,
+  /**
+   * Should the card raise up when hovered?
+   */
+  interactive: PropTypes.bool,
 }
 
 Card.defaultProps = {
@@ -80,4 +94,5 @@ Card.defaultProps = {
   plain: false,
   border: undefined,
   borderColor: undefined,
+  interactive: false,
 }

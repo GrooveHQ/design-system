@@ -3,11 +3,15 @@
 import { useState, useCallback, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import PropTypes from 'prop-types'
+import { AnimatePresence, motion } from 'framer-motion'
 import { color, spacing, typography } from './shared/styles'
 
 const wrapper = css`
   position: relative;
 `
+
+const widthHackOffset = '100vw'
+const widthHackTransform = `translateX(${widthHackOffset}) translateX(-50%)`
 
 const tooltipContent = css`
   background: ${color.jetBlack};
@@ -21,8 +25,8 @@ const tooltipContent = css`
   text-align: center;
   max-width: 216px;
   /* HACK (jscheel): Makes tooltip width fit content and max width even in limited width containers */
-  margin-left: -2147483647px;
-  transform: translateX(2147483647px) translateX(-50%);
+  margin-left: -${widthHackOffset};
+  transform: ${widthHackTransform};
   /* END HACK */
   &:after {
     left: 50%;
@@ -100,16 +104,29 @@ export const Tooltip = ({
       onMouseLeave={handleMouseLeave}
     >
       {children}
-      {show && <div css={[tooltipContent, POSITIONS[position]]}>{text}</div>}
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            css={[tooltipContent, POSITIONS[position]]}
+            initial={{
+              opacity: 0,
+              translateY: 8 * (position === 'top' ? 1 : -1),
+            }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: 0 }}
+            transformTemplate={(_, generated) =>
+              `${widthHackTransform} ${generated}`
+            }
+          >
+            {text}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
 Tooltip.propTypes = {
-  /**
-   * Text of tooltip
-   */
-  text: PropTypes.string.isRequired,
   /**
    * State of field, inherited by child form components
    */
