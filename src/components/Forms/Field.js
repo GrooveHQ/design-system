@@ -2,8 +2,9 @@
 
 import React from 'react'
 import { jsx } from '@emotion/core'
-import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Icon } from '../Icon'
 import { color, spacing, forms } from '../shared/styles'
 
@@ -25,19 +26,31 @@ const ValidationIcon = styled(Icon)`
   height: 18px;
 `
 
+const ValidationAnimationVariants = {
+  initial: { opacity: 0, y: -3 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -3 },
+}
+
 const StateMessage = ({ icon: iconName, color: colorName, children }) => {
   return (
-    <div
+    <motion.div
       css={{
         color: color[colorName],
         display: 'flex',
         alignItems: 'center',
-        marginTop: spacing.padding.tiny,
+        paddingTop: spacing.padding.tiny,
+        overflow: 'hidden',
       }}
+      variants={ValidationAnimationVariants}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      layoutTransition
     >
       <ValidationIcon icon={iconName} color={colorName} />
       {children}
-    </div>
+    </motion.div>
   )
 }
 
@@ -57,16 +70,18 @@ export const Field = ({
     <FieldContext.Provider value={{ validationState }}>
       <FieldContainer {...rest}>
         <ChildrenContainer>{children}</ChildrenContainer>
-        {validationState === 'success' && successMessage && (
-          <StateMessage icon="checkCircle" color="mintGreen">
-            {successMessage}
-          </StateMessage>
-        )}
-        {validationState === 'error' && errorMessage && (
-          <StateMessage icon="closeCircle" color="candyRed">
-            {errorMessage}
-          </StateMessage>
-        )}
+        <AnimatePresence>
+          {validationState === 'success' && successMessage && (
+            <StateMessage icon="checkCircle" color="mintGreen" key="success">
+              {successMessage}
+            </StateMessage>
+          )}
+          {validationState === 'error' && errorMessage && (
+            <StateMessage icon="closeCircle" color="candyRed" key="error">
+              {errorMessage}
+            </StateMessage>
+          )}
+        </AnimatePresence>
       </FieldContainer>
     </FieldContext.Provider>
   )

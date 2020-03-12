@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import { generateTransition } from './animation'
 import { color, infoColor, spacing, forms } from './styles'
 
 export const baseStyle = css`
@@ -11,6 +12,7 @@ export const baseStyle = css`
   font-size: ${forms.typography.small.size}px;
   min-width: 0;
   padding: 0 ${spacing.padding.small}px;
+  transition: ${generateTransition()};
   width: 100%;
   ::placeholder {
     color: ${color.gunGreyDisabled};

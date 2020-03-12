@@ -104,7 +104,7 @@ export const CheckRadioBase = ({
             onChange={onChange}
             {...rest}
           />
-          <StyledComponent>{checked && children}</StyledComponent>
+          <StyledComponent>{children}</StyledComponent>
         </ElementContainer>
         {label}
       </StyledLabel>

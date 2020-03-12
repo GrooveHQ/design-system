@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useRef, useLayoutEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import {
+  motion,
+  AnimatePresence,
+  useTransform,
+  useMotionValue,
+} from 'framer-motion'
 import { color, spacing, shadows } from './shared/styles'
 import { Paragraph } from './Paragraph'
+import { HeaderAnimatedHeightWrapper } from './Header'
+import ContainerContext from './ContainerContext'
 
 const StyleContainer = styled.div`
   display: flex;
@@ -13,15 +21,22 @@ const StyleContainer = styled.div`
   border-radius: ${spacing.borderRadius.default}px;
   background-color: ${props => color[props.backgroundColor]};
   box-shadow: ${shadows.high};
+  overflow: hidden;
 `
 
-const StyledContent = styled.div`
+const StyledContent = styled(motion.div)`
   flex: 1 1 auto;
   ${props => props.padded && `padding: ${spacing.padding.small}px`};
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  z-index: 99999;
+`
+
+const StyledMedian = styled(motion.div)`
+  ${props => props.padded && `padding: 0 ${spacing.padding.small}px`};
+  margin-top: -${spacing.padding.small}px;
 `
 
 const StyledParagraph = styled(Paragraph)`
@@ -30,32 +45,181 @@ const StyledParagraph = styled(Paragraph)`
   margin-top: auto;
 `
 
-const StyledHeader = styled.div`
-  flex: 0 0 auto;
-`
+const contentAnimationVariants = {
+  initial: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      type: 'tween',
+      duration: 0.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren',
+      type: 'tween',
+      duration: 0.2,
+    },
+  },
+}
 
-export const Container = props => {
-  const { branded, appName, children, header } = props
+const medianAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: -3,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.15,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      delay: 0.2,
+    },
+  },
+}
+
+export const Container = ({
+  branded,
+  appName,
+  children,
+  header,
+  median,
+  padded,
+  headerKey,
+  bodyKey,
+  medianKey,
+  overlap,
+  ...rest
+}) => {
+  const scrollRange = [0, 100] // TODO (jscheel): Figure out way to make dynamic base on header content
+
+  const scrollPositionMotionValue = useMotionValue(0)
+
+  const contentRef = useRef(null)
+
+  const handleScroll = useCallback(() => {
+    if (!contentRef.current) return
+    const { scrollTop } = contentRef.current
+    scrollPositionMotionValue.set(scrollTop)
+  }, [scrollPositionMotionValue])
+
+  const bodyMarginTop = useTransform(scrollPositionMotionValue, scrollRange, [
+    padded
+      ? -(spacing.padding.large + spacing.padding.small)
+      : -spacing.padding.large,
+    0,
+  ])
+
+  const scrollFixerHeight = useTransform(
+    scrollPositionMotionValue,
+    scrollRange,
+    [
+      padded ? spacing.padding.small : 0,
+      scrollRange[1] + (padded ? spacing.padding.small : 0),
+    ]
+  )
+
+  const headerStubHeight = useTransform(
+    scrollPositionMotionValue,
+    scrollRange,
+    [padded ? spacing.padding.large : spacing.padding.small, 0]
+  )
+
+  useLayoutEffect(() => {
+    handleScroll()
+  }, [bodyKey, handleScroll])
+
+  const contentPaddingBottom = useMotionValue(
+    padded ? spacing.padding.small : 0
+  )
+  useLayoutEffect(() => {
+    const scrollableDistance =
+      contentRef.current.scrollHeight - contentRef.current.offsetHeight
+    if (scrollableDistance && scrollableDistance < scrollRange[1]) {
+      const newBottom = scrollRange[1] - scrollableDistance
+      contentPaddingBottom.set(newBottom)
+    }
+  }, [contentRef, contentPaddingBottom, scrollRange, padded])
 
   return (
-    <StyleContainer {...props}>
-      {header && <StyledHeader>{header}</StyledHeader>}
-
-      <StyledContent {...props}>
-        {children}
-        {branded && (
-          <StyledParagraph
-            branded={branded}
-            size="small"
-            align="center"
-            color="stoneGrey"
-            padded={false}
-          >
-            {appName ? `${appName} ` : ''} ⚡️by Groove
-          </StyledParagraph>
+    <ContainerContext.Provider
+      value={{
+        overlap,
+        scrollPositionMotionValue,
+        headerStubHeight,
+        scrollRange,
+      }}
+    >
+      <StyleContainer {...rest}>
+        {header && (
+          <div>
+            <HeaderAnimatedHeightWrapper headerKey={headerKey}>
+              {header}
+            </HeaderAnimatedHeightWrapper>
+          </div>
         )}
-      </StyledContent>
-    </StyleContainer>
+        <div>
+          <AnimatePresence exitBeforeEnter initial={false}>
+            <StyledMedian
+              padded={padded}
+              variants={medianAnimationVariants}
+              initial="initial"
+              animate="visible"
+              exit="exit"
+              key={medianKey}
+            >
+              {median}
+            </StyledMedian>
+          </AnimatePresence>
+        </div>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <StyledContent
+            padded={padded}
+            variants={contentAnimationVariants}
+            initial="initial"
+            animate="visible"
+            exit="exit"
+            key={bodyKey}
+            ref={contentRef}
+            onScroll={handleScroll}
+            style={{
+              ...(overlap && {
+                marginTop: bodyMarginTop,
+                paddingTop: scrollFixerHeight,
+                paddingBottom: contentPaddingBottom,
+              }),
+            }}
+          >
+            {children}
+            <AnimatePresence exitBeforeEnter initial={false}>
+              {branded && (
+                <motion.div
+                  variants={contentAnimationVariants}
+                  initial="initial"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <StyledParagraph
+                    size="small"
+                    align="center"
+                    color="stoneGrey"
+                  >
+                    {appName ? `${appName} ` : ''} ⚡️by Groove
+                  </StyledParagraph>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </StyledContent>
+        </AnimatePresence>
+      </StyleContainer>
+    </ContainerContext.Provider>
   )
 }
 
@@ -76,6 +240,10 @@ Container.propTypes = {
    * Specify if adding is added to this container. Setting this causes gap to be ignored
    */
   padded: PropTypes.bool,
+  /**
+   * Overlap content and header, be sure to set withOverlap on header component
+   */
+  overlap: PropTypes.bool,
 }
 
 Container.defaultProps = {
@@ -83,4 +251,5 @@ Container.defaultProps = {
   appName: null,
   backgroundColor: 'moonGrey',
   padded: true,
+  overlap: false,
 }

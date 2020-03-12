@@ -28,9 +28,9 @@ const StyledLabel = styled.div`
   }
 `
 
-export const Label = ({ ...props }) => {
-  return <StyledLabel {...props} />
-}
+export const Label = React.forwardRef(({ ...props }, forwardedRef) => {
+  return <StyledLabel {...props} ref={forwardedRef} />
+})
 
 Label.propTypes = {
   /**

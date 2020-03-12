@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { motion, useMotionValue } from 'framer-motion'
 import {
   CheckRadioBase,
   CheckRadioGroup,
@@ -8,9 +9,10 @@ import {
   HiddenElement,
 } from './CheckRadioBase'
 import { color } from '../shared/styles'
+import { generateTransition, transition } from '../shared/animation'
 
-const Icon = styled.svg`
-  fill: ${color.paperWhite};
+const Icon = styled(motion.svg)`
+  stroke: ${color.paperWhite};
   width: 8px;
   user-select: none;
 `
@@ -24,6 +26,7 @@ export const StyledCheckbox = styled.div`
   border: 1px solid ${color.metalGrey};
   background: ${color.paperWhite};
   cursor: pointer;
+  transition: ${generateTransition()};
   ${HiddenElement}:focus + &,
   &:hover {
     border: 1px solid ${color.primary};
@@ -126,6 +129,18 @@ CheckboxGroup.defaultProps = {
   direction: 'vertical',
 }
 
+const checkVariants = {
+  checked: {
+    pathLength: 1,
+    transition: {
+      delay:
+        (parseFloat(transition.duration.fast) * 0.55) /
+        (transition.duration.fast.indexOf('ms') > -1 ? 1000 : 1),
+    },
+  },
+  unchecked: { pathLength: 0 },
+}
+
 export const CheckboxOption = ({
   className,
   checked: controlledChecked,
@@ -181,6 +196,8 @@ export const CheckboxOption = ({
     [checked, contextProvided, groupName, groupOnChange, onChange]
   )
 
+  const checkPathLength = useMotionValue(0)
+
   return (
     <CheckRadioBase
       type="checkbox"
@@ -190,8 +207,20 @@ export const CheckboxOption = ({
       StyledComponent={StyledCheckbox}
       {...rest}
     >
-      <Icon viewBox="0 0 38 32">
-        <path d="M17.7625631,27.2374369 L37.9497475,7.05025253 L31.8994949,1 L13.9748737,18.9246212 L6.05025253,11 L0,17.0502525 L13.9748737,31.0251263 L17.7625631,27.2374369 Z" />
+      <Icon
+        viewBox="-3 -3 38 32"
+        initial={false}
+        animate={checked ? 'checked' : 'unchecked'}
+        whileHover="hover"
+      >
+        <motion.path
+          d="M0.620849609 10.503418 10.8676758 20.5925293 31.0175781 0.81640625"
+          fill="transparent"
+          strokeWidth="10"
+          variants={checkVariants}
+          style={{ pathLength: checkPathLength }}
+          custom={checked}
+        />
       </Icon>
     </CheckRadioBase>
   )

@@ -29,7 +29,9 @@ const StyledHeading = styled.span`
   text-align: ${props => ALIGNMENT[props.align]};
 `
 
-export const Heading = props => <StyledHeading {...props} />
+export const Heading = React.forwardRef((props, forwardedRef) => (
+  <StyledHeading {...props} ref={forwardedRef} />
+))
 
 Heading.propTypes = {
   /**
