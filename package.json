@@ -11,9 +11,6 @@
     "name": "Tair Assimov",
     "email": "tair@groovehq.com"
   },
-  "files": [
-    "dist"
-  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "build-storybook",
@@ -25,7 +22,7 @@
     "release": "yarn run build-pkg && ./scripts/release.sh",
     "start": "start-storybook -p 9009",
     "prepare": "install-peers",
-    "install-and-build": "pwd"
+    "install-and-build": "yarn install && yarn build-pkg"
   },
   "husky": {
     "hooks": {
