@@ -24,8 +24,7 @@
     "lint:package": "sort-package-json",
     "release": "yarn run build-pkg && ./scripts/release.sh",
     "start": "start-storybook -p 9009",
-    "prepare": "install-peers",
-    "postinstall": "yarn build-pkg"
+    "prepare": "echo \"PREPARING DESIGN-SYSTEM\" && install-peers && yarn build-pkg"
   },
   "husky": {
     "hooks": {
