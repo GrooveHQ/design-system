@@ -11,7 +11,7 @@ import { baseStyle, getValidationStateStyle } from '../shared/forms'
 const multiLineStyle = css`
   font-size: ${forms.typography.small.size}px;
   line-height: ${forms.typography.small.height}px;
-  padding: 13px ${spacing.padding.small}px;
+  padding: ${spacing.padding.tiny}px ${forms.padding.horizontal}px;
 `
 
 export const TextArea = React.forwardRef(

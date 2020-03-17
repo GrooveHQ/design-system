@@ -63,13 +63,25 @@ const variants = {
   open: {
     opacity: 1,
     y: 0,
+    transition: {
+      type: 'tween',
+      duration: 0.225,
+    },
   },
   closed: {
     opacity: 0,
     y: -8,
+    transition: {
+      type: 'tween',
+      duration: 0.225,
+    },
   },
   exited: {
     opacity: 0,
+    transition: {
+      type: 'tween',
+      duration: 0.225,
+    },
   },
 }
 

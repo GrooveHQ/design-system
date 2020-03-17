@@ -11,7 +11,7 @@ export const baseStyle = css`
   flex: 1 1 0%;
   font-size: ${forms.typography.small.size}px;
   min-width: 0;
-  padding: 0 ${spacing.padding.small}px;
+  padding: 0 ${forms.padding.horizontal}px;
   transition: ${generateTransition()};
   width: 100%;
   ::placeholder {

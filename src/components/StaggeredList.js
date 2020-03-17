@@ -4,7 +4,11 @@ import { motion } from 'framer-motion'
 const listVariants = {
   initial: {},
   visible: {
-    transition: { staggerChildren: 0.065, when: 'beforeChildren' },
+    transition: {
+      staggerChildren: 0.065,
+      when: 'beforeChildren',
+      duration: 0.225,
+    },
   },
   exit: {
     transition: {
@@ -22,11 +26,12 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      y: { type: 'tween', duration: 0.3, ease: 'easeOut' },
+      y: { type: 'tween', duration: 0.225, ease: 'easeOut' },
     },
   },
   exit: {
     opacity: 0,
+    transition: { type: 'tween', duration: 0.225, ease: 'easeOut' },
   },
 }
 

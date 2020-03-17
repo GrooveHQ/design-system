@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { icons } from './shared/icons'
 import { color as stylesColor } from './shared/styles'
+import { generateTransition } from './shared/animation'
 
 export const ICON_SIZES = {
   small: 16,
@@ -25,6 +26,10 @@ const Svg = styled.svg`
 
 const Path = styled.path`
   fill: ${props => stylesColor[props.color]};
+  transition: ${generateTransition('fill')};
+  ${Svg}:hover & {
+    fill: ${props => stylesColor[props.hoverColor || props.color]};
+  }
 `
 
 /**
@@ -35,10 +40,10 @@ const Path = styled.path`
  * - *non-decorative*: it means that it delivers information. For example, an icon as only child in a button. The meaning can be obvious visually, but it must have a proper text alternative via `aria-label` for screen readers. (ex: `<Icon icon="print" aria-label="Print this document" />`)
  */
 export const Icon = React.forwardRef(
-  ({ icon, block, color, ...props }, forwardedRef) => {
+  ({ icon, block, color, hoverColor, ...props }, forwardedRef) => {
     return (
       <Svg viewBox="0 0 24 24" block={block} {...props} ref={forwardedRef}>
-        <Path d={icons[icon]} color={color} />
+        <Path d={icons[icon]} color={color} hoverColor={hoverColor} />
       </Svg>
     )
   }
@@ -51,6 +56,10 @@ Icon.propTypes = {
    */
   color: PropTypes.string,
   /**
+   * Specify hover color
+   */
+  hoverColor: PropTypes.string,
+  /**
    * Specify size
    */
   size: PropTypes.oneOf(Object.keys(ICON_SIZES)),
@@ -60,5 +69,6 @@ Icon.propTypes = {
 Icon.defaultProps = {
   block: false,
   color: stylesColor.stoneGrey,
+  hoverColor: undefined,
   size: 'medium',
 }

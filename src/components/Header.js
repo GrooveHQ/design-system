@@ -25,7 +25,6 @@ const StyledHeader = styled(motion.div)`
 
   /* Links within Header */
   a,
-  a:visited,
   a:active,
   a:focus {
     opacity: 0.8;
@@ -56,7 +55,7 @@ const heightVariants = {
       paddingBottom: withMedian ? spacing.padding.small : 0,
       transition: {
         type: 'tween',
-        duration: 0.3,
+        duration: 0.225,
         ease: 'easeInOut',
       },
     }
@@ -67,7 +66,7 @@ const heightVariants = {
       paddingBottom: withMedian ? spacing.padding.small : 0,
       transition: {
         type: 'tween',
-        duration: 0.3,
+        duration: 0.225,
         ease: 'easeInOut',
       },
     }
@@ -78,7 +77,7 @@ const heightVariants = {
       paddingBottom: withMedian ? spacing.padding.small : 0,
       transition: {
         type: 'tween',
-        duration: 0.3,
+        duration: 0.225,
         ease: 'easeInOut',
       },
     }
@@ -95,7 +94,7 @@ const headerVariants = {
     x: 0,
     transition: {
       type: 'tween',
-      duration: 0.3,
+      duration: 0.225,
       ease: 'easeInOut',
     },
   },
@@ -104,7 +103,7 @@ const headerVariants = {
     x: 20,
     transition: {
       type: 'tween',
-      duration: 0.3,
+      duration: 0.225,
       ease: 'easeInOut',
     },
   },
