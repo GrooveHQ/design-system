@@ -25,7 +25,6 @@ const StyledHeader = styled(motion.div)`
 
   /* Links within Header */
   a,
-  a:visited,
   a:active,
   a:focus {
     opacity: 0.8;
