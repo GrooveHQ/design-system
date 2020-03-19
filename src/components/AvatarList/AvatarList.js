@@ -52,7 +52,15 @@ const AvatarItem = styled(motion.div)`
 
 const AvatarList = React.forwardRef(
   (
-    { compact, size, spacing: spacingName, max, children, ...rest },
+    {
+      compact,
+      compactHover,
+      size,
+      spacing: spacingName,
+      max,
+      children,
+      ...rest
+    },
     forwardedRef
   ) => {
     // NOTE (jscheel): We set the initial value to `false` because we need to
@@ -85,6 +93,8 @@ const AvatarList = React.forwardRef(
                   variants={itemVariants}
                   animate={
                     hoverOffsetCount !== false &&
+                    compact &&
+                    compactHover &&
                     (idx > hoverOffsetCount ? 'shifted' : 'visible')
                   }
                   onHoverStart={() => {
@@ -119,6 +129,14 @@ AvatarList.propTypes = {
   align: PropTypes.oneOf(Object.keys(ALIGNMENT)),
   max: PropTypes.number,
   children: PropTypes.arrayOf(Avatar).isRequired,
+  /**
+   * Overlap avatars
+   */
+  compact: PropTypes.bool,
+  /**
+   * Hovering over compact avatar list avatar will offset other avatars
+   */
+  compactHover: PropTypes.bool,
 }
 
 AvatarList.defaultProps = {
@@ -127,6 +145,8 @@ AvatarList.defaultProps = {
   inline: false,
   align: 'center',
   max: 8,
+  compact: false,
+  compactHover: true,
 }
 
 export default AvatarList
