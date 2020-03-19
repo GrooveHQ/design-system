@@ -48,18 +48,22 @@ const StyledCard = styled(motion.div)`
   }
 `
 
-export const Card = React.forwardRef(({ children, ...props }, ref) => (
-  <StyledCard
-    {...props}
-    ref={ref}
-    whileHover={{
-      boxShadow: props.plain ? 'none' : shadows.high,
-      scale: 1.015,
-    }}
-  >
-    {children}
-  </StyledCard>
-))
+export const Card = React.forwardRef(
+  ({ children, interactive, ...props }, ref) => (
+    <StyledCard
+      {...props}
+      ref={ref}
+      whileHover={
+        interactive && {
+          boxShadow: props.plain ? 'none' : shadows.high,
+          y: -2,
+        }
+      }
+    >
+      {children}
+    </StyledCard>
+  )
+)
 
 Card.propTypes = {
   /**

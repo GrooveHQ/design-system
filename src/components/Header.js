@@ -54,18 +54,33 @@ const heightVariants = {
     return {
       height: prevHeight,
       paddingBottom: withMedian ? spacing.padding.small : 0,
+      transition: {
+        type: 'tween',
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
     }
   },
   visible: ({ withMedian }) => {
     return {
       height: 'auto',
       paddingBottom: withMedian ? spacing.padding.small : 0,
+      transition: {
+        type: 'tween',
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
     }
   },
   exit: ({ withMedian }) => {
     return {
       height: 'auto',
       paddingBottom: withMedian ? spacing.padding.small : 0,
+      transition: {
+        type: 'tween',
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
     }
   },
 }
@@ -78,10 +93,20 @@ const headerVariants = {
   visible: {
     opacity: 1,
     x: 0,
+    transition: {
+      type: 'tween',
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
   },
   exit: {
     opacity: 0,
     x: 20,
+    transition: {
+      type: 'tween',
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
   },
 }
 

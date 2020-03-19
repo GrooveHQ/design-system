@@ -52,7 +52,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'beforeChildren',
       type: 'tween',
-      duration: 0.3,
+      duration: 0.2,
     },
   },
   exit: {
@@ -60,7 +60,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'afterChildren',
       type: 'tween',
-      duration: 0.3,
+      duration: 0.2,
     },
   },
 }
@@ -79,6 +79,9 @@ const medianAnimationVariants = {
   },
   exit: {
     opacity: 0,
+    transition: {
+      delay: 0.2,
+    },
   },
 }
 

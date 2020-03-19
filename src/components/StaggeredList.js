@@ -22,7 +22,7 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      y: { type: 'spring', stiffness: 500, damping: 30 },
+      y: { type: 'tween', duration: 0.3, ease: 'easeOut' },
     },
   },
   exit: {
