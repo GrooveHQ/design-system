@@ -10,6 +10,7 @@ import {
 import Color from 'color'
 import { color as colors, spacing, shadows, forms } from './shared/styles'
 import useScrollbarWidth from '../utils/useScrollbarWidth'
+import { transition } from './shared/animation'
 
 import { Paragraph } from './Paragraph'
 import { HeaderAnimatedHeightWrapper } from './Header'
@@ -76,7 +77,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'beforeChildren',
       type: 'tween',
-      duration: 0.15,
+      duration: transition.duration.fast.s.number,
     },
   },
   exit: {
@@ -84,7 +85,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'afterChildren',
       type: 'tween',
-      duration: 0.15,
+      duration: transition.duration.fast.s.number,
     },
   },
 }
@@ -99,14 +100,14 @@ const medianAnimationVariants = {
     y: 0,
     transition: {
       delay: 0.15,
-      duration: 0.225,
+      duration: transition.duration.default.s.number,
     },
   },
   exit: {
     opacity: 0,
     transition: {
       delay: 0.2,
-      duration: 0.225,
+      duration: transition.duration.default.s.number,
     },
   },
 }

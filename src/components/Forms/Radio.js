@@ -124,11 +124,7 @@ RadioGroup.defaultProps = {
 const circleVariants = {
   checked: {
     r: 3,
-    transition: {
-      delay:
-        (parseFloat(transition.duration.default) * 0.15) /
-        (transition.duration.default.indexOf('ms') > -1 ? 1000 : 1),
-    },
+    transition: { delay: transition.duration.default.s.number * 0.15 },
   },
   unchecked: {
     r: 0,

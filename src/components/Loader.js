@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { Paragraph, PARAGRAPH_SIZES as TEXT_SIZES } from './Paragraph'
 import { color as stylesColor } from './shared/styles'
+import { transition } from './shared/animation'
 
 export const LOADER_SIZES = {
   small: 16,
@@ -60,7 +61,7 @@ export const Loader = React.forwardRef(
             opacity: 1,
             transition: {
               delay: delay / 1000,
-              duration: 0.225,
+              duration: transition.duration.default.s.number,
             },
           }
         }

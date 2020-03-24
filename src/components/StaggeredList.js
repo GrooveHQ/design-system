@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { transition } from './shared/animation'
 
 const listVariants = {
   initial: {},
@@ -7,7 +8,7 @@ const listVariants = {
     transition: {
       staggerChildren: 0.065,
       when: 'beforeChildren',
-      duration: 0.225,
+      duration: transition.duration.default.s.number,
     },
   },
   exit: {
@@ -26,12 +27,20 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      y: { type: 'tween', duration: 0.225, ease: 'easeOut' },
+      y: {
+        type: 'tween',
+        duration: transition.duration.default.s.number,
+        ease: 'easeOut',
+      },
     },
   },
   exit: {
     opacity: 0,
-    transition: { type: 'tween', duration: 0.225, ease: 'easeOut' },
+    transition: {
+      type: 'tween',
+      duration: transition.duration.default.s.number,
+      ease: 'easeOut',
+    },
   },
 }
 
