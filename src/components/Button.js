@@ -4,7 +4,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import { color, infoColor, spacing, forms, typography } from './shared/styles'
+import { generateTransition } from './shared/animation'
 import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
 
@@ -18,6 +20,7 @@ const base = css`
   /* NOTE (jscheel): Normally, this padding will be larger because children will exist. */
   padding: 0 ${spacing.padding.tiny}px;
   min-width: ${spacing.padding.tiny * 2 + 24}px;
+  transition: ${generateTransition()};
   vertical-align: middle;
   /* HACK (jscheel): Hack for https://github.com/facebook/react/issues/4251 */
   &[disabled] {
@@ -314,7 +317,7 @@ export const Button = React.forwardRef(
       )
     }
     return (
-      <button
+      <motion.button
         css={classes}
         type="button"
         {...rest}
@@ -324,7 +327,7 @@ export const Button = React.forwardRef(
         {!loading && iconName && icon}
         {children}
         {loading && <LoadingDots verticalAlign={!children} />}
-      </button>
+      </motion.button>
     )
   }
 )

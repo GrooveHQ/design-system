@@ -3,6 +3,7 @@ import React, { useContext, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
+import { AnimatePresence, motion } from 'framer-motion'
 import { color, spacing } from '../shared/styles'
 import { FieldContext } from './Field'
 import { Label } from './Label'
@@ -13,7 +14,7 @@ import {
   getValidationStateStyle,
 } from '../shared/forms'
 
-const StyledIcon = styled(Icon)`
+const StyledIcon = styled(motion.custom(Icon))`
   position: absolute;
   right: ${props => (props.position === 'right' ? '12px' : 'auto')};
   left: ${props => (props.position === 'left' ? '12px' : 'auto')};
@@ -110,14 +111,20 @@ export const Input = React.forwardRef(
           {...rest}
           ref={ref}
         />
-        {icon && !button && (
-          <StyledIcon
-            onClick={onIconClick ? handleIconClick : undefined}
-            icon={icon}
-            position={iconPosition}
-            color="metalGrey"
-          />
-        )}
+        <AnimatePresence initial={false} exitBeforeEnter>
+          {icon && !button && (
+            <StyledIcon
+              onClick={onIconClick ? handleIconClick : undefined}
+              icon={icon}
+              position={iconPosition}
+              color="metalGrey"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              key={icon}
+            />
+          )}
+        </AnimatePresence>
         {button && !icon && (
           <ButtonWrapper position={buttonPosition}>{button}</ButtonWrapper>
         )}

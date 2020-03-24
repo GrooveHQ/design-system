@@ -23,7 +23,8 @@
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "lint:package": "sort-package-json",
     "release": "yarn run build-pkg && ./scripts/release.sh",
-    "start": "start-storybook -p 9009"
+    "start": "start-storybook -p 9009",
+    "prepare": "install-peers"
   },
   "husky": {
     "hooks": {
@@ -58,6 +59,7 @@
   },
   "dependencies": {
     "color": "^3.1.2",
+    "framer-motion": "^1.9.1",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
     "react-scripts": "3.2.0"
@@ -96,6 +98,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "husky": "^3.1.0",
+    "install-peers-cli": "^2.2.0",
     "lint-staged": "^9.4.3",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",

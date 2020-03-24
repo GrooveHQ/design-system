@@ -49,7 +49,9 @@ const StyledParagraph = styled.span`
   }
 `
 
-export const Paragraph = props => <StyledParagraph {...props} />
+export const Paragraph = React.forwardRef((props, forwardedRef) => (
+  <StyledParagraph {...props} ref={forwardedRef} />
+))
 
 Paragraph.propTypes = {
   /**
