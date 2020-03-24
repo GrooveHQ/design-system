@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react'
-import { AnimatePresence } from 'framer-motion'
 import { StaggeredList } from './StaggeredList'
 import { Card } from './Card'
 import { Paragraph } from './Paragraph'
@@ -43,37 +42,36 @@ export const Default = () => {
     },
   ]
 
-  const [visible, setVisible] = useState(true)
-  const forceUpdate = useCallback(() => {
-    setVisible(false)
+  const [animState, setAnimState] = useState('visible')
+  const reset = useCallback(() => {
+    setAnimState('exit')
     setTimeout(() => {
-      setVisible(true)
-    }, 1000)
-  }, [])
+      setAnimState('initial')
+      setTimeout(() => {
+        setAnimState('visible')
+      }, 300)
+    }, 300)
+  }, [setAnimState])
 
   return (
     <React.Fragment>
-      <Button onClick={forceUpdate} style={{ marginBottom: 20 }}>
+      <Button onClick={reset} style={{ marginBottom: 20 }}>
         replay
       </Button>
-      <AnimatePresence>
-        {visible && (
-          <StaggeredList>
-            {replicants.map(({ key, name, description }) => {
-              return (
-                <Card interactive key={key}>
-                  <Paragraph size="medium" padded={false}>
-                    {name}
-                  </Paragraph>
-                  <Paragraph size="small" padded={false}>
-                    {description}
-                  </Paragraph>
-                </Card>
-              )
-            })}
-          </StaggeredList>
-        )}
-      </AnimatePresence>
+      <StaggeredList initial="initial" animate={animState}>
+        {replicants.map(({ key, name, description }) => {
+          return (
+            <Card interactive key={key}>
+              <Paragraph size="medium" padded={false}>
+                {name}
+              </Paragraph>
+              <Paragraph size="small" padded={false}>
+                {description}
+              </Paragraph>
+            </Card>
+          )
+        })}
+      </StaggeredList>
     </React.Fragment>
   )
 }
