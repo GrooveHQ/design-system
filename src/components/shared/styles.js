@@ -37,7 +37,7 @@ function generateStateColors(baseColors = {}) {
 const monochromeColors = {
   ...generateStateColors({
     jetBlack: '#1B1B1B',
-    gunGrey: '#4F5D6A',
+    gunGrey: '#45525E',
     stoneGrey: '#7E8F9F',
     metalGrey: '#E4E8ED',
     ashGrey: '#EEF1F5',
@@ -88,8 +88,8 @@ export const borderColor = {
 
 // Shadows
 export const shadows = {
-  low: '0 2px 6px 0 rgba(0, 0, 0, 0.15)',
-  high: '0 4px 16px 0 rgba(0, 0, 0, 0.1)',
+  low: '0 2px 6px 0 rgba(0, 0, 0, 0.1)',
+  high: '0 2px 6px 0 rgba(0, 0, 0, 0.15)',
 }
 
 // Spacing
@@ -187,6 +187,9 @@ export const forms = {
   typography: {
     regular: { ...typography.sizes.p1 },
     small: { ...typography.sizes.p3 },
+  },
+  padding: {
+    horizontal: 12,
   },
 }
 

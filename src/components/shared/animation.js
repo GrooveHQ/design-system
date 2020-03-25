@@ -2,9 +2,18 @@
 
 export const transition = {
   duration: {
-    slow: '750ms',
-    default: '300ms',
-    fast: '150ms',
+    slow: {
+      ms: { dimension: '450ms', number: 450 },
+      s: { dimension: '0.45s', number: 0.45 },
+    },
+    default: {
+      ms: { dimension: '225ms', number: 225 },
+      s: { dimension: '0.225s', number: 0.225 },
+    },
+    fast: {
+      ms: { dimension: '150ms', number: 150 },
+      s: { dimension: '0.15s', number: 0.15 },
+    },
   },
   easing: {
     default: 'ease-in-out',
@@ -16,7 +25,7 @@ export const transition = {
 
 export const generateTransition = (
   attributes = transition.attributes.default,
-  duration = transition.duration.default,
+  duration = transition.duration.default.ms.dimension,
   easing = transition.easing.default
 ) => {
   if (!Array.isArray(attributes)) {

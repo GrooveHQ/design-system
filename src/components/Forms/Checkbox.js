@@ -132,11 +132,7 @@ CheckboxGroup.defaultProps = {
 const checkVariants = {
   checked: {
     pathLength: 1,
-    transition: {
-      delay:
-        (parseFloat(transition.duration.fast) * 0.55) /
-        (transition.duration.fast.indexOf('ms') > -1 ? 1000 : 1),
-    },
+    transition: { delay: transition.duration.fast.s.number * 0.55 },
   },
   unchecked: { pathLength: 0 },
 }

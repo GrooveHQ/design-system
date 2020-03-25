@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Icon } from '../Icon'
 import { color, spacing, forms } from '../shared/styles'
+import { transition } from '../shared/animation'
 
 const FieldContainer = styled.div`
   display: flex;
@@ -28,8 +29,16 @@ const ValidationIcon = styled(Icon)`
 
 const ValidationAnimationVariants = {
   initial: { opacity: 0, y: -3 },
-  visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -3 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: transition.duration.default.s.number },
+  },
+  exit: {
+    opacity: 0,
+    y: -3,
+    transition: { duration: transition.duration.default.s.number },
+  },
 }
 
 const StateMessage = ({ icon: iconName, color: colorName, children }) => {

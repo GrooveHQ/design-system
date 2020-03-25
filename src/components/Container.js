@@ -7,7 +7,11 @@ import {
   useTransform,
   useMotionValue,
 } from 'framer-motion'
-import { color, spacing, shadows } from './shared/styles'
+import Color from 'color'
+import { color as colors, spacing, shadows, forms } from './shared/styles'
+import useScrollbarWidth from '../utils/useScrollbarWidth'
+import { transition } from './shared/animation'
+
 import { Paragraph } from './Paragraph'
 import { HeaderAnimatedHeightWrapper } from './Header'
 import ContainerContext from './ContainerContext'
@@ -19,7 +23,7 @@ const StyleContainer = styled.div`
   height: 608px;
   width: 352px;
   border-radius: ${spacing.borderRadius.default}px;
-  background-color: ${props => color[props.backgroundColor]};
+  background-color: ${props => colors[props.backgroundColor]};
   box-shadow: ${shadows.high};
   overflow: hidden;
 `
@@ -32,11 +36,32 @@ const StyledContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   z-index: 99999;
+  position: relative;
 `
 
 const StyledMedian = styled(motion.div)`
   ${props => props.padded && `padding: 0 ${spacing.padding.small}px`};
-  margin-top: -${spacing.padding.small}px;
+  margin-top: -${forms.input.height.regular / 2}px;
+  position: relative;
+  &:after {
+    content: '';
+    display: ${props => (props.gradient ? 'block' : 'none')};
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    right: ${props => props.scrollbarWidth}px;
+    height: 10px;
+    border-top: 3px solid ${props => colors[props.gradientColor]};
+    background: linear-gradient(
+      ${props => colors[props.gradientColor]},
+      ${props =>
+        Color(colors[props.gradientColor])
+          .fade(1)
+          .rgb()
+          .string()}
+    );
+    z-index: 9999999;
+  }
 `
 
 const StyledParagraph = styled(Paragraph)`
@@ -52,7 +77,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'beforeChildren',
       type: 'tween',
-      duration: 0.2,
+      duration: transition.duration.fast.s.number,
     },
   },
   exit: {
@@ -60,7 +85,7 @@ const contentAnimationVariants = {
     transition: {
       when: 'afterChildren',
       type: 'tween',
-      duration: 0.2,
+      duration: transition.duration.fast.s.number,
     },
   },
 }
@@ -75,12 +100,14 @@ const medianAnimationVariants = {
     y: 0,
     transition: {
       delay: 0.15,
+      duration: transition.duration.default.s.number,
     },
   },
   exit: {
     opacity: 0,
     transition: {
       delay: 0.2,
+      duration: transition.duration.default.s.number,
     },
   },
 }
@@ -148,6 +175,8 @@ export const Container = ({
     }
   }, [contentRef, contentPaddingBottom, scrollRange, padded])
 
+  const scrollbarWidth = useScrollbarWidth()
+
   return (
     <ContainerContext.Provider
       value={{
@@ -174,6 +203,9 @@ export const Container = ({
               animate="visible"
               exit="exit"
               key={medianKey}
+              gradientColor={rest.backgroundColor}
+              gradient={!!median}
+              scrollbarWidth={scrollbarWidth}
             >
               {median}
             </StyledMedian>

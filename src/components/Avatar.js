@@ -141,9 +141,13 @@ export const Avatar = ({
       size={listContext.size || size}
       title={decodedName}
       presence={presence}
-      border={border}
     >
-      <StyledAvatar size={listContext.size || size} {...a11yProps} {...props}>
+      <StyledAvatar
+        size={listContext.size || size}
+        border={border}
+        {...a11yProps}
+        {...props}
+      >
         {avatarFigure}
       </StyledAvatar>
     </StyledAvatarContainer>

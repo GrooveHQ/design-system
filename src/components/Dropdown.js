@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
 import { color, spacing } from './shared/styles'
+import { transition } from './shared/animation'
 import { Card } from './Card'
 import { Paragraph } from './Paragraph'
 
@@ -63,13 +64,25 @@ const variants = {
   open: {
     opacity: 1,
     y: 0,
+    transition: {
+      type: 'tween',
+      duration: transition.duration.default.s.number,
+    },
   },
   closed: {
     opacity: 0,
     y: -8,
+    transition: {
+      type: 'tween',
+      duration: transition.duration.default.s.number,
+    },
   },
   exited: {
     opacity: 0,
+    transition: {
+      type: 'tween',
+      duration: transition.duration.default.s.number,
+    },
   },
 }
 
