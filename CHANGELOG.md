@@ -1,3 +1,19 @@
+# v1.0.0 (Tue Mar 24 2020)
+
+#### 💥  Breaking Change
+
+- Add animation support [#58](https://github.com/GrooveHQ/design-system/pull/58) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Various Design Polish [#60](https://github.com/GrooveHQ/design-system/pull/60) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v0.12.3 (Wed Mar 11 2020)
 
 #### 🐛  Bug Fix
