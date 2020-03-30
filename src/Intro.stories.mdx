@@ -43,11 +43,11 @@ yarn add @emotion/core
 ```
 import { Global, css } from '@emotion/core'
 import { global } from '@groovehq/design-system'
-const { bodyStyles, baseColorVariables } = global
+const { bodyStyles, variables } = global
 
 const customGlobalStyle = css`
   :root {
-    ${baseColorVariables}
+    ${variables}
     // Custom variables for the app
   }
   body {

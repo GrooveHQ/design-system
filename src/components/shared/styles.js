@@ -8,10 +8,10 @@ const disabledMixColor = '#F7F9FA' // moonGrey
 // Hover: H - Up 1˚, S - Up 10%, B - Down 10%
 // Active: H - Up 2˚, S - Up 20%, B - Down 20%
 // Disabled: 50% mix with moonGrey
-function generateStateColors(baseColors = {}) {
-  return Object.keys(baseColors).reduce(
+export function generateStateColors(colors = {}) {
+  return Object.keys(colors).reduce(
     (acc, colorName) => {
-      const curColor = Color(baseColors[colorName])
+      const curColor = Color(colors[colorName])
       return {
         ...acc,
         [`${colorName}Hover`]: curColor
@@ -29,40 +29,64 @@ function generateStateColors(baseColors = {}) {
           .hex(),
       }
     },
-    { ...baseColors }
+    { ...colors }
   )
 }
 
-// Monochrome Colors
-const monochromeColors = {
-  ...generateStateColors({
-    jetBlack: '#1B1B1B',
-    gunGrey: '#45525E',
-    stoneGrey: '#7E8F9F',
-    metalGrey: '#E4E8ED',
-    ashGrey: '#EEF1F5',
-    moonGrey: '#F7F9FA',
-    paperWhite: '#FFFFFF',
-  }),
-  // white is white, we don't want color variations
-  paperWhiteActive: '#FFFFFF',
-  paperWhiteHover: '#FFFFFF',
-  paperWhiteDisabled: '#FFFFFF',
+export const generateColorVariables = (colors = {}) => {
+  const supportedBaseColors = Object.keys(baseColors)
+  const parsedBaseColors = Object.keys(colors).reduce((result, c) => {
+    if (supportedBaseColors.includes(c)) {
+      // eslint-disable-next-line no-param-reassign
+      result[c] = colors[c]
+    }
+    return result
+  }, {})
+
+  const allColors = {
+    ...color,
+    ...generateStateColors(parsedBaseColors),
+  }
+
+  return Object.keys(allColors)
+    .map(c => {
+      return `--color-${c}: ${allColors[c]};`
+    })
+    .join('\n')
 }
 
 // Base Colors
-const baseColors = generateStateColors({
+const baseColors = {
   primary: '#6187E0',
   groovy: '#0BA0BE',
   mintGreen: '#1BB99D',
   sunYellow: '#D4A929',
   lightYellow: '#FAEEC7',
   candyRed: '#CC2B3E',
-})
+}
+
+// Monochrome Colors
+const monochromeColors = {
+  jetBlack: '#1B1B1B',
+  gunGrey: '#45525E',
+  stoneGrey: '#7E8F9F',
+  metalGrey: '#E4E8ED',
+  ashGrey: '#EEF1F5',
+  moonGrey: '#F7F9FA',
+}
+
+const whiteColors = {
+  // keep the similar color states for consistency
+  paperWhite: '#FFFFFF',
+  paperWhiteActive: '#FFFFFF',
+  paperWhiteHover: '#FFFFFF',
+  paperWhiteDisabled: '#FFFFFF',
+}
 
 export const color = {
-  ...baseColors,
-  ...monochromeColors,
+  ...generateStateColors(baseColors),
+  ...generateStateColors(monochromeColors),
+  ...whiteColors,
 }
 
 // Info Colors
