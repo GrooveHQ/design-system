@@ -8,7 +8,7 @@ const disabledMixColor = '#F7F9FA' // moonGrey
 // Hover: H - Up 1˚, S - Up 10%, B - Down 10%
 // Active: H - Up 2˚, S - Up 20%, B - Down 20%
 // Disabled: 50% mix with moonGrey
-export function generateStateColors(colors = {}) {
+function generateStateColors(colors = {}) {
   return Object.keys(colors).reduce(
     (acc, colorName) => {
       const curColor = Color(colors[colorName])
