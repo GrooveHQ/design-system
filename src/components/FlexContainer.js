@@ -24,8 +24,13 @@ const GAP = {
 
 const StyledFlexContainer = styled.div`
   display: ${props => (props.inline ? 'inline-flex' : 'flex')};
-  flex-direction: ${props =>
-    props.direction === 'vertical' ? 'column' : 'row'};
+  flex-direction: ${props => {
+    let dir = props.direction === 'vertical' ? 'column' : 'row'
+    if (props.reverse) {
+      dir = `${dir}-reverse`
+    }
+    return dir
+  }};
   justify-content: ${props => ALIGNMENT[props.alignHorizontal]};
   align-items: ${props => ALIGNMENT[props.alignVertical]};
 
@@ -42,6 +47,7 @@ const StyledFlexContainer = styled.div`
 export const FlexContainerContext = React.createContext({
   gapHorizontal: undefined,
   gapVertical: undefined,
+  reverse: false,
 })
 
 export const FlexContainer = ({ children, ...rest }) => {
@@ -51,6 +57,7 @@ export const FlexContainer = ({ children, ...rest }) => {
         value={{
           gapHorizontal: rest.gapHorizontal,
           gapVertical: rest.gapVertical,
+          reverse: rest.reverse,
         }}
       >
         {children}
@@ -64,6 +71,10 @@ FlexContainer.propTypes = {
    * Specify direction
    */
   direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * Use reverse direction
+   */
+  reverse: PropTypes.bool,
   /**
    * Use inline-flex
    */
@@ -88,6 +99,7 @@ FlexContainer.propTypes = {
 
 FlexContainer.defaultProps = {
   direction: 'horizontal',
+  reverse: false,
   inline: false,
   alignHorizontal: 'start',
   alignVertical: 'start',

@@ -27,9 +27,16 @@ const StyledFlexItem = styled.div`
   align-self: ${props => ALIGNMENT[props.align]};
   flex-grow: ${props => props.grow};
   flex-shrink: ${props => props.shrink};
-
-  margin-left: ${props => (props.gapHorizontal ? GAP[props.gapHorizontal] : 0)};
-  margin-top: ${props => (props.gapVertical ? GAP[props.gapVertical] : 0)};
+  ${({ reverse, gapHorizontal, gapVertical }) => {
+    const hName = reverse ? 'margin-right' : 'margin-left'
+    const vName = reverse ? 'margin-bottom' : 'margin-top'
+    const hValue = gapHorizontal ? GAP[gapHorizontal] : 0
+    const vValue = gapVertical ? GAP[gapVertical] : 0
+    return `
+      ${hName}: ${hValue};
+      ${vName}: ${vValue};
+    `
+  }}
 `
 
 export const FlexItem = React.forwardRef(
@@ -40,6 +47,7 @@ export const FlexItem = React.forwardRef(
         ref={ref}
         gapHorizontal={gapHorizontal || containerContext.gapHorizontal}
         gapVertical={gapVertical || containerContext.gapVertical}
+        reverse={containerContext.reverse}
         {...props}
       >
         {children}
