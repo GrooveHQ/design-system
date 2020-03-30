@@ -11,10 +11,10 @@
     "name": "Tair Assimov",
     "email": "tair@groovehq.com"
   },
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
   "scripts": {
     "build": "build-storybook",
     "build-pkg": "babel src -d dist",
@@ -22,9 +22,9 @@
     "lint": "eslint .",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "lint:package": "sort-package-json",
+    "prepare": "install-peers",
     "release": "yarn run build-pkg && ./scripts/release.sh",
-    "start": "start-storybook -p 9009",
-    "prepare": "install-peers"
+    "start": "start-storybook -p 9009"
   },
   "husky": {
     "hooks": {
@@ -72,14 +72,14 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
-    "@storybook/addon-actions": "^5.3.8",
-    "@storybook/addon-docs": "^5.3.8",
-    "@storybook/addon-knobs": "^5.3.8",
-    "@storybook/addon-links": "^5.3.8",
-    "@storybook/addon-storysource": "^5.3.8",
-    "@storybook/addons": "^5.3.8",
-    "@storybook/react": "^5.3.8",
-    "@storybook/source-loader": "^5.3.8",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-docs": "^5.3.17",
+    "@storybook/addon-knobs": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addon-storysource": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
+    "@storybook/source-loader": "^5.3.17",
     "auto": "^7.16.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
