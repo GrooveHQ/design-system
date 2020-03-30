@@ -1,16 +1,11 @@
 import { css } from '@emotion/core'
 import { color, backgroundColor, borderColor, typography } from './styles'
 
-const baseColorVariables = () =>
-  Object.keys(color)
-    .map(c => {
-      return `--color-${c}: ${color[c]};`
-    })
-    .join('\n')
-
-export const variables = `
-  ${baseColorVariables()}
-`
+export const variables = Object.keys(color)
+  .map(c => {
+    return `--color-${c}: ${color[c]};`
+  })
+  .join('\n')
 
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
