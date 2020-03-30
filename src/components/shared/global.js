@@ -1,12 +1,12 @@
 import { css } from '@emotion/core'
 import { color, backgroundColor, borderColor, typography } from './styles'
 
-const baseColorVariables = () => {
-  const vars = Object.keys(color).map(c => {
-    return `--color-${c}: ${color[c]};`
-  })
-  return vars.join('\n')
-}
+const baseColorVariables = () =>
+  Object.keys(color)
+    .map(c => {
+      return `--color-${c}: ${color[c]};`
+    })
+    .join('\n')
 
 export const variables = `
   ${baseColorVariables()}
@@ -15,7 +15,7 @@ export const variables = `
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
   font-size: ${typography.sizes.p1.size}px;
-  color: var(--color-jet-black);
+  color: var(--color-jetBlack);
 
   margin: 0;
   overflow-y: auto;
@@ -98,7 +98,7 @@ export const bodyStyles = css`
     white-space: pre-wrap;
 
     background: ${backgroundColor.medium};
-    color: var(--color-jet-black);
+    color: var(--color-jetBlack);
     border-radius: 3px;
     margin: 1rem 0;
   }
