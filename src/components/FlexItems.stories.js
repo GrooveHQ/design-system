@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { color, spacing, typography } from './shared/styles'
+import { spacing, typography } from './shared/styles'
 import { FlexContainer as UnstyledFlexContainer } from './FlexContainer'
 import { FlexItem as UnstyledFlexItem } from './FlexItem'
 
 const FlexContainer = styled(UnstyledFlexContainer)`
   width: 100%;
-  background: ${color.gunGrey};
+  background: var(--color-gunGrey);
   text-align: center;
   padding: ${spacing.padding.tiny}px;
 `
@@ -15,9 +15,9 @@ const FlexItem = styled(UnstyledFlexItem)`
   flex-basis: ${spacing.padding.massive}px;
   height: ${spacing.padding.massive}px;
   width: ${spacing.padding.massive}px;
-  background: ${color.sunYellow};
-  border: 1px solid ${color.paperWhite};
-  color: ${color.paperWhite};
+  background: var(--color-sunYellow);
+  border: 1px solid var(--color-paperWhite);
+  color: var(--color-paperWhite);
   font-size: ${typography.sizes.h1.size}px;
   padding-top: 20px;
 `

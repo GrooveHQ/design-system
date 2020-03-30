@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
 import ContainerContext from './ContainerContext'
-import { color, spacing } from './shared/styles'
+import { spacing } from './shared/styles'
 import { transition } from './shared/animation'
 
 const containerSpacing = {
@@ -18,7 +18,7 @@ const containerSpacing = {
 }
 
 const StyledHeader = styled(motion.div)`
-  background-color: ${color.primary};
+  background-color: var(--color-primary);
   border-top-left-radius: ${spacing.borderRadius.default}px;
   border-top-right-radius: ${spacing.borderRadius.default}px;
   position: relative;

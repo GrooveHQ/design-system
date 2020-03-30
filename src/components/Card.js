@@ -18,7 +18,7 @@ const BORDERS = {
 }
 
 const StyledCard = styled(motion.div)`
-  background-color: ${props => color[props.color]};
+  background-color: ${props => `var(--color-${color[props.color]})`};
   border-radius: ${props => spacing.borderRadius[props.radius]}px;
   margin-bottom: ${spacing.padding.tiny}px;
   text-align: left;

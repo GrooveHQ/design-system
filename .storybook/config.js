@@ -5,9 +5,12 @@ import grooveTheme from './grooveTheme'
 import { loadFontsForStorybook } from '../src/utils/index'
 import { Global, css } from '@emotion/core'
 
-import { bodyStyles } from '../src/components/shared/global'
+import { variables, bodyStyles } from '../src/components/shared/global'
 
 const customGlobalStyle = css`
+  :root {
+    ${variables}
+  }
   body {
     ${bodyStyles}
   }

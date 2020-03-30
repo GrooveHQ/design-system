@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, typography, spacing } from './shared/styles'
+import { typography, spacing } from './shared/styles'
 
 const SIZES = {
   big: 'h1',
@@ -25,7 +25,7 @@ const StyledHeading = styled.span`
     props.bold ? typography.weight.bold : typography.weight.medium};
   font-size: ${props => typography.sizes[SIZES[props.size]].size}px;
   line-height: ${props => typography.sizes[SIZES[props.size]].height}px;
-  color: ${props => color[props.color]};
+  color: ${props => `var(--color-${props.color})`};
   text-align: ${props => ALIGNMENT[props.align]};
 `
 

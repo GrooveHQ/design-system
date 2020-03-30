@@ -34,7 +34,7 @@ const example = () => (
 
 ## Global styles
 
-Components within the design system assume that a set of global styles have been configured. Here is how you can use [Emotion Globals](https://emotion.sh/docs/globals) to inject our global styles into your app:
+Components within the design system assume that a set of global variables and styles have been configured. Here is how you can use [Emotion Globals](https://emotion.sh/docs/globals) to inject our global variables and styles into your app:
 
 ```
 yarn add @emotion/core
@@ -43,9 +43,13 @@ yarn add @emotion/core
 ```
 import { Global, css } from '@emotion/core'
 import { global } from '@groovehq/design-system'
-const { bodyStyles } = global
+const { bodyStyles, baseColorVariables } = global
 
 const customGlobalStyle = css`
+  :root {
+    ${baseColorVariables}
+    // Custom variables for the app
+  }
   body {
     ${bodyStyles}
     // Custom body styling for the app
