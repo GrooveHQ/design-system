@@ -33,7 +33,7 @@ const StyledFlexContainer = styled.div`
     props.gapHorizontal ? GAP[props.gapHorizontal] : 0}px;
   margin-top: ${props => (props.gapVertical ? GAP[props.gapVertical] : 0)}px;
 
-  div:first-of-type {
+  > div:first-of-type {
     margin-left: 0;
     margin-top: 0;
   }
