@@ -8,11 +8,10 @@ import {
   GroupContext,
   HiddenElement,
 } from './CheckRadioBase'
-import { color } from '../shared/styles'
 import { generateTransition, transition } from '../shared/animation'
 
 const Icon = styled(motion.svg)`
-  fill: ${color.primary};
+  fill: var(--color-primary);
   width: 6px;
   user-select: none;
 `
@@ -23,16 +22,16 @@ const StyledRadio = styled.div`
   width: 16px;
   height: 16px;
   border-radius: 16px;
-  border: 1px solid ${color.metalGrey};
-  background: ${color.paperWhite};
+  border: 1px solid var(--color-metalGrey);
+  background: var(--color-paperWhite);
   cursor: pointer;
   transition: ${generateTransition()};
   ${HiddenElement}:focus + &,
   &:hover {
-    border: 1px solid ${color.primary};
+    border: 1px solid var(--color-primary);
   }
   ${HiddenElement}:checked + & {
-    border: 1px solid ${color.primary};
+    border: 1px solid var(--color-primary);
   }
 `
 

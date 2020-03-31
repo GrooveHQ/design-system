@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, typography, spacing } from './shared/styles'
+import { typography, spacing } from './shared/styles'
 
 export const PARAGRAPH_SIZES = {
   big: 'p1',
@@ -26,24 +26,24 @@ const StyledParagraph = styled.span`
   font-size: ${props => typography.sizes[PARAGRAPH_SIZES[props.size]].size}px;
   line-height: ${props =>
     typography.sizes[PARAGRAPH_SIZES[props.size]].height}px;
-  color: ${props => color[props.color]};
+  color: ${props => `var(--color-${props.color})`};
   text-align: ${props => ALIGNMENT[props.align]};
 
   a:hover &,
   a:focus &,
   & a:hover,
   & a:focus {
-    color: ${props => color[`${props.color}Hover`]};
+    color: ${props => `var(--color-${props.color}Hover)`};
   }
 
   a:active &,
   & a:active {
-    color: ${props => color[`${props.color}Active`]};
+    color: ${props => `var(--color-${props.color}Active)`};
   }
 
   a:disabled &,
   & a:disabled {
-    color: ${props => color[`${props.color}Disabled`]};
+    color: ${props => `var(--color-${props.color}Disabled)`};
   }
 `
 

@@ -14,7 +14,7 @@ export default {
 }
 
 const PrimaryBackground = styled.div`
-  background: ${color.primary};
+  background: var(--color-primary);
   padding: ${spacing.padding.medium}px;
 `
 

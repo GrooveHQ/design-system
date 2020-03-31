@@ -23,7 +23,7 @@ const StyleContainer = styled.div`
   height: 608px;
   width: 352px;
   border-radius: ${spacing.borderRadius.default}px;
-  background-color: ${props => colors[props.backgroundColor]};
+  background-color: ${props => `var(--color-${props.backgroundColor})`};
   box-shadow: ${shadows.high};
   overflow: hidden;
 `

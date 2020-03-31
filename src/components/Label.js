@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { color, spacing, typography } from './shared/styles'
+import { spacing, typography } from './shared/styles'
 
 const StyledLabel = styled.div`
   display: inline-flex;
@@ -10,21 +10,21 @@ const StyledLabel = styled.div`
   line-height: ${typography.sizes.p4.size}px;
   padding: ${spacing.padding.mini}px;
   border-radius: ${spacing.borderRadius.small}px;
-  color: ${color.paperWhite};
-  background: ${props => color[props.color]};
+  color: var(--color-paperWhite);
+  background: ${props => `var(--color-${props.color})`};
 
   a:hover &,
   a:focus & {
-    background: ${props => color[`${props.color}Hover`]} !important;
+    background: ${props => `var(--color-${props.color}Hover)`} !important;
   }
 
   a:visited &,
   a:active & {
-    background: ${props => color[`${props.color}Active`]};
+    background: ${props => `var(--color-${props.color}Active)`};
   }
 
   a:disabled & {
-    background: ${props => color[`${props.color}Disabled`]};
+    background: ${props => `var(--color-${props.color}Disabled)`};
   }
 `
 

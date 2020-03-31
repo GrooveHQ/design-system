@@ -1,10 +1,17 @@
 import { css } from '@emotion/core'
-import { color, backgroundColor, borderColor, typography } from './styles'
+import {
+  backgroundColor,
+  generateColorVariables,
+  borderColor,
+  typography,
+} from './styles'
+
+export const variables = generateColorVariables()
 
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
   font-size: ${typography.sizes.p1.size}px;
-  color: ${color.jetBlack};
+  color: var(--color-jetBlack);
 
   margin: 0;
   overflow-y: auto;
@@ -78,7 +85,7 @@ export const bodyStyles = css`
     padding-right: 2px;
     vertical-align: baseline;
 
-    color: ${color.gunGrey};
+    color: var(--color-gunGrey);
   }
 
   pre {
@@ -87,7 +94,7 @@ export const bodyStyles = css`
     white-space: pre-wrap;
 
     background: ${backgroundColor.medium};
-    color: ${color.jetBlack};
+    color: var(--color-jetBlack);
     border-radius: 3px;
     margin: 1rem 0;
   }

@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import PropTypes from 'prop-types'
 import { AnimatePresence, motion } from 'framer-motion'
-import { color, spacing, typography } from './shared/styles'
+import { spacing, typography } from './shared/styles'
 
 const wrapper = css`
   position: relative;
@@ -14,9 +14,9 @@ const widthHackOffset = '100vw'
 const widthHackTransform = `translateX(${widthHackOffset}) translateX(-50%)`
 
 const tooltipContent = css`
-  background: ${color.jetBlack};
+  background: var(--color-jetBlack);
   border-radius: ${spacing.borderRadius.default}px;
-  color: ${color.paperWhite};
+  color: var(--color-paperWhite);
   font-size: ${typography.sizes.p3.size}px;
   left: 50%;
   line-height: ${typography.sizes.p3.height}px;
@@ -47,7 +47,7 @@ const top = css`
   margin-bottom: ${spacing.padding.tiny}px;
   &:after {
     top: 100%;
-    border-top-color: ${color.jetBlack};
+    border-top-color: var(--color-jetBlack);
   }
 `
 
@@ -56,7 +56,7 @@ const bottom = css`
   margin-top: ${spacing.padding.tiny}px;
   &:after {
     bottom: 100%;
-    border-bottom-color: ${color.jetBlack};
+    border-bottom-color: var(--color-jetBlack);
   }
 `
 

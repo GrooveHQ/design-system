@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 import { css, jsx, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
-import { color, infoColor, spacing, forms, typography } from './shared/styles'
+import { infoColor, spacing, forms, typography } from './shared/styles'
 import { generateTransition } from './shared/animation'
 import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
 
 const base = css`
   align-self: flex-start;
-  background-color: ${color.paperWhite};
+  background-color: var(--color-paperWhite);
   border-radius: ${spacing.borderRadius.default}px;
   border-style: solid;
   border-width: 1px;
@@ -30,59 +30,59 @@ const base = css`
 `
 
 const primary = css`
-  background-color: ${color.primary};
-  border-color: ${color.primary};
-  color: ${color.paperWhite};
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-paperWhite);
   &:hover {
-    background-color: ${color.primaryHover};
-    border-color: ${color.primaryHover};
+    background-color: var(--color-primaryHover);
+    border-color: var(--color-primaryHover);
   }
   &:active {
-    background-color: ${color.primaryActive};
-    border-color: ${color.primaryHover};
+    background-color: var(--color-primaryActive);
+    border-color: var(--color-primaryHover);
   }
   &:disabled {
-    background-color: ${color.primaryDisabled};
-    border-color: ${color.primaryDisabled};
+    background-color: var(--color-primaryDisabled);
+    border-color: var(--color-primaryDisabled);
   }
 `
 
 const primarySimple = css`
-  color: ${color.primary};
+  color: var(--color-primary);
   background-color: transparent;
   border: none;
   font-weight: ${typography.weight.medium};
   &:hover {
-    color: ${color.primaryHover};
+    color: var(--color-primaryHover);
   }
   &:active {
-    color: ${color.primaryActive};
+    color: var(--color-primaryActive);
   }
   &:disabled {
-    color: ${color.primaryDisabled};
+    color: var(--color-primaryDisabled);
   }
 `
 
 const secondary = css`
-  background-color: ${color.paperWhite};
-  border-color: ${color.primary};
-  color: ${color.primary};
+  background-color: var(--color-paperWhite);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
   &:hover {
-    border-color: ${color.primaryHover};
+    border-color: var(--color-primaryHover);
   }
   &:active {
-    border-color: ${color.primaryActive};
+    border-color: var(--color-primaryActive);
   }
   &:disabled {
-    border-color: ${color.primaryDisabled};
-    color: ${color.primaryDisabled};
+    border-color: var(--color-primaryDisabled);
+    color: var(--color-primaryDisabled);
   }
 `
 
 const warning = css`
   background-color: ${infoColor.error};
   border-color: ${infoColor.error};
-  color: ${color.paperWhite};
+  color: var(--color-paperWhite);
   &:hover {
     background-color: ${infoColor.errorHover};
     border-color: ${infoColor.errorHover};
@@ -120,17 +120,17 @@ const iconClassHoverTarget = css``
 
 const primaryInverted = css`
   background-color: transparent;
-  border-color: ${color.paperWhite};
-  color: ${color.paperWhite};
+  border-color: var(--color-paperWhite);
+  color: var(--color-paperWhite);
   opacity: 0.8;
   &:hover {
     opacity: 1;
   }
   &:active {
-    background-color: ${color.paperWhite};
+    background-color: var(--color-paperWhite);
     opacity: 1;
     ${iconClassHoverTarget} path {
-      fill: ${color.primary};
+      fill: var(--color-primary);
     }
   }
 `
@@ -138,7 +138,7 @@ const primaryInverted = css`
 const primaryInvertedSimple = css`
   background-color: transparent;
   border: none;
-  color: ${color.paperWhite};
+  color: var(--color-paperWhite);
   opacity: 0.8;
   &:hover {
     opacity: 1;

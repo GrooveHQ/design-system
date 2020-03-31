@@ -1,13 +1,13 @@
 import { css } from '@emotion/core'
 import { generateTransition } from './animation'
-import { color, infoColor, spacing, forms } from './styles'
+import { infoColor, spacing, forms } from './styles'
 
 export const baseStyle = css`
   appearance: none;
-  background-color: ${color.paperWhite};
-  border: 1px solid ${color.metalGrey};
+  background-color: var(--color-paperWhite);
+  border: 1px solid var(--color-metalGrey);
   border-radius: ${spacing.borderRadius.default}px;
-  color: ${color.jetBlack};
+  color: var(--color-jetBlack);
   flex: 1 1 0%;
   font-size: ${forms.typography.small.size}px;
   min-width: 0;
@@ -15,11 +15,11 @@ export const baseStyle = css`
   transition: ${generateTransition()};
   width: 100%;
   ::placeholder {
-    color: ${color.gunGreyDisabled};
+    color: var(--color-gunGreyDisabled);
     opacity: 1;
   }
   &:focus {
-    border-color: ${color.primary};
+    border-color: var(--color-primary);
   }
 `
 

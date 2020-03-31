@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
 import { FieldContext } from './Field'
 import { Label } from './Label'
-import { color, spacing, forms } from '../shared/styles'
+import { spacing, forms } from '../shared/styles'
 import {
   baseStyle,
   singleLineStyle,
@@ -24,7 +24,7 @@ const selectBox = css`
 `
 
 const placeholder = css`
-  color: ${color.gunGreyDisabled};
+  color: var(--color-gunGreyDisabled);
 `
 
 const arrow = css`

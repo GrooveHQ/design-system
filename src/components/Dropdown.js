@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
-import { color, spacing } from './shared/styles'
+import { spacing } from './shared/styles'
 import { transition } from './shared/animation'
 import { Card } from './Card'
 import { Paragraph } from './Paragraph'
@@ -47,7 +47,7 @@ const StyledList = styled.ul`
   }
 
   li a {
-    color: ${color.primary};
+    color: var(--color-primary);
     display: block;
   }
 

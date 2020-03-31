@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { Paragraph } from './Paragraph'
-import { color, shadows, spacing } from './shared/styles'
+import { shadows, spacing } from './shared/styles'
 import { transition } from './shared/animation'
 
 const SIZES = {
@@ -23,18 +23,18 @@ const StyledBadge = styled.div`
   box-shadow: ${props => (props.opened ? shadows.high : shadows.low)};
 
   border-radius: ${props => SIZES[props.size]}px;
-  background-color: ${color.primary};
+  background-color: var(--color-primary);
   min-width: ${props => SIZES[props.size]}px;
   height: ${props => SIZES[props.size]}px;
   padding: 0 ${props => (props.text ? 12 : spacing.padding.tiny)}px;
   flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
 
   :hover {
-    background-color: ${color.primaryHover};
+    background-color: var(--color-primaryHover);
   }
 
   :active {
-    background-color: ${color.primaryActive};
+    background-color: var(--color-primaryActive);
   }
 `
 
@@ -59,8 +59,8 @@ const StyledCount = styled.div`
       ? `opacity ${transition.duration.default.ms.dimension} ${transition.easing.default} ${transition.duration.default.ms.dimension}`
       : 'none'};
   border-radius: ${spacing.padding.tiny}px;
-  border: 2px solid ${color.paperWhite};
-  background-color: ${color.candyRed};
+  border: 2px solid var(--color-paperWhite);
+  background-color: var(--color-candyRed);
   position: absolute;
   left: ${props =>
     props.opened || props.closing

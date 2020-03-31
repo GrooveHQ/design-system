@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Avatar } from './Avatar'
 import { AvatarList } from './AvatarList'
-import { color, spacing } from './shared/styles'
+import { spacing } from './shared/styles'
 
 export default {
   title: 'Design System|Avatar',
@@ -13,7 +13,7 @@ export default {
 }
 
 const Background = styled.div`
-  background: ${color.moonGrey};
+  background: var(--color-moonGrey);
   padding: ${spacing.padding.medium}px;
 `
 
@@ -63,8 +63,8 @@ export const customizedAutoAvatar = () => (
     <Avatar
       size="big"
       name="Kevin Rademan"
-      background={color.candyRed}
-      color={color.paperWhite}
+      background="candyRed"
+      color="paperWhite"
       bold={false}
       length={1}
     />

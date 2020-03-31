@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { icons } from './shared/icons'
-import { color as stylesColor } from './shared/styles'
 import { generateTransition } from './shared/animation'
 
 export const ICON_SIZES = {
@@ -25,10 +24,10 @@ const Svg = styled.svg`
 `
 
 const Path = styled.path`
-  fill: ${props => stylesColor[props.color]};
+  fill: ${props => `var(--color-${props.color})`};
   transition: ${generateTransition('fill')};
   ${Svg}:hover & {
-    fill: ${props => stylesColor[props.hoverColor || props.color]};
+    fill: ${props => `var(--color-${props.hoverColor || props.color})`};
   }
 `
 
@@ -68,7 +67,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   block: false,
-  color: stylesColor.stoneGrey,
+  color: 'stoneGrey',
   hoverColor: undefined,
   size: 'medium',
 }

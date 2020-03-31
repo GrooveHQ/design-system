@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { contrast, stringToColor } from '../utils/colors'
-import { color as sharedColors, avatars } from './shared/styles'
+import { avatars } from './shared/styles'
 import AvatarListContext from './AvatarList/AvatarListContext'
 
 const presenceConfig = {
   colors: {
-    online: sharedColors.mintGreen,
-    offline: sharedColors.candyRed,
-    away: sharedColors.sunYellow,
+    online: 'mintGreen',
+    offline: 'candyRed',
+    away: 'sunYellow',
   },
   sizes: {
     none: {
@@ -47,20 +47,21 @@ const StyledAvatarContainer = styled.div`
     content: ' ';
     width: ${props => presenceConfig.sizes[props.size].length}px;
     height: ${props => presenceConfig.sizes[props.size].length}px;
-    background-color: ${props => presenceConfig.colors[props.presence]};
+    background-color: ${props =>
+      `var(--color-${presenceConfig.colors[props.presence]})`};
     position: absolute;
     bottom: 0;
     right: ${props => presenceConfig.sizes[props.size].positionOffset}px;
     border-radius: 50%;
-    border: solid 1px ${sharedColors.paperWhite};
+    border: solid 1px var(--color-paperWhite);
   }
 `
 
 const StyledAvatar = styled.div`
   background: ${props =>
-    !props.src || props.isLoading ? sharedColors.metalGrey : 'transparent'};
+    !props.src || props.isLoading ? 'var(--color-metalGrey)' : 'transparent'};
   border: ${({ border }) =>
-    border ? `2px solid ${sharedColors.paperWhite}` : 'none'};
+    border ? `2px solid var(--color-paperWhite)` : 'none'};
   border-radius: 50%;
   display: inline-block;
   vertical-align: top;

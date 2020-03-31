@@ -3,7 +3,7 @@
 
 import React from 'react'
 import styled from '@emotion/styled'
-import { color, spacing } from '../shared/styles'
+import { spacing } from '../shared/styles'
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ export const HiddenElement = styled.input`
 `
 
 export const Icon = styled.svg`
-  fill: ${color.paperWhite};
+  fill: var(--color-paperWhite);
   width: 8px;
   user-select: none;
 `

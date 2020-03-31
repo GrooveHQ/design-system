@@ -7,7 +7,7 @@ import { Icon } from './Icon'
 import { icons } from './shared/icons'
 
 const Meta = styled.div`
-  color: ${color.jetBlack};
+  color: var(--color-jetBlack);
   font-size: 12px;
 `
 
@@ -30,7 +30,7 @@ const Item = styled.li`
       flex: none;
       min-width: auto;
       padding: 0;
-      background: ${color.paperWhite};
+      background: var(--color-paperWhite);
       border: 1px solid ${borderColor.default};
 
       svg {

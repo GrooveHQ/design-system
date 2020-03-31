@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { AnimatePresence, motion } from 'framer-motion'
-import { color, spacing } from '../shared/styles'
+import { spacing } from '../shared/styles'
 import { FieldContext } from './Field'
 import { Label } from './Label'
 import { Icon } from '../Icon'
@@ -67,7 +67,7 @@ export const Input = React.forwardRef(
 
     const iconInputStyle = css`
       &:focus ~ svg > path {
-        fill: ${color.primary};
+        fill: var(--color-primary);
       }
       padding: 0
         ${iconPosition === 'right'
