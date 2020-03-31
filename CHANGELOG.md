@@ -1,3 +1,23 @@
+# v2.1.0 (Tue Mar 31 2020)
+
+#### 🚀  Enhancement
+
+- Simplify branding in Container component [#66](https://github.com/GrooveHQ/design-system/pull/66) ([@jscheel](https://github.com/jscheel))
+- Add the option to reverse a FlexContainer [#63](https://github.com/GrooveHQ/design-system/pull/63) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Add header and median proptypes for container [#65](https://github.com/GrooveHQ/design-system/pull/65) ([@jscheel](https://github.com/jscheel))
+- Fix bug in flex container cascading div selector [#64](https://github.com/GrooveHQ/design-system/pull/64) ([@jscheel](https://github.com/jscheel))
+- Upgrade Storybook to 5.3.17 [#62](https://github.com/GrooveHQ/design-system/pull/62) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 2
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+- Tair Asim ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v2.0.0 (Tue Mar 31 2020)
 
 #### 💥  Breaking Change
