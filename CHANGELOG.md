@@ -1,3 +1,15 @@
+# v2.0.0 (Tue Mar 31 2020)
+
+#### 💥  Breaking Change
+
+- Extract base colors into CSS variables [#61](https://github.com/GrooveHQ/design-system/pull/61) ([@assimovt](https://github.com/assimovt))
+
+#### Authors: 1
+
+- Tair Asim ([@assimovt](https://github.com/assimovt))
+
+---
+
 # v1.0.0 (Tue Mar 24 2020)
 
 #### 💥  Breaking Change
