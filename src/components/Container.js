@@ -276,6 +276,14 @@ Container.propTypes = {
    * Overlap content and header, be sure to set withOverlap on header component
    */
   overlap: PropTypes.bool,
+  /**
+   * Header component,
+   */
+  header: PropTypes.node,
+  /**
+   * Median component (sits between header and main content)
+   */
+  median: PropTypes.node,
 }
 
 Container.defaultProps = {
@@ -284,4 +292,6 @@ Container.defaultProps = {
   backgroundColor: 'moonGrey',
   padded: true,
   overlap: false,
+  header: undefined,
+  median: undefined,
 }
