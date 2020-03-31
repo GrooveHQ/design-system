@@ -12,7 +12,6 @@ import { color as colors, spacing, shadows, forms } from './shared/styles'
 import useScrollbarWidth from '../utils/useScrollbarWidth'
 import { transition } from './shared/animation'
 
-import { Paragraph } from './Paragraph'
 import { HeaderAnimatedHeightWrapper } from './Header'
 import ContainerContext from './ContainerContext'
 
@@ -64,12 +63,6 @@ const StyledMedian = styled(motion.div)`
   }
 `
 
-const StyledParagraph = styled(Paragraph)`
-  display: block;
-  flex: 0 0 auto;
-  margin-top: auto;
-`
-
 const contentAnimationVariants = {
   initial: { opacity: 0 },
   visible: {
@@ -113,8 +106,7 @@ const medianAnimationVariants = {
 }
 
 export const Container = ({
-  branded,
-  appName,
+  branding,
   children,
   header,
   median,
@@ -231,20 +223,14 @@ export const Container = ({
           >
             {children}
             <AnimatePresence exitBeforeEnter initial={false}>
-              {branded && (
+              {branding && (
                 <motion.div
                   variants={contentAnimationVariants}
                   initial="initial"
                   animate="visible"
                   exit="exit"
                 >
-                  <StyledParagraph
-                    size="small"
-                    align="center"
-                    color="stoneGrey"
-                  >
-                    {appName ? `${appName} ` : ''} ⚡️by Groove
-                  </StyledParagraph>
+                  {branding}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -257,13 +243,9 @@ export const Container = ({
 
 Container.propTypes = {
   /**
-   * Specify whether branded
+   * Specify branding
    */
-  branded: PropTypes.bool,
-  /**
-   * Specify branding app name
-   */
-  appName: PropTypes.string,
+  branding: PropTypes.node,
   /**
    * Specify background color
    */
@@ -287,8 +269,7 @@ Container.propTypes = {
 }
 
 Container.defaultProps = {
-  branded: false,
-  appName: null,
+  branding: null,
   backgroundColor: 'moonGrey',
   padded: true,
   overlap: false,
