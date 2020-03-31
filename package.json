@@ -1,6 +1,6 @@
 {
   "name": "@groovehq/design-system",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Groove Storybook Design System",
   "repository": {
     "type": "git",
@@ -11,10 +11,10 @@
     "name": "Tair Assimov",
     "email": "tair@groovehq.com"
   },
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
   "scripts": {
     "build": "build-storybook",
     "build-pkg": "babel src -d dist",
@@ -22,9 +22,9 @@
     "lint": "eslint .",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "lint:package": "sort-package-json",
+    "prepare": "install-peers",
     "release": "yarn run build-pkg && ./scripts/release.sh",
-    "start": "start-storybook -p 9009",
-    "prepare": "install-peers"
+    "start": "start-storybook -p 9009"
   },
   "husky": {
     "hooks": {
