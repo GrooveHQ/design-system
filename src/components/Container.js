@@ -19,7 +19,7 @@ const StyleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 608px;
+  height: 100%;
   width: 352px;
   border-radius: ${spacing.borderRadius.default}px;
   background-color: ${props => `var(--color-${props.backgroundColor})`};
