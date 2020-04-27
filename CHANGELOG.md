@@ -1,3 +1,16 @@
+# v2.2.0 (Mon Apr 27 2020)
+
+#### 🚀  Enhancement
+
+- Add react-autosize-textarea to TextArea component [#68](https://github.com/GrooveHQ/design-system/pull/68) ([@jscheel](https://github.com/jscheel))
+- Set container height to 100% [#67](https://github.com/GrooveHQ/design-system/pull/67) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.1.0 (Tue Mar 31 2020)
 
 #### 🚀  Enhancement
