@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { TextArea } from './TextArea'
 import { Field } from './Field'
 
@@ -9,11 +9,19 @@ export default {
   },
 }
 
-export const Basic = () => (
-  <Field>
-    <TextArea label="Replicant's Biography" name="bio" rows={10} />
-  </Field>
-)
+export const Basic = () => {
+  const ref = useRef(null)
+  return (
+    <Field>
+      <TextArea
+        label="Replicant's Biography"
+        name="bio"
+        rows={4}
+        maxRows={12}
+      />
+    </Field>
+  )
+}
 
 export const Validation = () => {
   const [validationState, setValidationState] = useState('error')

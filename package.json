@@ -62,6 +62,7 @@
     "framer-motion": "^1.9.1",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
+    "react-autosize-textarea": "^7.0.0",
     "react-scripts": "3.2.0"
   },
   "devDependencies": {
