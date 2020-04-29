@@ -1,3 +1,19 @@
+# v2.3.0 (Wed Apr 29 2020)
+
+#### 🚀  Enhancement
+
+- Add container scrollTop setter to container context [#69](https://github.com/GrooveHQ/design-system/pull/69) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Always hide the container median when empty [#70](https://github.com/GrooveHQ/design-system/pull/70) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.2.0 (Mon Apr 27 2020)
 
 #### 🚀  Enhancement
