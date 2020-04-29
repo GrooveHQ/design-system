@@ -1,9 +1,11 @@
 import React from 'react'
 
 const ContainerContext = React.createContext({
+  overlap: false,
   scrollPositionMotionValue: null,
-  headerStubHeightMotionValue: null,
-  setBodyOffsetRatio: () => {},
+  headerStubHeight: null,
+  scrollRange: [0, 100],
+  setScrollTop: () => {},
 })
 
 export default ContainerContext
