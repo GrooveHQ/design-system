@@ -129,6 +129,14 @@ export const Container = ({
     scrollPositionMotionValue.set(scrollTop)
   }, [scrollPositionMotionValue])
 
+  const setScrollTop = useCallback(
+    y => {
+      if (!contentRef.current) return
+      contentRef.current.scrollTop = y
+    },
+    [contentRef]
+  )
+
   const bodyMarginTop = useTransform(scrollPositionMotionValue, scrollRange, [
     padded
       ? -(spacing.padding.large + spacing.padding.small)
@@ -176,6 +184,7 @@ export const Container = ({
         scrollPositionMotionValue,
         headerStubHeight,
         scrollRange,
+        setScrollTop,
       }}
     >
       <StyleContainer {...rest}>
