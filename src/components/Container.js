@@ -42,6 +42,9 @@ const StyledMedian = styled(motion.div)`
   ${props => props.padded && `padding: 0 ${spacing.padding.small}px`};
   margin-top: -${forms.input.height.regular / 2}px;
   position: relative;
+  &:empty {
+    display: none;
+  }
   &:after {
     content: '';
     display: ${props => (props.gradient ? 'block' : 'none')};
