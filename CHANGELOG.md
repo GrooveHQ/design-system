@@ -1,3 +1,15 @@
+# v2.3.2 (Thu Apr 30 2020)
+
+#### 🐛  Bug Fix
+
+- Fix the spacing on buttons attached to text inputs [#72](https://github.com/GrooveHQ/design-system/pull/72) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.1 (Thu Apr 30 2020)
 
 #### 🐛  Bug Fix
