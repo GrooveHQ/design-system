@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import { AnimatePresence, motion } from 'framer-motion'
-import { spacing } from '../shared/styles'
+import { spacing, forms } from '../shared/styles'
 import { FieldContext } from './Field'
 import { Label } from './Label'
-import { Icon } from '../Icon'
+import { Icon, ICON_SIZES } from '../Icon'
 import {
   baseStyle,
   singleLineStyle,
@@ -24,16 +24,19 @@ const StyledIcon = styled(motion.custom(Icon))`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: ${props => (props.position === 'right' ? '0px' : 'auto')};
+  bottom: 0;
   left: ${props => (props.position === 'left' ? '0px' : 'auto')};
 
   button {
+    ${singleLineStyle};
     ${props =>
       props.position === 'right' &&
       `
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
+      margin-right: 0;
     `}
 
     ${props =>
@@ -41,9 +44,16 @@ const ButtonWrapper = styled.div`
       `
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
+      margin-left: 0;
     `}
+
+    svg {
+      /* Have to account for the top and bottom borders here */
+      margin-top: -${Math.abs((ICON_SIZES.medium - forms.input.height.regular) / 2) - 2}px;
+    }
   }
 `
+
 export const Input = React.forwardRef(
   (
     {
