@@ -26,3 +26,7 @@ export function contrast(
   if (Color(color).luminosity() < threshold) return light
   return dark
 }
+
+export function baseColorName(color = '') {
+  return color.replace(/(Hover|Active|Disabled)$/, '')
+}

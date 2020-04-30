@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
+import { baseColorName } from '../utils/colors'
 import { color, shadows, spacing } from './shared/styles'
 
 const BORDER_SIZES = {
@@ -42,7 +43,7 @@ const StyledCard = styled(motion.div)`
     cursor: pointer;
     border-color: ${props =>
       props.border && props.borderColor
-        ? color[`${props.borderColor}Hover`]
+        ? color[`${baseColorName(props.borderColor)}Hover`]
         : 'none'};
   }
 `

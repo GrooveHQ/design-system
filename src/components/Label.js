@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import { baseColorName } from '../utils/colors'
 import { spacing, typography } from './shared/styles'
 
 const StyledLabel = styled.div`
@@ -15,16 +16,18 @@ const StyledLabel = styled.div`
 
   a:hover &,
   a:focus & {
-    background: ${props => `var(--color-${props.color}Hover)`} !important;
+    background: ${props =>
+      `var(--color-${baseColorName(props.color)}Hover)`} !important;
   }
 
   a:visited &,
   a:active & {
-    background: ${props => `var(--color-${props.color}Active)`};
+    background: ${props => `var(--color-${baseColorName(props.color)}Active)`};
   }
 
   a:disabled & {
-    background: ${props => `var(--color-${props.color}Disabled)`};
+    background: ${props =>
+      `var(--color-${baseColorName(props.color)}Disabled)`};
   }
 `
 
