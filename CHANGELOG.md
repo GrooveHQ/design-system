@@ -1,3 +1,15 @@
+# v2.3.1 (Thu Apr 30 2020)
+
+#### 🐛  Bug Fix
+
+- Fix concatenation of color names when combined with variants [#71](https://github.com/GrooveHQ/design-system/pull/71) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.0 (Wed Apr 29 2020)
 
 #### 🚀  Enhancement
