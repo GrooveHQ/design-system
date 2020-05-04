@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useCallback } from 'react'
+import React, { useRef, useEffect, useLayoutEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import {
@@ -29,7 +29,18 @@ const StyleContainer = styled.div`
 
 const StyledContent = styled(motion.div)`
   flex: 1 1 auto;
-  ${props => props.padded && `padding: ${spacing.padding.small}px`};
+  ${props => {
+    if (props.padded) {
+      if (props.hasMedian) {
+        return `padding: ${spacing.padding.small +
+          forms.input.height.regular / 2}px ${spacing.padding.small}px ${
+          spacing.padding.small
+        }px ${spacing.padding.small}px;`
+      }
+      return `padding: ${spacing.padding.small}px;`
+    }
+    return null
+  }}
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -38,10 +49,17 @@ const StyledContent = styled(motion.div)`
   position: relative;
 `
 
+const InnerContent = styled.div`
+  flex: 1 1 auto;
+  padding-bottom: ${spacing.padding.small}px;
+`
+
 const StyledMedian = styled(motion.div)`
   ${props => props.padded && `padding: 0 ${spacing.padding.small}px`};
-  margin-top: -${forms.input.height.regular / 2}px;
+  margin-top: -${forms.input.height.regular}px;
+  top: ${forms.input.height.regular / 2}px;
   position: relative;
+  z-index: 9999999;
   &:empty {
     display: none;
   }
@@ -49,11 +67,12 @@ const StyledMedian = styled(motion.div)`
     content: '';
     display: ${props => (props.gradient ? 'block' : 'none')};
     position: absolute;
-    bottom: -13px;
+    bottom: -${forms.input.height.regular / 4 + 3}px;
     left: 0;
     right: ${props => props.scrollbarWidth}px;
-    height: 10px;
-    border-top: 3px solid ${props => colors[props.gradientColor]};
+    height: ${forms.input.height.regular / 4}px;
+    border-top: ${forms.input.height.regular / 2 + 3}px solid
+      ${props => colors[props.gradientColor]};
     background: linear-gradient(
       ${props => colors[props.gradientColor]},
       ${props =>
@@ -62,7 +81,7 @@ const StyledMedian = styled(motion.div)`
           .rgb()
           .string()}
     );
-    z-index: 9999999;
+    z-index: -1;
   }
 `
 
@@ -89,21 +108,44 @@ const contentAnimationVariants = {
 const medianAnimationVariants = {
   initial: {
     opacity: 0,
-    y: -3,
+    y: forms.input.height.regular / 2,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
+      duration: transition.duration.default.s.number,
+      opacity: { duration: transition.duration.fast.s.number },
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: forms.input.height.regular / 2,
+    transition: {
       delay: 0.15,
       duration: transition.duration.default.s.number,
+      opacity: { duration: transition.duration.fast.s.number },
+    },
+  },
+}
+
+const brandingAnimationVariants = {
+  initial: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      type: 'tween',
+      duration: transition.duration.fast.s.number,
+      delay: 0.1, // HACK (jscheel): Prevent it from animating in before sizing
     },
   },
   exit: {
     opacity: 0,
     transition: {
-      delay: 0.2,
-      duration: transition.duration.default.s.number,
+      when: 'afterChildren',
+      type: 'tween',
+      duration: transition.duration.fast.s.number,
     },
   },
 }
@@ -169,7 +211,7 @@ export const Container = ({
   const contentPaddingBottom = useMotionValue(
     padded ? spacing.padding.small : 0
   )
-  useLayoutEffect(() => {
+  useEffect(() => {
     const scrollableDistance =
       contentRef.current.scrollHeight - contentRef.current.offsetHeight
     if (scrollableDistance && scrollableDistance < scrollRange[1]) {
@@ -198,23 +240,22 @@ export const Container = ({
             </HeaderAnimatedHeightWrapper>
           </div>
         )}
-        <div>
-          <AnimatePresence exitBeforeEnter initial={false}>
-            <StyledMedian
-              padded={padded}
-              variants={medianAnimationVariants}
-              initial="initial"
-              animate="visible"
-              exit="exit"
-              key={medianKey}
-              gradientColor={rest.backgroundColor}
-              gradient={!!median}
-              scrollbarWidth={scrollbarWidth}
-            >
-              {median}
-            </StyledMedian>
-          </AnimatePresence>
-        </div>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <StyledMedian
+            padded={padded}
+            variants={medianAnimationVariants}
+            initial="initial"
+            animate="visible"
+            exit="exit"
+            key={medianKey}
+            gradientColor={rest.backgroundColor}
+            gradient={!!median}
+            scrollbarWidth={scrollbarWidth}
+          >
+            {median}
+          </StyledMedian>
+        </AnimatePresence>
+
         <AnimatePresence exitBeforeEnter initial={false}>
           <StyledContent
             padded={padded}
@@ -225,6 +266,7 @@ export const Container = ({
             key={bodyKey}
             ref={contentRef}
             onScroll={handleScroll}
+            hasMedian={!!median}
             style={{
               ...(overlap && {
                 marginTop: bodyMarginTop,
@@ -233,19 +275,15 @@ export const Container = ({
               }),
             }}
           >
-            {children}
-            <AnimatePresence exitBeforeEnter initial={false}>
-              {branding && (
-                <motion.div
-                  variants={contentAnimationVariants}
-                  initial="initial"
-                  animate="visible"
-                  exit="exit"
-                >
-                  {branding}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <InnerContent>{children}</InnerContent>
+            <motion.div
+              variants={brandingAnimationVariants}
+              initial="initial"
+              animate="visible"
+              exit="exit"
+            >
+              {branding}
+            </motion.div>
           </StyledContent>
         </AnimatePresence>
       </StyleContainer>
