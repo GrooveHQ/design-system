@@ -1,3 +1,15 @@
+# v2.3.3 (Thu May 07 2020)
+
+#### 🐛  Bug Fix
+
+- Fix container layout and median transition [#73](https://github.com/GrooveHQ/design-system/pull/73) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.2 (Thu Apr 30 2020)
 
 #### 🐛  Bug Fix
