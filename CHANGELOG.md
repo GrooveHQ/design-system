@@ -1,3 +1,18 @@
+# v2.3.4 (Tue May 12 2020)
+
+#### 🐛  Bug Fix
+
+- Tweak branding animation [#77](https://github.com/GrooveHQ/design-system/pull/77) ([@jscheel](https://github.com/jscheel))
+- Don't update contentPaddingBottom if container is 0 height [#76](https://github.com/GrooveHQ/design-system/pull/76) ([@jscheel](https://github.com/jscheel))
+- Expose shadow raw values for use in calculations [#75](https://github.com/GrooveHQ/design-system/pull/75) ([@jscheel](https://github.com/jscheel))
+- Forward ref on Badge Component [#74](https://github.com/GrooveHQ/design-system/pull/74) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.3 (Thu May 07 2020)
 
 #### 🐛  Bug Fix
