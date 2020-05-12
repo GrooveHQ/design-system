@@ -130,20 +130,21 @@ const medianAnimationVariants = {
 }
 
 const brandingAnimationVariants = {
-  initial: { opacity: 0 },
+  initial: { opacity: 0, y: spacing.padding.small },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
-      when: 'beforeChildren',
+      when: 'afterChildren',
       type: 'tween',
       duration: transition.duration.fast.s.number,
-      delay: 0.1, // HACK (jscheel): Prevent it from animating in before sizing
+      delay: transition.duration.default.s.number + 0.1, // HACK (jscheel): Prevent it from animating in before sizing
     },
   },
   exit: {
     opacity: 0,
     transition: {
-      when: 'afterChildren',
+      when: 'beforeChildren',
       type: 'tween',
       duration: transition.duration.fast.s.number,
     },
