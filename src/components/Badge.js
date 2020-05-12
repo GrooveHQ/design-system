@@ -110,38 +110,53 @@ const useTransition = (open, text, onClick) => {
   }
 }
 
-export const Badge = ({ icon, text, count, onClick, open, ...props }) => {
-  const { opened, closing, width, handleClick, textContentRef } = useTransition(
-    open,
-    text,
-    onClick
-  )
+export const Badge = React.forwardRef(
+  ({ icon, text, count, onClick, open, ...props }, forwardedRef) => {
+    const {
+      opened,
+      closing,
+      width,
+      handleClick,
+      textContentRef,
+    } = useTransition(open, text, onClick)
 
-  return (
-    <StyledBadge {...props} text={text} onClick={handleClick} opened={opened}>
-      {closing && <Icon {...props} icon="close" color="paperWhite" />}
+    return (
+      <StyledBadge
+        {...props}
+        ref={forwardedRef}
+        text={text}
+        onClick={handleClick}
+        opened={opened}
+      >
+        {closing && <Icon {...props} icon="close" color="paperWhite" />}
 
-      {!closing && icon && (
-        <StyledIcon {...props} icon={icon} text={text} color="paperWhite" />
-      )}
-      <StyledTextWrapper opened={opened} width={width}>
-        <div ref={textContentRef}>
-          <Paragraph {...props} padded={false} color="paperWhite" bold>
-            {text}
-          </Paragraph>
-        </div>
-      </StyledTextWrapper>
+        {!closing && icon && (
+          <StyledIcon {...props} icon={icon} text={text} color="paperWhite" />
+        )}
+        <StyledTextWrapper opened={opened} width={width}>
+          <div ref={textContentRef}>
+            <Paragraph {...props} padded={false} color="paperWhite" bold>
+              {text}
+            </Paragraph>
+          </div>
+        </StyledTextWrapper>
 
-      {count > 0 && (
-        <StyledCount {...props} width={width} opened={opened} closing={closing}>
-          <Paragraph size="mini" color="paperWhite" bold padded={false}>
-            {count}
-          </Paragraph>
-        </StyledCount>
-      )}
-    </StyledBadge>
-  )
-}
+        {count > 0 && (
+          <StyledCount
+            {...props}
+            width={width}
+            opened={opened}
+            closing={closing}
+          >
+            <Paragraph size="mini" color="paperWhite" bold padded={false}>
+              {count}
+            </Paragraph>
+          </StyledCount>
+        )}
+      </StyledBadge>
+    )
+  }
+)
 
 Badge.propTypes = {
   icon: PropTypes.string,
