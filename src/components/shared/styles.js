@@ -111,9 +111,15 @@ export const borderColor = {
 }
 
 // Shadows
+const shadowBlurRadiusNumber = 6
+const shadowXOffsetNumber = 0
+const shadowYOffsetNumber = 2
 export const shadows = {
-  low: '0 2px 6px 0 rgba(0, 0, 0, 0.1)',
-  high: '0 2px 6px 0 rgba(0, 0, 0, 0.15)',
+  xOffsetNumber: shadowXOffsetNumber,
+  yOffsetNumber: shadowYOffsetNumber,
+  blurRadiusNumber: shadowBlurRadiusNumber,
+  low: `${shadowXOffsetNumber}px ${shadowYOffsetNumber}px ${shadowBlurRadiusNumber}px 0 rgba(0, 0, 0, 0.1)`,
+  high: `${shadowXOffsetNumber}px ${shadowYOffsetNumber}px ${shadowBlurRadiusNumber}px 0 rgba(0, 0, 0, 0.15)`,
 }
 
 // Spacing
