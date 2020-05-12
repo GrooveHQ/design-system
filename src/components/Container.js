@@ -166,6 +166,7 @@ export const Container = ({
 
   const scrollPositionMotionValue = useMotionValue(0)
 
+  const containerRef = useRef(null)
   const contentRef = useRef(null)
 
   const handleScroll = useCallback(() => {
@@ -214,11 +215,19 @@ export const Container = ({
   useEffect(() => {
     const scrollableDistance =
       contentRef.current.scrollHeight - contentRef.current.offsetHeight
-    if (scrollableDistance && scrollableDistance < scrollRange[1]) {
+    // HACK (jscheel): Don't calculate the new padding bottom when the container
+    // hasn't actually rendered properly yet. This is a hacky solution that will
+    // need to be replaced once we fix the sizing a bit better later.
+    const containerHeight = containerRef.current.offsetHeight
+    if (
+      containerHeight > 0 &&
+      scrollableDistance &&
+      scrollableDistance < scrollRange[1]
+    ) {
       const newBottom = scrollRange[1] - scrollableDistance
       contentPaddingBottom.set(newBottom)
     }
-  }, [contentRef, contentPaddingBottom, scrollRange, padded])
+  }, [containerRef, contentRef, contentPaddingBottom, scrollRange, padded])
 
   const scrollbarWidth = useScrollbarWidth()
 
@@ -232,7 +241,7 @@ export const Container = ({
         setScrollTop,
       }}
     >
-      <StyleContainer {...rest}>
+      <StyleContainer {...rest} ref={containerRef}>
         {header && (
           <div>
             <HeaderAnimatedHeightWrapper headerKey={headerKey}>
