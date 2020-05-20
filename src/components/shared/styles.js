@@ -68,7 +68,7 @@ const baseColors = {
 // Monochrome Colors
 const monochromeColors = {
   jetBlack: '#1B1B1B',
-  gunGrey: '#45525E',
+  gunGrey: '#4F5D6A',
   stoneGrey: '#7E8F9F',
   metalGrey: '#E4E8ED',
   ashGrey: '#EEF1F5',
