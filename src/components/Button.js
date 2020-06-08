@@ -21,6 +21,9 @@ const base = css`
   padding: 0 ${spacing.padding.tiny}px;
   min-width: ${spacing.padding.tiny * 2 + 24}px;
   transition: ${generateTransition()};
+  /* HACK (jscheel): Prevent webkit bug that causes cursor to flicker because of opacity change on hover. */
+  transform: rotate(0);
+  /* END HACK */
   vertical-align: middle;
   /* HACK (jscheel): Hack for https://github.com/facebook/react/issues/4251 */
   &[disabled] {
