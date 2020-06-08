@@ -1,3 +1,17 @@
+# v2.3.5 (Mon Jun 08 2020)
+
+#### 🐛  Bug Fix
+
+- Refactor badge [#80](https://github.com/GrooveHQ/design-system/pull/80) ([@jscheel](https://github.com/jscheel))
+- Fix bug where cursor flickers on button hover [#79](https://github.com/GrooveHQ/design-system/pull/79) ([@jscheel](https://github.com/jscheel))
+- Update gunGrey to #4F5D6A [#78](https://github.com/GrooveHQ/design-system/pull/78) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.4 (Tue May 12 2020)
 
 #### 🐛  Bug Fix
