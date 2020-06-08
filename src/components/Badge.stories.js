@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Badge } from './Badge'
 
 export default {
@@ -10,16 +10,34 @@ export default {
 
 export const Big = () => <Badge icon="chat" />
 export const Medium = () => <Badge size="medium" icon="chat" />
-export const WithText = () => <Badge text="Need help?" icon="chat" />
+export const WithText = () => (
+  <React.Fragment>
+    <Badge text="Need help?" icon="chat" size="medium" />
+    <Badge text="Need help?" icon="chat" />
+    <Badge
+      text="This text is too long and will be cut off by an ellipsis"
+      icon="chat"
+    />
+  </React.Fragment>
+)
 export const TextOnly = () => <Badge text="Need help?" />
-export const Opened = () => <Badge text="Need help?" icon="chat" open />
+export const Controlled = () => {
+  const [open, setOpen] = useState(true)
+  return (
+    <Badge
+      text="Need help?"
+      icon="chat"
+      open={open}
+      onClick={() => setOpen(v => !v)}
+    />
+  )
+}
 export const WithOnClick = () => (
   <Badge
     text="Need help?"
     icon="chat"
     // eslint-disable-next-line no-alert
     onClick={() => alert('Clicked')}
-    open={false}
   />
 )
 export const WithCounts = () => (
