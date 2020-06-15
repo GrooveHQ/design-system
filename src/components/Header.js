@@ -1,9 +1,9 @@
 import React, { useRef, useContext, useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useTransform } from 'framer-motion'
 import ContainerContext from './ContainerContext'
-import { spacing } from './shared/styles'
+import { spacing, forms } from './shared/styles'
 import { transition } from './shared/animation'
 
 const containerSpacing = {
@@ -128,14 +128,40 @@ export const HeaderAnimatedHeightWrapper = ({ headerKey, children }) => {
 
 export const Header = React.forwardRef(
   (
-    { spacing: spacingProp, withMedian, withOverlap, children, ...rest },
+    {
+      spacing: spacingProp,
+      withMedian,
+      withOverlap,
+      collapseOverlapOnScroll,
+      children,
+      ...rest
+    },
     forwardedRef
   ) => {
     const headerRef = useRef(null)
     // NOTE (jscheel): We use the entire context for the useLayoutEffect dependency
     // so that it doesn't re-run each time a prop updates on the container.
     const animatedHeaderCtx = useContext(HeaderContext)
-    const containerCtx = useContext(ContainerContext)
+    const {
+      hasMedian,
+      padded,
+      scrollPositionMotionValue,
+      scrollRange,
+    } = useContext(ContainerContext)
+
+    let startingStubHeight = padded
+      ? spacing.padding.large
+      : spacing.padding.small
+    if (hasMedian) {
+      startingStubHeight = forms.input.height.regular / 2
+    }
+
+    const headerStubHeight = useTransform(
+      scrollPositionMotionValue,
+      scrollRange,
+      [startingStubHeight, collapseOverlapOnScroll ? 0 : startingStubHeight]
+    )
+
     useLayoutEffect(() => {
       const headerRefCurrent = headerRef.current
       return () => {
@@ -170,9 +196,7 @@ export const Header = React.forwardRef(
           variants={headerVariants}
         >
           {children}
-          <motion.div
-            style={{ height: withOverlap ? containerCtx.headerStubHeight : 0 }}
-          />
+          <motion.div style={{ height: withOverlap ? headerStubHeight : 0 }} />
         </InnerHeader>
       </StyledHeader>
     )
