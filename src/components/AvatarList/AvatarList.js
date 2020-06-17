@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { spacing, avatars } from '../shared/styles'
-import { Avatar } from '../Avatar'
 import AvatarListContext from './AvatarListContext'
 
 const ALIGNMENT = {
@@ -128,7 +127,9 @@ AvatarList.propTypes = {
   inline: PropTypes.bool,
   align: PropTypes.oneOf(Object.keys(ALIGNMENT)),
   max: PropTypes.number,
-  children: PropTypes.arrayOf(Avatar).isRequired,
+  // HACK (jscheel): Commenting out this prop-type because it causes a hook error for some reason
+  // children: PropTypes.arrayOf(Avatar).isRequired,
+  // END HACK
   /**
    * Overlap avatars
    */
