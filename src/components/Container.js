@@ -151,6 +151,8 @@ const brandingAnimationVariants = {
   },
 }
 
+const scrollRange = [0, 100] // TODO (jscheel): Figure out way to make dynamic base on header content
+
 export const Container = ({
   branding,
   children,
@@ -163,8 +165,6 @@ export const Container = ({
   overlap,
   ...rest
 }) => {
-  const scrollRange = [0, 100] // TODO (jscheel): Figure out way to make dynamic base on header content
-
   const scrollPositionMotionValue = useMotionValue(0)
 
   const containerRef = useRef(null)
@@ -172,6 +172,11 @@ export const Container = ({
 
   const handleScroll = useCallback(() => {
     if (!contentRef.current) return
+    const scrollableDistance =
+      contentRef.current.scrollHeight - contentRef.current.offsetHeight
+    if (scrollableDistance < scrollRange[1]) {
+      return
+    }
     const { scrollTop } = contentRef.current
     scrollPositionMotionValue.set(scrollTop)
   }, [scrollPositionMotionValue])
@@ -200,12 +205,6 @@ export const Container = ({
     ]
   )
 
-  const headerStubHeight = useTransform(
-    scrollPositionMotionValue,
-    scrollRange,
-    [padded ? spacing.padding.large : spacing.padding.small, 0]
-  )
-
   useLayoutEffect(() => {
     handleScroll()
   }, [bodyKey, handleScroll])
@@ -228,7 +227,7 @@ export const Container = ({
       const newBottom = scrollRange[1] - scrollableDistance
       contentPaddingBottom.set(newBottom)
     }
-  }, [containerRef, contentRef, contentPaddingBottom, scrollRange, padded])
+  }, [containerRef, contentRef, contentPaddingBottom, padded])
 
   const scrollbarWidth = useScrollbarWidth()
 
@@ -237,9 +236,10 @@ export const Container = ({
       value={{
         overlap,
         scrollPositionMotionValue,
-        headerStubHeight,
         scrollRange,
         setScrollTop,
+        padded,
+        hasMedian: !!median,
       }}
     >
       <StyleContainer {...rest} ref={containerRef}>
@@ -278,11 +278,12 @@ export const Container = ({
             onScroll={handleScroll}
             hasMedian={!!median}
             style={{
-              ...(overlap && {
-                marginTop: bodyMarginTop,
-                paddingTop: scrollFixerHeight,
-                paddingBottom: contentPaddingBottom,
-              }),
+              ...(!median &&
+                overlap && {
+                  marginTop: bodyMarginTop,
+                  paddingTop: scrollFixerHeight,
+                  paddingBottom: contentPaddingBottom,
+                }),
             }}
           >
             <InnerContent>{children}</InnerContent>
@@ -319,6 +320,10 @@ Container.propTypes = {
    */
   overlap: PropTypes.bool,
   /**
+   * Collapse overlap on scroll
+   */
+  collapseOverlapOnScroll: PropTypes.bool,
+  /**
    * Header component,
    */
   header: PropTypes.node,
@@ -333,6 +338,7 @@ Container.defaultProps = {
   backgroundColor: 'moonGrey',
   padded: true,
   overlap: false,
+  collapseOverlapOnScroll: true,
   header: undefined,
   median: undefined,
 }
