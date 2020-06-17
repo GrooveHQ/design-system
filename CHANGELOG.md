@@ -1,3 +1,17 @@
+# v2.3.6 (Wed Jun 17 2020)
+
+#### 🐛  Bug Fix
+
+- Fix header overlap scrolling [#82](https://github.com/GrooveHQ/design-system/pull/82) ([@jscheel](https://github.com/jscheel))
+- Disable proptype for AvatarList children [#83](https://github.com/GrooveHQ/design-system/pull/83) ([@jscheel](https://github.com/jscheel))
+- Bump websocket-extensions from 0.1.3 to 0.1.4 [#81](https://github.com/GrooveHQ/design-system/pull/81) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.3.5 (Mon Jun 08 2020)
 
 #### 🐛  Bug Fix
