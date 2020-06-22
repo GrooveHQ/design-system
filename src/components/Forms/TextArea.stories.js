@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { TextArea } from './TextArea'
 import { Field } from './Field'
 
@@ -10,7 +10,6 @@ export default {
 }
 
 export const Basic = () => {
-  const ref = useRef(null)
   return (
     <Field>
       <TextArea
