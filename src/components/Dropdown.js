@@ -43,7 +43,6 @@ const StyledList = styled.ul`
 
   li {
     white-space: nowrap;
-    overflow-x: hidden;
   }
 
   li a {
@@ -86,60 +85,70 @@ const variants = {
   },
 }
 
-export const Dropdown = ({
-  trigger,
-  items,
-  align,
-  open,
-  stretched,
-  label,
-  offsetTop,
-  offsetSide,
-  zIndex,
-}) => {
-  return (
-    <Wrapper align={align}>
-      {trigger}
-      <AnimatePresence>
-        {open && (
-          <StyledCard
-            offsetTop={offsetTop}
-            offsetSide={offsetSide}
-            zIndex={zIndex}
-            align={align}
-            stretched={stretched}
-            variants={variants}
-            initial="closed"
-            animate="open"
-            exit="exited"
-          >
-            <StyledList>
-              <React.Fragment>
-                {label && (
-                  <Paragraph size="small" color="stoneGrey">
-                    {label}
-                  </Paragraph>
-                )}
-                {items.map(
-                  (
-                    { key: itemKey, text: itemText, component: itemComponent },
-                    index
-                  ) => (
-                    <li key={itemKey || itemText || index}>
-                      <Paragraph size="small" color="primary">
-                        {itemComponent || itemText}
-                      </Paragraph>
-                    </li>
-                  )
-                )}
-              </React.Fragment>
-            </StyledList>
-          </StyledCard>
-        )}
-      </AnimatePresence>
-    </Wrapper>
-  )
-}
+export const Dropdown = React.forwardRef(
+  (
+    {
+      trigger,
+      items,
+      align,
+      open,
+      stretched,
+      label,
+      offsetTop,
+      offsetSide,
+      zIndex,
+    },
+    forwardedRef
+  ) => {
+    return (
+      <Wrapper align={align}>
+        {trigger}
+        <AnimatePresence>
+          {open && (
+            <StyledCard
+              offsetTop={offsetTop}
+              offsetSide={offsetSide}
+              zIndex={zIndex}
+              align={align}
+              stretched={stretched}
+              variants={variants}
+              initial="closed"
+              animate="open"
+              exit="exited"
+              ref={forwardedRef}
+            >
+              <StyledList>
+                <React.Fragment>
+                  {label && (
+                    <Paragraph size="small" color="stoneGrey">
+                      {label}
+                    </Paragraph>
+                  )}
+                  {items.map(
+                    (
+                      {
+                        key: itemKey,
+                        text: itemText,
+                        component: itemComponent,
+                      },
+                      index
+                    ) => (
+                      <li key={itemKey || itemText || index}>
+                        <Paragraph size="small" color="primary">
+                          {itemComponent || itemText}
+                        </Paragraph>
+                      </li>
+                    )
+                  )}
+                </React.Fragment>
+              </StyledList>
+            </StyledCard>
+          )}
+        </AnimatePresence>
+      </Wrapper>
+    )
+  }
+)
 
 Dropdown.propTypes = {
   /**

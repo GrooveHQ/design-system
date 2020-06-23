@@ -4,7 +4,9 @@ import {
   generateColorVariables,
   borderColor,
   typography,
+  spacing,
 } from './styles'
+import { generateTransition } from './animation'
 
 export const variables = generateColorVariables()
 
@@ -41,9 +43,17 @@ export const bodyStyles = css`
   button,
   input,
   textarea,
-  select {
+  select,
+  a {
     outline: none;
     font-family: ${typography.type.primary};
+  }
+
+  &.gds-user-keyboard-nav button:focus,
+  &.gds-user-keyboard-nav a:focus {
+    border-radius: ${spacing.borderRadius.default}px;
+    box-shadow: 0 0 0 1px var(--color-paperWhite),
+      0 0 0 2px var(--color-primary);
   }
 
   sub,
