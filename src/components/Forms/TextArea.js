@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useContext, useCallback } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx } from '@emotion/core'
 import TextareaAutosize from 'react-autosize-textarea'

@@ -50,8 +50,10 @@ const StyledContent = styled(motion.div)`
 `
 
 const InnerContent = styled.div`
+  display: flex;
   flex: 1 1 auto;
-  padding-bottom: ${spacing.padding.small}px;
+  ${props =>
+    props.padded ? `padding-bottom: ${spacing.padding.small}px;` : ''}
 `
 
 const StyledMedian = styled(motion.div)`
@@ -286,7 +288,7 @@ export const Container = ({
                 }),
             }}
           >
-            <InnerContent>{children}</InnerContent>
+            <InnerContent padded={padded}>{children}</InnerContent>
             <motion.div
               variants={brandingAnimationVariants}
               initial="initial"
