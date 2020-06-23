@@ -51,6 +51,7 @@ const StyledContent = styled(motion.div)`
 
 const InnerContent = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   ${props =>
     props.padded ? `padding-bottom: ${spacing.padding.small}px;` : ''}
