@@ -1,3 +1,15 @@
+# v2.4.1 (Tue Jun 23 2020)
+
+#### 🐛  Bug Fix
+
+- Specify flex-direction on container [#86](https://github.com/GrooveHQ/design-system/pull/86) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.4.0 (Tue Jun 23 2020)
 
 #### 🚀  Enhancement
