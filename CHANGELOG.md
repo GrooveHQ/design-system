@@ -1,3 +1,19 @@
+# v2.4.0 (Tue Jun 23 2020)
+
+#### 🚀  Enhancement
+
+- Honor padded prop for InnerContent [#84](https://github.com/GrooveHQ/design-system/pull/84) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### 🐛  Bug Fix
+
+- Clean up focus outlines [#85](https://github.com/GrooveHQ/design-system/pull/85) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.3.6 (Wed Jun 17 2020)
 
 #### 🐛  Bug Fix
