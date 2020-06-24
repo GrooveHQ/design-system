@@ -25,6 +25,7 @@ const StyledParagraph = styled.span`
   font-weight: ${props =>
     props.bold ? typography.weight.medium : typography.weight.normal};
   font-size: ${props => typography.sizes[PARAGRAPH_SIZES[props.size]].size}px;
+  font-style: ${props => (props.italic ? 'italic' : 'normal')};
   line-height: ${props =>
     typography.sizes[PARAGRAPH_SIZES[props.size]].height}px;
   color: ${props => `var(--color-${props.color})`};
@@ -62,6 +63,10 @@ Paragraph.propTypes = {
    */
   bold: PropTypes.bool,
   /**
+   * Specify whether its italic
+   */
+  italic: PropTypes.bool,
+  /**
    * Specify color
    */
   color: PropTypes.string,
@@ -82,6 +87,7 @@ Paragraph.propTypes = {
 Paragraph.defaultProps = {
   size: 'medium',
   bold: false,
+  italic: false,
   color: 'jetBlack',
   align: ALIGNMENT.left,
   inline: false,

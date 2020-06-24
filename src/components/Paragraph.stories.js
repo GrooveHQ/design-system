@@ -80,3 +80,17 @@ export const Linked = () => (
     </Paragraph>
   </a>
 )
+
+export const Italic = () => (
+  <Paragraph italic>
+    We&apos;re here every step of the way making sure you and your team deliver
+    standout customer experiences easily with Groove.
+  </Paragraph>
+)
+
+export const Bold = () => (
+  <Paragraph bold>
+    We&apos;re here every step of the way making sure you and your team deliver
+    standout customer experiences easily with Groove.
+  </Paragraph>
+)

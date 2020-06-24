@@ -6,7 +6,6 @@ import {
   typography,
   spacing,
 } from './styles'
-import { generateTransition } from './animation'
 
 export const variables = generateColorVariables()
 
