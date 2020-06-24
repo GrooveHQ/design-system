@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion, AnimatePresence } from 'framer-motion'
+import RelativePortal from 'react-relative-portal'
 import { spacing } from './shared/styles'
 import { transition } from './shared/animation'
 import { Card } from './Card'
@@ -97,54 +98,66 @@ export const Dropdown = React.forwardRef(
       offsetTop,
       offsetSide,
       zIndex,
+      onOutClick,
     },
     forwardedRef
   ) => {
+    const handleOutClick = useCallback(
+      e => {
+        if (open) {
+          onOutClick(e)
+        }
+      },
+      [onOutClick, open]
+    )
+
     return (
       <Wrapper align={align}>
         {trigger}
-        <AnimatePresence>
-          {open && (
-            <StyledCard
-              offsetTop={offsetTop}
-              offsetSide={offsetSide}
-              zIndex={zIndex}
-              align={align}
-              stretched={stretched}
-              variants={variants}
-              initial="closed"
-              animate="open"
-              exit="exited"
-              ref={forwardedRef}
-            >
-              <StyledList>
-                <React.Fragment>
-                  {label && (
-                    <Paragraph size="small" color="stoneGrey">
-                      {label}
-                    </Paragraph>
-                  )}
-                  {items.map(
-                    (
-                      {
-                        key: itemKey,
-                        text: itemText,
-                        component: itemComponent,
-                      },
-                      index
-                    ) => (
-                      <li key={itemKey || itemText || index}>
-                        <Paragraph size="small" color="primary">
-                          {itemComponent || itemText}
-                        </Paragraph>
-                      </li>
-                    )
-                  )}
-                </React.Fragment>
-              </StyledList>
-            </StyledCard>
-          )}
-        </AnimatePresence>
+        <RelativePortal component="span" onOutClick={handleOutClick}>
+          <AnimatePresence>
+            {open && (
+              <StyledCard
+                offsetTop={offsetTop}
+                offsetSide={offsetSide}
+                zIndex={zIndex}
+                align={align}
+                stretched={stretched}
+                variants={variants}
+                initial="closed"
+                animate="open"
+                exit="exited"
+                ref={forwardedRef}
+              >
+                <StyledList>
+                  <React.Fragment>
+                    {label && (
+                      <Paragraph size="small" color="stoneGrey">
+                        {label}
+                      </Paragraph>
+                    )}
+                    {items.map(
+                      (
+                        {
+                          key: itemKey,
+                          text: itemText,
+                          component: itemComponent,
+                        },
+                        index
+                      ) => (
+                        <li key={itemKey || itemText || index}>
+                          <Paragraph size="small" color="primary">
+                            {itemComponent || itemText}
+                          </Paragraph>
+                        </li>
+                      )
+                    )}
+                  </React.Fragment>
+                </StyledList>
+              </StyledCard>
+            )}
+          </AnimatePresence>
+        </RelativePortal>
       </Wrapper>
     )
   }
@@ -198,6 +211,11 @@ Dropdown.propTypes = {
    * Specify the zindex value for the dropdown
    */
   zIndex: PropTypes.number,
+  /**
+   * onOutClick
+   * Handler that fires when you click outside of the dropdown
+   */
+  onOutClick: PropTypes.func,
 }
 
 Dropdown.defaultProps = {
@@ -210,4 +228,5 @@ Dropdown.defaultProps = {
   offsetTop: 0,
   offsetSide: 0,
   zIndex: 1,
+  onOutClick: () => {},
 }
