@@ -143,6 +143,8 @@ const primaryInvertedSimple = css`
   border: none;
   color: var(--color-paperWhite);
   opacity: 0.8;
+  padding: 0;
+  min-width: 0;
   &:hover {
     opacity: 1;
   }
