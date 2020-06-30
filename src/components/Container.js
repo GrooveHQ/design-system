@@ -41,7 +41,7 @@ const StyledContent = styled(motion.div)`
     }
     return null
   }}
-  overflow-y: auto;
+  overflow-y: ${props => props.overflowY};
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -55,6 +55,7 @@ const InnerContent = styled.div`
   flex: 1 1 auto;
   ${props =>
     props.padded ? `padding-bottom: ${spacing.padding.small}px;` : ''}
+  ${props => (props.maxHeight ? `max-height: ${props.maxHeight};` : '')}
 `
 
 const StyledMedian = styled(motion.div)`
@@ -166,6 +167,8 @@ export const Container = ({
   bodyKey,
   medianKey,
   overlap,
+  maxHeight,
+  overflowY,
   ...rest
 }) => {
   const scrollPositionMotionValue = useMotionValue(0)
@@ -280,6 +283,7 @@ export const Container = ({
             ref={contentRef}
             onScroll={handleScroll}
             hasMedian={!!median}
+            overflowY={overflowY}
             style={{
               ...(!median &&
                 overlap && {
@@ -289,7 +293,9 @@ export const Container = ({
                 }),
             }}
           >
-            <InnerContent padded={padded}>{children}</InnerContent>
+            <InnerContent padded={padded} maxHeight={maxHeight}>
+              {children}
+            </InnerContent>
             <motion.div
               variants={brandingAnimationVariants}
               initial="initial"
@@ -334,6 +340,14 @@ Container.propTypes = {
    * Median component (sits between header and main content)
    */
   median: PropTypes.node,
+  /**
+   * Specify the overflow mode for the Y axes (auto (default), hidden, initial)
+   */
+  overflowY: PropTypes.string,
+  /**
+   * Specify the max height of the container content area (Default is unset)
+   */
+  maxHeight: PropTypes.string,
 }
 
 Container.defaultProps = {
@@ -344,4 +358,6 @@ Container.defaultProps = {
   collapseOverlapOnScroll: true,
   header: undefined,
   median: undefined,
+  overflowY: 'auto',
+  maxHeight: null,
 }
