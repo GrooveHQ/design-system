@@ -26,7 +26,10 @@ const Container = styled(motion.div)`
   z-index: ${({ zIndex }) => zIndex};
 
   > div {
-    margin-top: -${({ loaderSize }) => LOADER_SIZES[loaderSize]}px;
+    ${({ padded }) =>
+      padded
+        ? `margin-top: -${({ loaderSize }) => LOADER_SIZES[loaderSize]}px;`
+        : ''}
     align-self: center;
     flex-grow: 1;
     text-align: center;
@@ -44,6 +47,7 @@ export const Loader = React.forwardRef(
       zIndex,
       background,
       delay,
+      padded = true,
       ...props
     },
     forwardedRef
@@ -56,6 +60,7 @@ export const Loader = React.forwardRef(
         {...props}
         ref={forwardedRef}
         initial={delay && { opacity: 0 }}
+        padded={padded}
         animate={
           delay && {
             opacity: 1,
@@ -134,6 +139,10 @@ Loader.propTypes = {
    * Delay (in milliseconds) showing loader, 0 to disable delay
    */
   delay: PropTypes.number,
+  /**
+   * Should the loader icon display with an offset (defaults: true)
+   */
+  padded: PropTypes.bool,
 }
 
 Loader.defaultProps = {
@@ -145,4 +154,5 @@ Loader.defaultProps = {
   zIndex: 5000,
   background: stylesColor.moonGrey,
   delay: 750,
+  padded: true,
 }
