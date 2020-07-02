@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import isPropValid from '@emotion/is-prop-valid'
 import styled from '@emotion/styled'
 
 const ALIGNMENT = {
@@ -22,7 +23,10 @@ const GAP = {
   massive: 80,
 }
 
-const StyledFlexContainer = styled.div`
+// https://emotion.sh/docs/styled#changing-based-on-props
+const StyledFlexContainer = styled('div', {
+  shouldForwardProp: prop => isPropValid(prop) && prop !== 'direction',
+})`
   display: ${props => (props.inline ? 'inline-flex' : 'flex')};
   flex-direction: ${props => {
     let dir = props.direction === 'vertical' ? 'column' : 'row'
@@ -48,6 +52,8 @@ export const FlexContainerContext = React.createContext({
   gapHorizontal: undefined,
   gapVertical: undefined,
   reverse: false,
+  stretched: false,
+  direction: 'horizontal',
 })
 
 export const FlexContainer = ({ children, ...rest }) => {
@@ -58,6 +64,8 @@ export const FlexContainer = ({ children, ...rest }) => {
           gapHorizontal: rest.gapHorizontal,
           gapVertical: rest.gapVertical,
           reverse: rest.reverse,
+          stretched: rest.stretched,
+          direction: rest.direction,
         }}
       >
         {children}
@@ -95,6 +103,10 @@ FlexContainer.propTypes = {
    * Specify vertical gap between items
    */
   gapVertical: PropTypes.oneOf(Object.keys(GAP)),
+  /**
+   * Specify if height or width 100% should be applied to the div
+   */
+  stretched: PropTypes.bool,
 }
 
 FlexContainer.defaultProps = {
@@ -105,4 +117,5 @@ FlexContainer.defaultProps = {
   alignVertical: 'start',
   gapHorizontal: undefined,
   gapVertical: undefined,
+  stretched: false,
 }
