@@ -1,3 +1,16 @@
+# v2.4.2 (Wed Jul 08 2020)
+
+#### 🐛  Bug Fix
+
+- Extend configuration options for FlexContainer and FlexItem [#88](https://github.com/GrooveHQ/design-system/pull/88) ([@kevinrademan](https://github.com/kevinrademan))
+- Portal for dropdown and style options [#87](https://github.com/GrooveHQ/design-system/pull/87) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.4.1 (Tue Jun 23 2020)
 
 #### 🐛  Bug Fix
