@@ -104,7 +104,7 @@ FlexItem.propTypes = {
    */
   stretched: PropTypes.bool,
   /**
-   * Specify the min width for this flex item. Defaults to not setting this value
+   * Specify the min width for this flex item
    */
   minWidth: PropTypes.number,
 }
