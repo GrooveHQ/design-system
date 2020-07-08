@@ -49,9 +49,9 @@ const StyledParagraph = styled.span`
   }
 `
 
-export const Paragraph = React.forwardRef((props, forwardedRef) => (
-  <StyledParagraph {...props} ref={forwardedRef} />
-))
+export const Paragraph = React.forwardRef(({ as, ...props }, forwardedRef) => {
+  return <StyledParagraph {...props} as={as} ref={forwardedRef} />
+})
 
 Paragraph.propTypes = {
   /**
@@ -82,6 +82,10 @@ Paragraph.propTypes = {
    * Whether it is padded
    */
   padded: PropTypes.bool,
+  /**
+   * Component to render as defaults span
+   */
+  as: PropTypes.elementType,
 }
 
 Paragraph.defaultProps = {
@@ -92,4 +96,5 @@ Paragraph.defaultProps = {
   align: ALIGNMENT.left,
   inline: false,
   padded: true,
+  as: 'span',
 }

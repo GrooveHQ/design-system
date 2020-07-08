@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import isPropValid from '@emotion/is-prop-valid'
 import styled from '@emotion/styled'
 import { FlexContainerContext } from './FlexContainer'
 
@@ -23,24 +24,42 @@ const GAP = {
   massive: '80px',
 }
 
-const StyledFlexItem = styled.div`
-  align-self: ${props => ALIGNMENT[props.align]};
-  flex-grow: ${props => props.grow};
-  flex-shrink: ${props => props.shrink};
-  ${({ reverse, gapHorizontal, gapVertical }) => {
-    const hName = reverse ? 'margin-right' : 'margin-left'
-    const vName = reverse ? 'margin-bottom' : 'margin-top'
-    const hValue = gapHorizontal ? GAP[gapHorizontal] : 0
-    const vValue = gapVertical ? GAP[gapVertical] : 0
-    return `
-      ${hName}: ${hValue};
-      ${vName}: ${vValue};
-    `
-  }}
-`
+// https://emotion.sh/docs/styled#customizing-prop-forwarding
+const StyledFlexItem = styled('div', {
+  shouldForwardProp: prop => isPropValid(prop) && prop !== 'direction',
+})(props => {
+  const hName = props.reverse ? 'margin-right' : 'margin-left'
+  const vName = props.reverse ? 'margin-bottom' : 'margin-top'
+  const hValue = props.gapHorizontal ? GAP[props.gapHorizontal] : 0
+  const vValue = props.gapVertical ? GAP[props.gapVertical] : 0
+  const css = {
+    alignSelf: ALIGNMENT[props.align],
+    flexGrow: props.grow,
+    flexShrink: props.shrink,
+    [hName]: hValue,
+    [vName]: vValue,
+  }
+  if (props.stretched) {
+    if (props.direction === 'horizontal') css.height = '100%'
+    if (props.direction === 'vertical') css.width = '100%'
+  }
+  if (props.minWidth !== null) css.minWidth = props.minWidth
+  return css
+})
 
 export const FlexItem = React.forwardRef(
-  ({ children, gapHorizontal, gapVertical, ...props }, ref) => {
+  (
+    {
+      children,
+      gapHorizontal,
+      gapVertical,
+      stretched,
+      direction,
+      minWidth,
+      ...props
+    },
+    ref
+  ) => {
     const containerContext = useContext(FlexContainerContext)
     return (
       <StyledFlexItem
@@ -48,6 +67,9 @@ export const FlexItem = React.forwardRef(
         gapHorizontal={gapHorizontal || containerContext.gapHorizontal}
         gapVertical={gapVertical || containerContext.gapVertical}
         reverse={containerContext.reverse}
+        stretched={stretched || containerContext.stretched}
+        direction={containerContext.direction}
+        minWidth={minWidth}
         {...props}
       >
         {children}
@@ -77,6 +99,14 @@ FlexItem.propTypes = {
    * Specify vertical gap between items
    */
   gapVertical: PropTypes.oneOf(Object.keys(GAP)),
+  /**
+   * Specify if height or width 100% should be applied to the div
+   */
+  stretched: PropTypes.bool,
+  /**
+   * Specify the min width for this flex item
+   */
+  minWidth: PropTypes.number,
 }
 
 FlexItem.defaultProps = {
@@ -85,4 +115,6 @@ FlexItem.defaultProps = {
   shrink: 1,
   gapHorizontal: undefined,
   gapVertical: undefined,
+  stretched: false,
+  minWidth: null,
 }
