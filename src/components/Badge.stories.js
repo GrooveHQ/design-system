@@ -8,6 +8,13 @@ export default {
   },
 }
 
+export const Variants = () => (
+  <React.Fragment>
+    <Badge icon="chat" />
+    <Badge icon="chat" variant="secondary" />
+  </React.Fragment>
+)
+
 export const Big = () => <Badge icon="chat" />
 export const Medium = () => <Badge size="medium" icon="chat" />
 export const WithText = () => (

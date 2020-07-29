@@ -7,9 +7,20 @@ import { Paragraph } from './Paragraph'
 import { shadows, spacing } from './shared/styles'
 import { transition } from './shared/animation'
 
+const VARIANT_COLOR_MAP = {
+  primary: '--color-primary',
+  secondary: '--color-paperWhite',
+}
+
+const ICON_COLOR_MAP = {
+  primary: 'paperWhite',
+  secondary: 'stoneGrey',
+}
+
 const SIZES = {
   big: 56,
   medium: 48,
+  small: 32,
 }
 
 const StyledBadge = styled.div`
@@ -21,7 +32,7 @@ const StyledBadge = styled.div`
   outline: none;
   box-shadow: ${props => (props.open ? shadows.high : shadows.low)};
   border-radius: ${props => SIZES[props.size]}px;
-  background-color: var(--color-primary);
+  background-color: var(${({ variant }) => VARIANT_COLOR_MAP[variant]});
   min-width: ${props => SIZES[props.size]}px;
   max-width: 320px;
   height: ${props => SIZES[props.size]}px;
@@ -29,11 +40,19 @@ const StyledBadge = styled.div`
   position: relative;
 
   :hover {
-    background-color: var(--color-primaryHover);
+    background-color: var(
+      ${({ variant }) => {
+        return VARIANT_COLOR_MAP[variant]
+      }}Hover
+    );
   }
 
   :active {
-    background-color: var(--color-primaryActive);
+    background-color: var(
+      ${({ variant }) => {
+        return VARIANT_COLOR_MAP[variant]
+      }}Active
+    );
   }
 `
 
@@ -47,6 +66,9 @@ const IconContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  & > div {
+    display: inline-flex;
+  }
 `
 
 const TextContainer = styled(motion.div)`
@@ -108,6 +130,7 @@ const widthVariants = {
 export const Badge = React.forwardRef(
   (
     {
+      variant,
       icon,
       text,
       open: controlledOpen,
@@ -140,9 +163,11 @@ export const Badge = React.forwardRef(
         if (!controlled) {
           setOpen(o => !o)
         }
-        if (onClick) {
-          onClick(e)
-        }
+        setTimeout(() => {
+          if (onClick) {
+            onClick(e)
+          }
+        }, 1)
       },
       [onClick, controlled]
     )
@@ -155,6 +180,7 @@ export const Badge = React.forwardRef(
         ref={forwardedRef}
         size={size}
         reverse={reverse}
+        variant={variant}
       >
         <AnimatePresence exitBeforeEnter initial={false}>
           <IconContainer
@@ -170,14 +196,18 @@ export const Badge = React.forwardRef(
               onAnimationComplete={!text && onAnimationComplete}
             >
               {open ? (
-                <Icon icon="close" size={size} color="paperWhite" />
+                <Icon
+                  icon="close"
+                  size={size}
+                  color={ICON_COLOR_MAP[variant]}
+                />
               ) : (
                 icon && (
                   <Icon
                     icon={icon}
                     size={size}
                     text={text}
-                    color="paperWhite"
+                    color={ICON_COLOR_MAP[variant]}
                   />
                 )
               )}
@@ -226,6 +256,13 @@ export const Badge = React.forwardRef(
 )
 
 Badge.propTypes = {
+  /**
+   * Specify variant
+   */
+  variant: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Specify icon
+   */
   icon: PropTypes.string,
   /**
    * Specify size
@@ -258,6 +295,7 @@ Badge.propTypes = {
 }
 
 Badge.defaultProps = {
+  variant: 'primary',
   icon: null,
   size: 'big',
   text: null,
