@@ -1,3 +1,15 @@
+# v2.4.4 (Wed Jul 29 2020)
+
+#### 🐛  Bug Fix
+
+- Add secondary badge variant [#89](https://github.com/GrooveHQ/design-system/pull/89) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.4.3 (Wed Jul 08 2020)
 
 
