@@ -1,3 +1,15 @@
+# v2.4.5 (Tue Aug 11 2020)
+
+#### 🐛  Bug Fix
+
+- Fix badge centering [#91](https://github.com/GrooveHQ/design-system/pull/91) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.4.4 (Wed Jul 29 2020)
 
 #### 🐛  Bug Fix
