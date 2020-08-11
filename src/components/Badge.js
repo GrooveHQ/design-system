@@ -27,6 +27,7 @@ const StyledBadge = styled.div`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
   user-select: none;
   cursor: pointer;
   outline: none;
