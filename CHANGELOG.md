@@ -1,3 +1,19 @@
+# v2.5.0 (Tue Aug 18 2020)
+
+#### 🚀  Enhancement
+
+- Generate avatars locally [#92](https://github.com/GrooveHQ/design-system/pull/92) ([@jscheel](https://github.com/jscheel))
+
+#### 🐛  Bug Fix
+
+- Use node proptype for checkbox and radio labels [#93](https://github.com/GrooveHQ/design-system/pull/93) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.4.5 (Tue Aug 11 2020)
 
 #### 🐛  Bug Fix
