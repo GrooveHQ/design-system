@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { Icon } from './Icon'
 import { contrast, stringToColor } from '../utils/colors'
-import { avatars } from './shared/styles'
+import { avatars, typography } from './shared/styles'
 import AvatarListContext from './AvatarList/AvatarListContext'
 
 const presenceConfig = {
@@ -78,28 +78,59 @@ const StyledAvatar = styled.div`
   }
 `
 
-function generateAvatarUrl(config) {
-  const uiAvatarsUrl = `https://ui-avatars.com/api/?`
-  const parameters = []
+// NOTE (jscheel): This caches the avatar urls so that we don't regenerate them
+// every single time an image is requested. We may need to consider some limits
+// and cache expiry in the future, but it's not necessary right now.
+const generatedAvatarCache = {}
 
+// NOTE (jscheel): Adapted from https://ppolyzos.com/2015/09/27/generate-avatar-image-from-user-initials-through-canvas/
+function generateAvatarUrl(config) {
   const configWithDefaults = {
     ...config,
-    background: (config.background || stringToColor(config.name)).replace(
-      '#',
-      ''
-    ),
-    color: (config.color || contrast(stringToColor(config.name))).replace(
-      '#',
-      ''
-    ),
+    background: config.background || stringToColor(config.name),
+    color: config.color || contrast(stringToColor(config.name)),
     size: avatars.sizes[config.size],
   }
+  const { background, color, name, size } = configWithDefaults
 
-  ;['background', 'color', 'name', 'size', 'length', 'bold'].forEach(option => {
-    parameters.push(`${option}=${configWithDefaults[option]}`)
-  })
+  const cacheKey = JSON.stringify(configWithDefaults)
+    .split('')
+    .reduce(
+      (prevHash, currVal) =>
+        // eslint-disable-next-line no-bitwise
+        ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0,
+      0
+    )
+    .toString()
 
-  return `${uiAvatarsUrl}${parameters.join('&')}`
+  let dataURI = generatedAvatarCache[cacheKey]
+  if (dataURI) return dataURI
+
+  const letters = name.split(' ').reduce((memo, part) => {
+    return memo + (part[0] || '')
+  }, '')
+
+  let canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+
+  canvas.width = size
+  canvas.height = size
+  context.font = `${Math.round(size * 0.5)}px ${typography.type.primary}`
+  context.textAlign = 'center'
+  context.fillStyle = background
+  context.fillRect(0, 0, canvas.width, canvas.height)
+  context.fillStyle = color
+  context.fillText(letters, size / 2, size / 1.5)
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+
+  dataURI = canvas.toDataURL()
+  generatedAvatarCache[cacheKey] = dataURI
+
+  // NOTE (jscheel): Dispose of canvas to make sure we don't have memory issues
+  canvas = null
+
+  return dataURI
 }
 
 export const Avatar = ({
@@ -109,8 +140,6 @@ export const Avatar = ({
   isLoading,
   background,
   color,
-  length,
-  bold,
   presence,
   border,
   ...props
@@ -131,7 +160,7 @@ export const Avatar = ({
   } else {
     avatarFigure = (
       <img
-        src={generateAvatarUrl({ background, color, name, size, length, bold })}
+        src={generateAvatarUrl({ background, color, name, size })}
         alt={decodedName}
       />
     )
@@ -173,10 +202,6 @@ Avatar.propTypes = {
    */
   size: PropTypes.oneOf(Object.keys(avatars.sizes)),
   /**
-   * Length of initials in generated avatar
-   */
-  length: PropTypes.number,
-  /**
    * Background color as hex for generated avatar. Leave empty to auto generate color using name
    */
   background: PropTypes.string,
@@ -184,10 +209,6 @@ Avatar.propTypes = {
    * Text color as hex for generated avatar. Leave empty to automatically use contrasting color from background
    */
   color: PropTypes.string,
-  /**
-   * Specify if initial text for generated avatar should be bold
-   */
-  bold: PropTypes.bool,
 
   /**
    * Should the avatar have a border
@@ -205,10 +226,8 @@ Avatar.defaultProps = {
   name: '',
   src: null,
   size: 'medium',
-  length: 2,
   background: null,
   color: null,
-  bold: true,
   border: true,
   presence: 'none',
 }
