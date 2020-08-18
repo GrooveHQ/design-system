@@ -190,7 +190,7 @@ RadioOption.propTypes = {
   /**
    * Label text next to radio button
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Value of radio button
    */

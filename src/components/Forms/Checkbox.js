@@ -229,7 +229,7 @@ CheckboxOption.propTypes = {
   /**
    * Label text next to checkbox
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Handler function for change, has signature (event, { groupName: string, checked: bool) => {}
    */
