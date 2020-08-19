@@ -23,18 +23,8 @@ const StyledCard = styled(motion.custom(Card))`
   z-index: ${props => props.zIndex};
   overflow-y: auto;
   max-height: 124px;
-  left: ${props =>
-    props.stretched || props.align === 'left'
-      ? `${0 + props.offsetSide}px`
-      : 'auto'};
-  right: ${props =>
-    props.stretched || props.align === 'right'
-      ? `${0 + props.offsetSide}px`
-      : 'auto'};
-  top: ${props =>
-    `${spacing.padding.big + spacing.padding.tiny + props.offsetTop}px`};
   padding: 12px ${spacing.padding.small}px;
-  max-width: ${props => (props.stretched ? 'auto' : '172px')};
+  width: 100%;
 `
 
 const StyledList = styled.ul`
@@ -111,15 +101,27 @@ export const Dropdown = React.forwardRef(
       [onOutClick, open]
     )
 
+    const portalConfig = {
+      top: offsetTop,
+      fullWidth: stretched,
+      left: align === 'left' ? offsetSide : 0,
+      right: align === 'right' ? offsetSide : 0,
+    }
+    if (!stretched && align === 'left') {
+      delete portalConfig.right
+    }
+
     return (
       <Wrapper align={align}>
         {trigger}
-        <RelativePortal component="span" onOutClick={handleOutClick}>
+        <RelativePortal
+          component="div"
+          onOutClick={handleOutClick}
+          {...portalConfig}
+        >
           <AnimatePresence>
             {open && (
               <StyledCard
-                offsetTop={offsetTop}
-                offsetSide={offsetSide}
                 zIndex={zIndex}
                 align={align}
                 stretched={stretched}
