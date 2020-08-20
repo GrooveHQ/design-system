@@ -1,3 +1,15 @@
+# v2.5.1 (Thu Aug 20 2020)
+
+#### 🐛  Bug Fix
+
+- FIX: Stretch behavior for dropdown after relative portal [#94](https://github.com/GrooveHQ/design-system/pull/94) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.5.0 (Tue Aug 18 2020)
 
 #### 🚀  Enhancement
