@@ -1,3 +1,15 @@
+# v2.5.2 (Mon Aug 24 2020)
+
+#### 🐛  Bug Fix
+
+- Support avatars with no src and no name [#95](https://github.com/GrooveHQ/design-system/pull/95) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.5.1 (Thu Aug 20 2020)
 
 #### 🐛  Bug Fix
