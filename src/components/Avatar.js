@@ -157,7 +157,7 @@ export const Avatar = ({
     a11yProps['aria-label'] = 'Loading avatar ...'
   } else if (src) {
     avatarFigure = <img src={src} alt={name} />
-  } else {
+  } else if (name) {
     avatarFigure = (
       <img
         src={generateAvatarUrl({ background, color, name, size })}
