@@ -55,6 +55,7 @@ export const autoAvatar = () => (
     <Avatar size="big" name="Tair Assimov" />
     <Avatar size="medium" name="Jared Scheel" />
     <Avatar size="small" name="Kevin Rademan" />
+    <Avatar size="big" />
   </Background>
 )
 
