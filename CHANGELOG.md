@@ -1,3 +1,15 @@
+# v2.5.3 (Thu Sep 10 2020)
+
+#### 🐛  Bug Fix
+
+- FIX: Ensure that stretched setting applies to StyledCard [#97](https://github.com/GrooveHQ/design-system/pull/97) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.5.2 (Mon Aug 24 2020)
 
 #### 🐛  Bug Fix
