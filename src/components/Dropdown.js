@@ -24,7 +24,7 @@ const StyledCard = styled(motion.custom(Card))`
   overflow-y: auto;
   max-height: 124px;
   padding: 12px ${spacing.padding.small}px;
-  width: 100%;
+  width: ${({ stretched }) => (stretched ? '100%' : 'auto')};
 `
 
 const StyledList = styled.ul`
