@@ -112,9 +112,19 @@ function generateAvatarUrl(config) {
 
   let canvas = document.createElement('canvas')
   const context = canvas.getContext('2d')
+  const devicePixelRatio = window.devicePixelRatio || 1
 
   canvas.width = size
   canvas.height = size
+  canvas.style.width = `${size}px`
+  canvas.style.height = `${size}px`
+
+  if (window.devicePixelRatio) {
+    canvas.width = size * devicePixelRatio
+    canvas.height = size * devicePixelRatio
+    context.scale(devicePixelRatio, devicePixelRatio)
+  }
+
   context.font = `${Math.round(size * 0.5)}px ${typography.type.primary}`
   context.textAlign = 'center'
   context.fillStyle = background
