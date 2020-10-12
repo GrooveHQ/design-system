@@ -1,3 +1,15 @@
+# v2.5.4 (Mon Oct 12 2020)
+
+#### 🐛  Bug Fix
+
+- NEW: Ensure avatars are generated correctly for retina displays [#99](https://github.com/GrooveHQ/design-system/pull/99) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.5.3 (Thu Sep 10 2020)
 
 #### 🐛  Bug Fix
