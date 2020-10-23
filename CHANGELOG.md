@@ -1,3 +1,15 @@
+# v2.5.5 (Fri Oct 23 2020)
+
+#### 🐛  Bug Fix
+
+- Increase size of presence dot from 5px to 8px [#100](https://github.com/GrooveHQ/design-system/pull/100) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.5.4 (Mon Oct 12 2020)
 
 #### 🐛  Bug Fix
