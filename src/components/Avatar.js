@@ -18,11 +18,11 @@ const presenceConfig = {
       positionOffset: 0,
     },
     tiny: {
-      length: 5,
+      length: 8,
       positionOffset: 0,
     },
     small: {
-      length: 5,
+      length: 8,
       positionOffset: 0,
     },
     medium: {
