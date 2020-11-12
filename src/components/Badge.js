@@ -5,23 +5,36 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from './Icon'
 import { Paragraph } from './Paragraph'
 import { shadows, spacing } from './shared/styles'
-import { transition } from './shared/animation'
+import { transition, generateTransition } from './shared/animation'
 
-const VARIANT_COLOR_MAP = {
+const BACKGROUND_COLOR_MAP = {
   primary: '--color-primary',
   secondary: '--color-paperWhite',
 }
 
-const ICON_COLOR_MAP = {
+const CONTENT_COLOR_MAP = {
   primary: 'paperWhite',
   secondary: 'stoneGrey',
+}
+
+const CONTENT_HOVER_COLOR_MAP = {
+  primary: 'paperWhite',
+  secondary: 'jetBlack',
 }
 
 const SIZES = {
   big: 56,
   medium: 48,
-  small: 32,
+  small: 40,
 }
+
+const Text = styled(Paragraph)`
+  overflow: hidden;
+  ${props => props.ellipsis && 'text-overflow: ellipsis;'}
+  white-space: nowrap;
+  margin: 0 ${spacing.padding.small}px 0 0;
+  transition: ${generateTransition('color')};
+`
 
 const StyledBadge = styled.div`
   box-sizing: border-box;
@@ -33,7 +46,8 @@ const StyledBadge = styled.div`
   outline: none;
   box-shadow: ${props => (props.open ? shadows.high : shadows.low)};
   border-radius: ${props => SIZES[props.size]}px;
-  background-color: var(${({ variant }) => VARIANT_COLOR_MAP[variant]});
+  background-color: var(${({ variant }) => BACKGROUND_COLOR_MAP[variant]});
+  transition: ${generateTransition('background-color')};
   min-width: ${props => SIZES[props.size]}px;
   max-width: 320px;
   height: ${props => SIZES[props.size]}px;
@@ -43,7 +57,7 @@ const StyledBadge = styled.div`
   :hover {
     background-color: var(
       ${({ variant }) => {
-        return VARIANT_COLOR_MAP[variant]
+        return BACKGROUND_COLOR_MAP[variant]
       }}Hover
     );
   }
@@ -51,7 +65,7 @@ const StyledBadge = styled.div`
   :active {
     background-color: var(
       ${({ variant }) => {
-        return VARIANT_COLOR_MAP[variant]
+        return BACKGROUND_COLOR_MAP[variant]
       }}Active
     );
   }
@@ -79,13 +93,6 @@ const TextContainer = styled(motion.div)`
       : `margin-left: ${spacing.padding.small}px;`}
   white-space: nowrap;
   overflow: hidden;
-`
-
-const Text = styled(Paragraph)`
-  overflow: hidden;
-  ${props => props.ellipsis && 'text-overflow: ellipsis;'}
-  white-space: nowrap;
-  margin: 0 ${spacing.padding.small}px 0 0;
 `
 
 const Count = styled(motion.custom(Paragraph))`
@@ -145,6 +152,7 @@ export const Badge = React.forwardRef(
   ) => {
     const controlled = controlledOpen !== undefined
     const [open, setOpen] = useState(controlled ? controlledOpen : false)
+    const [hover, setHover] = useState(false)
     const [textEllipsis, setTextEllipsis] = useState(false)
 
     useEffect(() => {
@@ -173,6 +181,9 @@ export const Badge = React.forwardRef(
       [onClick, controlled]
     )
 
+    const handleOver = useCallback(() => setHover(true))
+    const handleOut = useCallback(() => setHover(false))
+
     return (
       <StyledBadge
         role="button"
@@ -182,6 +193,8 @@ export const Badge = React.forwardRef(
         size={size}
         reverse={reverse}
         variant={variant}
+        onMouseOver={handleOver}
+        onMouseOut={handleOut}
       >
         <AnimatePresence exitBeforeEnter initial={false}>
           <IconContainer
@@ -199,16 +212,16 @@ export const Badge = React.forwardRef(
               {open ? (
                 <Icon
                   icon="close"
-                  size={size}
-                  color={ICON_COLOR_MAP[variant]}
+                  size={size === 'small' ? 'medium' : size}
+                  color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
                 />
               ) : (
                 icon && (
                   <Icon
                     icon={icon}
-                    size={size}
+                    size={size === 'small' ? 'medium' : size}
                     text={text}
-                    color={ICON_COLOR_MAP[variant]}
+                    color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
                   />
                 )
               )}
@@ -229,7 +242,7 @@ export const Badge = React.forwardRef(
             <Text
               size={size}
               padded={false}
-              color="paperWhite"
+              color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
               bold
               ref={textRef}
               ellipsis={textEllipsis}

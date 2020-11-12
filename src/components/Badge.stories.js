@@ -25,6 +25,7 @@ export const WithText = () => (
       text="This text is too long and will be cut off by an ellipsis"
       icon="chat"
     />
+    <Badge text="Need help?" icon="chat" variant="secondary" />
   </React.Fragment>
 )
 export const TextOnly = () => <Badge text="Need help?" />
