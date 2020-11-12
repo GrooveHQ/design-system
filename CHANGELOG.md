@@ -1,3 +1,15 @@
+# v2.5.6 (Thu Nov 12 2020)
+
+#### 🐛 Bug Fix
+
+- Fix secondary badge styles and badge background transition [#101](https://github.com/GrooveHQ/design-system/pull/101) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.5.5 (Fri Oct 23 2020)
 
 #### 🐛  Bug Fix
