@@ -52,7 +52,7 @@ const StyledContent = styled(motion.div)`
 const InnerContent = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   ${props =>
     props.padded ? `padding-bottom: ${spacing.padding.small}px;` : ''}
   ${props => (props.maxHeight ? `max-height: ${props.maxHeight};` : '')}
