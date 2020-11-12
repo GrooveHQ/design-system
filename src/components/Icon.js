@@ -39,9 +39,9 @@ const Path = styled.path`
  * - *non-decorative*: it means that it delivers information. For example, an icon as only child in a button. The meaning can be obvious visually, but it must have a proper text alternative via `aria-label` for screen readers. (ex: `<Icon icon="print" aria-label="Print this document" />`)
  */
 export const Icon = React.forwardRef(
-  ({ icon, block, color, hoverColor, ...props }, forwardedRef) => {
+  ({ icon, block, color, hoverColor, hover, ...props }, forwardedRef) => {
     return (
-      <Svg viewBox="0 0 24 24" block={block} {...props} ref={forwardedRef}>
+      <Svg viewBox="0 0 24 24" block={block} hover={hover} {...props} ref={forwardedRef}>
         <Path d={icons[icon]} color={color} hoverColor={hoverColor} />
       </Svg>
     )
@@ -63,6 +63,7 @@ Icon.propTypes = {
    */
   size: PropTypes.oneOf(Object.keys(ICON_SIZES)),
   block: PropTypes.bool,
+  hover: PropTypes.bool,
 }
 
 Icon.defaultProps = {
@@ -70,4 +71,5 @@ Icon.defaultProps = {
   color: 'stoneGrey',
   hoverColor: undefined,
   size: 'medium',
+  hover: false,
 }
