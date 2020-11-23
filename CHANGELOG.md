@@ -1,3 +1,15 @@
+# v2.5.7 (Mon Nov 23 2020)
+
+#### 🐛 Bug Fix
+
+- Fix footer positioning in ios [#102](https://github.com/GrooveHQ/design-system/pull/102) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.5.6 (Thu Nov 12 2020)
 
 #### 🐛 Bug Fix
