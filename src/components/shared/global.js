@@ -15,8 +15,7 @@ export const bodyStyles = css`
   color: var(--color-jetBlack);
 
   margin: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -19,8 +19,10 @@ const containerSpacing = {
 
 const StyledHeader = styled(motion.div)`
   background-color: var(--color-primary);
-  border-top-left-radius: ${spacing.borderRadius.default}px;
-  border-top-right-radius: ${spacing.borderRadius.default}px;
+  ${({ fluid }) =>
+    !fluid &&
+    `border-top-left-radius: ${spacing.borderRadius.default}px;
+    border-top-right-radius: ${spacing.borderRadius.default}px;`}
   position: relative;
   flex-shrink: 0;
 
@@ -147,6 +149,7 @@ export const Header = React.forwardRef(
       padded,
       scrollPositionMotionValue,
       scrollRange,
+      fluid,
     } = useContext(ContainerContext)
 
     let startingStubHeight = padded
@@ -179,6 +182,7 @@ export const Header = React.forwardRef(
     return (
       <StyledHeader
         spacing={spacingProp}
+        fluid={fluid}
         {...rest}
         ref={forwardedRef}
         variants={heightVariants}

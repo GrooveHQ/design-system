@@ -181,8 +181,8 @@ export const Badge = React.forwardRef(
       [onClick, controlled]
     )
 
-    const handleOver = useCallback(() => setHover(true))
-    const handleOut = useCallback(() => setHover(false))
+    const handleOver = useCallback(() => setHover(true), [])
+    const handleOut = useCallback(() => setHover(false), [])
 
     return (
       <StyledBadge
@@ -213,7 +213,11 @@ export const Badge = React.forwardRef(
                 <Icon
                   icon="close"
                   size={size === 'small' ? 'medium' : size}
-                  color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
+                  color={
+                    hover
+                      ? CONTENT_HOVER_COLOR_MAP[variant]
+                      : CONTENT_COLOR_MAP[variant]
+                  }
                 />
               ) : (
                 icon && (
@@ -221,7 +225,11 @@ export const Badge = React.forwardRef(
                     icon={icon}
                     size={size === 'small' ? 'medium' : size}
                     text={text}
-                    color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
+                    color={
+                      hover
+                        ? CONTENT_HOVER_COLOR_MAP[variant]
+                        : CONTENT_COLOR_MAP[variant]
+                    }
                   />
                 )
               )}
@@ -242,7 +250,11 @@ export const Badge = React.forwardRef(
             <Text
               size={size}
               padded={false}
-              color={hover ? CONTENT_HOVER_COLOR_MAP[variant] : CONTENT_COLOR_MAP[variant]}
+              color={
+                hover
+                  ? CONTENT_HOVER_COLOR_MAP[variant]
+                  : CONTENT_COLOR_MAP[variant]
+              }
               bold
               ref={textRef}
               ellipsis={textEllipsis}
