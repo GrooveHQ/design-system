@@ -28,6 +28,8 @@ const SIZES = {
   small: 40,
 }
 
+const noop = () => {}
+
 const Text = styled(Paragraph)`
   overflow: hidden;
   ${props => props.ellipsis && 'text-overflow: ellipsis;'}
@@ -207,7 +209,7 @@ export const Badge = React.forwardRef(
               initial="hidden"
               animate="visible"
               exit="hidden"
-              onAnimationComplete={!text && onAnimationComplete}
+              onAnimationComplete={!text ? onAnimationComplete : noop}
             >
               {open ? (
                 <Icon
@@ -237,7 +239,7 @@ export const Badge = React.forwardRef(
             variants={widthVariants}
             initial={open ? 'hidden' : 'visible'}
             animate={open ? 'hidden' : 'visible'}
-            onAnimationComplete={text && onAnimationComplete}
+            onAnimationComplete={text ? onAnimationComplete : noop}
           >
             <Text
               size={size}
@@ -317,5 +319,5 @@ Badge.defaultProps = {
   open: undefined,
   reverse: false,
   onClick: undefined,
-  onAnimationComplete: undefined,
+  onAnimationComplete: noop,
 }

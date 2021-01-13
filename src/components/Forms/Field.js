@@ -55,7 +55,7 @@ const StateMessage = ({ icon: iconName, color: colorName, children }) => {
       initial="initial"
       animate="visible"
       exit="exit"
-      layoutTransition
+      layout
     >
       <ValidationIcon icon={iconName} color={colorName} />
       {children}
