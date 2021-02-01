@@ -1,3 +1,16 @@
+# v2.6.0 (Mon Feb 01 2021)
+
+#### 🚀  Enhancement
+
+- Support mobile layouts [#105](https://github.com/GrooveHQ/design-system/pull/105) ([@jscheel](https://github.com/jscheel))
+- Upgrade framer and remove peer dependencies [#104](https://github.com/GrooveHQ/design-system/pull/104) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.5.7 (Mon Nov 23 2020)
 
 #### 🐛 Bug Fix
