@@ -25,6 +25,12 @@ const StyleContainer = styled.div`
   background-color: ${props => `var(--color-${props.backgroundColor})`};
   box-shadow: ${shadows.high};
   overflow: hidden;
+  ${({ fluid }) =>
+    fluid &&
+    `width: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    border-radius: 0;`}
 `
 
 const StyledContent = styled(motion.div)`
@@ -160,6 +166,7 @@ const scrollRange = [0, 100] // TODO (jscheel): Figure out way to make dynamic b
 export const Container = ({
   branding,
   children,
+  prefix,
   header,
   median,
   padded,
@@ -169,6 +176,7 @@ export const Container = ({
   overlap,
   maxHeight,
   overflowY,
+  fluid,
   ...rest
 }) => {
   const scrollPositionMotionValue = useMotionValue(0)
@@ -245,10 +253,12 @@ export const Container = ({
         scrollRange,
         setScrollTop,
         padded,
+        fluid,
         hasMedian: !!median,
       }}
     >
-      <StyleContainer {...rest} ref={containerRef}>
+      <StyleContainer {...rest} ref={containerRef} fluid={fluid}>
+        {prefix}
         {header && (
           <div>
             <HeaderAnimatedHeightWrapper headerKey={headerKey}>
@@ -272,7 +282,7 @@ export const Container = ({
           </StyledMedian>
         </AnimatePresence>
 
-        <AnimatePresence exitBeforeEnter initial={false}>
+        <AnimatePresence exitBeforeEnter>
           <StyledContent
             padded={padded}
             variants={contentAnimationVariants}
@@ -333,6 +343,10 @@ Container.propTypes = {
    */
   collapseOverlapOnScroll: PropTypes.bool,
   /**
+   * Any content to show before the header, such as close button in mobile, notice bars, etc.
+   */
+  prefix: PropTypes.node,
+  /**
    * Header component,
    */
   header: PropTypes.node,
@@ -348,6 +362,10 @@ Container.propTypes = {
    * Specify the max height of the container content area (Default is unset)
    */
   maxHeight: PropTypes.string,
+  /**
+   * Full width container, bounded by parent
+   */
+  fluid: PropTypes.bool,
 }
 
 Container.defaultProps = {
@@ -356,8 +374,10 @@ Container.defaultProps = {
   padded: true,
   overlap: false,
   collapseOverlapOnScroll: true,
+  prefix: undefined,
   header: undefined,
   median: undefined,
   overflowY: 'auto',
   maxHeight: null,
+  fluid: false,
 }
