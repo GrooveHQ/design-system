@@ -187,6 +187,7 @@ export const Badge = React.forwardRef(
     const handleOut = useCallback(() => setHover(false), [])
 
     return (
+      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <StyledBadge
         role="button"
         tabIndex={0}

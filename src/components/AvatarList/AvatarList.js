@@ -31,6 +31,7 @@ const itemVariants = {
   },
   shifted: {
     x: -2,
+    zIndex: 0,
   },
 }
 
@@ -85,17 +86,15 @@ const AvatarList = React.forwardRef(
             .reverse()
             .map((child, idx) => {
               if (idx >= max) return null
+              const additionalProps = {}
+              if (hoverOffsetCount !== false && compact && compactHover) {
+                additionalProps.whileHover = { zIndex: 10 }
+              }
               return (
                 <AvatarItem
                   compact={compact}
                   spacing={spacingName}
                   variants={itemVariants}
-                  animate={
-                    hoverOffsetCount !== false &&
-                    compact &&
-                    compactHover &&
-                    (idx > hoverOffsetCount ? 'shifted' : 'visible')
-                  }
                   onHoverStart={() => {
                     setHoverOffsetCount(idx)
                   }}
@@ -104,6 +103,7 @@ const AvatarList = React.forwardRef(
                   }}
                   key={child.key || child.props.src}
                   custom={idx}
+                  {...additionalProps}
                 >
                   {child}
                 </AvatarItem>
