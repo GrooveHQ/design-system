@@ -1,3 +1,15 @@
+# v2.6.1 (Wed Feb 17 2021)
+
+#### 🐛  Bug Fix
+
+- Fix compact hover [#106](https://github.com/GrooveHQ/design-system/pull/106) ([@kevinrademan](https://github.com/kevinrademan))
+
+#### Authors: 1
+
+- Kevin ([@kevinrademan](https://github.com/kevinrademan))
+
+---
+
 # v2.6.0 (Mon Feb 01 2021)
 
 #### 🚀  Enhancement
