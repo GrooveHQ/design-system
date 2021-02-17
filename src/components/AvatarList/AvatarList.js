@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
@@ -62,16 +62,6 @@ const AvatarList = React.forwardRef(
     },
     forwardedRef
   ) => {
-    // NOTE (jscheel): We set the initial value to `false` because we need to
-    // check for false in the animate prop. By checking for false, we prevent the
-    // prop from being set on the initial render (before a hover has happened).
-    // This allows the parent variant to propagate the staggering entrance
-    // animation. If we don't do this, the individual avatar's animate prop will
-    // override the staggering, cause all of the avatars to animate in together.
-    const [hoverOffsetCount, setHoverOffsetCount] = useState(false)
-    // NOTE (jscheel): Because we reverse the children, we have to calculate
-    // everything backwards to know which avatars to shift on hover.
-    const count = React.Children.count(children)
     return (
       <AvatarListContainer
         variants={listVariants}
@@ -85,25 +75,18 @@ const AvatarList = React.forwardRef(
             .reverse()
             .map((child, idx) => {
               if (idx >= max) return null
+              const additionalProps = {}
+              if (compact && compactHover) {
+                additionalProps.whileHover = { zIndex: 10 }
+              }
               return (
                 <AvatarItem
                   compact={compact}
                   spacing={spacingName}
                   variants={itemVariants}
-                  animate={
-                    hoverOffsetCount !== false &&
-                    compact &&
-                    compactHover &&
-                    (idx > hoverOffsetCount ? 'shifted' : 'visible')
-                  }
-                  onHoverStart={() => {
-                    setHoverOffsetCount(idx)
-                  }}
-                  onHoverEnd={() => {
-                    setHoverOffsetCount(count)
-                  }}
                   key={child.key || child.props.src}
                   custom={idx}
+                  {...additionalProps}
                 >
                   {child}
                 </AvatarItem>

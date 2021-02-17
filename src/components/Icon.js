@@ -41,7 +41,13 @@ const Path = styled.path`
 export const Icon = React.forwardRef(
   ({ icon, block, color, hoverColor, hover, ...props }, forwardedRef) => {
     return (
-      <Svg viewBox="0 0 24 24" block={block} hover={hover} {...props} ref={forwardedRef}>
+      <Svg
+        viewBox="0 0 24 24"
+        block={block}
+        hover={hover}
+        {...props}
+        ref={forwardedRef}
+      >
         <Path d={icons[icon]} color={color} hoverColor={hoverColor} />
       </Svg>
     )
