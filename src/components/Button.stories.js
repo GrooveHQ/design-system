@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Button } from './Button'
 import { FlexContainer } from './FlexContainer'
@@ -97,16 +97,29 @@ IconOnly.story = {
   ],
 }
 
-export const Loading = () => (
-  <FlexContainer gapHorizontal="small">
-    <FlexItem>
-      <Button loading>Loading</Button>
-    </FlexItem>
-    <FlexItem>
-      <Button icon="arrowLeft" loading />
-    </FlexItem>
-  </FlexContainer>
-)
+export const Loading = () => {
+  const [loading, setLoading] = useState(false)
+
+  return (
+    <FlexContainer gapHorizontal="small">
+      <FlexItem>
+        <Button loading>Loading</Button>
+      </FlexItem>
+      <FlexItem>
+        <Button icon="arrowLeft" loading />
+      </FlexItem>
+      <FlexItem>
+        <Button
+          icon="paperPlane"
+          loading={loading}
+          onClick={() => setLoading(l => !l)}
+        >
+          Click me
+        </Button>
+      </FlexItem>
+    </FlexContainer>
+  )
+}
 
 export const FormField = () => (
   <Field>
