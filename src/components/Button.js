@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { css, jsx, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { infoColor, spacing, forms, typography } from './shared/styles'
-import { generateTransition } from './shared/animation'
+import { generateTransition, transition } from './shared/animation'
 import { icons } from './shared/icons'
 import { Icon, ICON_SIZES } from './Icon'
 
@@ -288,7 +288,16 @@ const LoadingDots = styled(({ verticalAlign, ...rest }) => {
 
 export const Button = React.forwardRef(
   (
-    { variant, size, stretched, icon: iconName, loading, children, ...rest },
+    {
+      variant,
+      size,
+      stretched,
+      icon: iconName,
+      loading,
+      onClick,
+      children,
+      ...rest
+    },
     ref
   ) => {
     const classes = [
@@ -321,6 +330,22 @@ export const Button = React.forwardRef(
         />
       )
     }
+
+    // NOTE (jscheel): We do not use React.Children.count because that function
+    // also counts empty children. We need to know if the button is only displaying
+    // an icon, or if it also has content.
+    const hideIcon =
+      iconName && loading && React.Children.toArray(children).length === 0
+
+    const handleClick = useCallback(
+      (...args) => {
+        if (onClick && !loading) {
+          onClick(...args)
+        }
+      },
+      [onClick, loading]
+    )
+
     return (
       <motion.button
         css={classes}
@@ -328,10 +353,14 @@ export const Button = React.forwardRef(
         {...rest}
         aria-busy={loading}
         ref={ref}
+        onClick={handleClick}
+        layout
       >
-        {!loading && iconName && icon}
-        {children}
-        {loading && <LoadingDots verticalAlign={!children} />}
+        <motion.div layout="position">
+          {iconName && !hideIcon && icon}
+          {children}
+          {loading && <LoadingDots verticalAlign={!children} />}
+        </motion.div>
       </motion.button>
     )
   }
