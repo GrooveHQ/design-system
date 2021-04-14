@@ -10,6 +10,18 @@
 
 ---
 
+# v2.6.2 (Wed Apr 14 2021)
+
+#### 🐛  Bug Fix
+
+- Couple of loading state fixes in Button [#110](https://github.com/GrooveHQ/design-system/pull/110) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.6.1 (Wed Feb 17 2021)
 
 #### 🐛  Bug Fix
