@@ -7,6 +7,7 @@ const ContainerContext = React.createContext({
   setScrollTop: () => {},
   hasMedian: false,
   padded: true,
+  contentSizeEmitter: null,
 })
 
 export default ContainerContext

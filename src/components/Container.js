@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, useLayoutEffect, useCallback } from 'react'
+import React, {
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useMemo,
+} from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import {
@@ -8,6 +14,7 @@ import {
   useMotionValue,
 } from 'framer-motion'
 import Color from 'color'
+import mitt from 'mitt'
 import { color as colors, spacing, shadows, forms } from './shared/styles'
 import useScrollbarWidth from '../utils/useScrollbarWidth'
 import { transition } from './shared/animation'
@@ -53,6 +60,10 @@ const StyledContent = styled(motion.div)`
   flex-direction: column;
   z-index: 99999;
   position: relative;
+`
+
+const StyledBranding = styled(motion.div)`
+  z-index: 9999999;
 `
 
 const InnerContent = styled.div`
@@ -163,6 +174,8 @@ const brandingAnimationVariants = {
 
 const scrollRange = [0, 100] // TODO (jscheel): Figure out way to make dynamic base on header content
 
+const contentSizeEmitter = mitt()
+
 export const Container = ({
   branding,
   children,
@@ -183,6 +196,42 @@ export const Container = ({
 
   const containerRef = useRef(null)
   const contentRef = useRef(null)
+  const resizeObserverRef = useRef(null)
+  const takeInnerContentRef = useCallback(node => {
+    // NOTE (jscheel): Ideally, we would not have the ResizeObserver here, but
+    // because of problems with passing a callbackRef via the context provider,
+    // we instead have to do the work here. Also, we have to emit the size changes
+    // via an emitter, instead of setting state that gets passed into the context
+    // because we a) don't want to update the state that often, and b) updating
+    // the state in the middle of the page transitions will break framer-motion.
+    if (resizeObserverRef.current) {
+      // NOTE (jscheel): The ref has changed for some reason, so we disconnect
+      // the observer entirely to make sure we aren't listening to disconnected
+      // nodes that are being removed from the dom.
+      resizeObserverRef.current.disconnect()
+    } else if (typeof window !== 'undefined' && !!window.ResizeObserver) {
+      resizeObserverRef.current = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+          const el = entry.target
+          // NOTE (jscheel): Skip disconnected nodes (such as nodes animating out).
+          if (!el?.isConnected) return
+          contentSizeEmitter.emit('resize', el)
+        })
+      })
+    }
+
+    if (node && resizeObserverRef.current) {
+      resizeObserverRef.current.observe(node)
+    }
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect()
+      }
+    }
+  }, [resizeObserverRef])
 
   const handleScroll = useCallback(() => {
     if (!contentRef.current) return
@@ -226,6 +275,7 @@ export const Container = ({
   const contentPaddingBottom = useMotionValue(
     padded ? spacing.padding.small : 0
   )
+
   useEffect(() => {
     const scrollableDistance =
       contentRef.current.scrollHeight - contentRef.current.offsetHeight
@@ -245,18 +295,21 @@ export const Container = ({
 
   const scrollbarWidth = useScrollbarWidth()
 
+  const contextValue = useMemo(() => {
+    return {
+      overlap,
+      scrollPositionMotionValue,
+      scrollRange,
+      setScrollTop,
+      padded,
+      fluid,
+      hasMedian: !!median,
+      contentSizeEmitter,
+    }
+  }, [overlap, scrollPositionMotionValue, setScrollTop, padded, fluid, median])
+
   return (
-    <ContainerContext.Provider
-      value={{
-        overlap,
-        scrollPositionMotionValue,
-        scrollRange,
-        setScrollTop,
-        padded,
-        fluid,
-        hasMedian: !!median,
-      }}
-    >
+    <ContainerContext.Provider value={contextValue}>
       <StyleContainer {...rest} ref={containerRef} fluid={fluid}>
         {prefix}
         {header && (
@@ -303,18 +356,25 @@ export const Container = ({
                 }),
             }}
           >
-            <InnerContent padded={padded} maxHeight={maxHeight}>
+            <InnerContent
+              padded={padded}
+              maxHeight={maxHeight}
+              ref={takeInnerContentRef}
+            >
               {children}
             </InnerContent>
-            <motion.div
-              variants={brandingAnimationVariants}
-              initial="initial"
-              animate="visible"
-              exit="exit"
-            >
-              {branding}
-            </motion.div>
           </StyledContent>
+        </AnimatePresence>
+
+        <AnimatePresence exitBeforeEnter>
+          <StyledBranding
+            variants={brandingAnimationVariants}
+            initial="initial"
+            animate="visible"
+            exit="exit"
+          >
+            {branding}
+          </StyledBranding>
         </AnimatePresence>
       </StyleContainer>
     </ContainerContext.Provider>
