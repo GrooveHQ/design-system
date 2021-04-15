@@ -1,3 +1,15 @@
+# v2.7.0 (Thu Apr 15 2021)
+
+#### 🚀  Enhancement
+
+- Add contentResizeEmitter to track content sizing changes [#111](https://github.com/GrooveHQ/design-system/pull/111) ([@jscheel](https://github.com/jscheel))
+
+#### Authors: 1
+
+- Jared A. Scheel ([@jscheel](https://github.com/jscheel))
+
+---
+
 # v2.6.3 (Wed Apr 14 2021)
 
 
