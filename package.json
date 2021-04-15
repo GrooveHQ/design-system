@@ -63,6 +63,7 @@
     "@emotion/styled": "^10.0.23",
     "color": "^3.1.2",
     "framer-motion": "^3.1.1",
+    "mitt": "^2.1.0",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
     "react-autosize-textarea": "^7.0.0",
